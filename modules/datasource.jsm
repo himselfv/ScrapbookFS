@@ -334,7 +334,11 @@ var sbDataSource = {
     },
 
 
+    //When reading and writing items, we mostly just copy all the available properties.
+    //Some properties are internal though and should be hidden from clients (or they may write their obsolete values back later).
+    internalPropertyNames : ["filename"],
 
+    //Reads all of resources's data, except for internal bookkeeping
     getItem : function(aRes) {
         var ns = sbCommonUtils.namespace, nsl = ns.length;
         var item = sbCommonUtils.newItem();
@@ -344,6 +348,8 @@ var sbDataSource = {
                 var name  = names.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
                 if (name.Value.substring(0, nsl) != ns) continue;
                 var key = name.Value.substring(nsl);
+                if (this.internalPropertyNames.indexOf(key) >= 0)
+                    continue; //internal properties should be skipped
                 var value = this._dataObj.GetTarget(aRes, name, true).QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
                 item[key] = value;
             } catch(ex) {
@@ -362,8 +368,22 @@ var sbDataSource = {
             return "";
         }
     },
+    
+    //Updates all of resource's data
+    saveItem : function(aRes, item) {
+        for (var prop in item)
+            sbDataSource.setProperty(aRes, prop, item[prop]);
+    },
+    
+	//Sets properties of a resource available to external clients
+	setProperty : function(aRes, aProp, newVal) {
+		if (this.internalPropertyNames.indexOf(aProp) >= 0)
+			return; //internal properties cannot be written
+		return this.setInternalProperty(aRes, aProp, newVal);
+	},
 
-    setProperty : function(aRes, aProp, newVal) {
+    //Sets any property of a resource, including internal ones
+    setInternalProperty : function(aRes, aProp, newVal) {
         newVal = this.sanitize(newVal);
         var aPropName = aProp;
         aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aPropName);
@@ -554,9 +574,9 @@ var sbDataSource = {
     	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), ext, existingName);
     	if (filename != title)
     		//Chosen name was different from the title. We need to store it as an additional attribute.
-    		this.setProperty(aRes, "filename", filename)
+    		this.setInternalProperty(aRes, "filename", filename)
     	else
-    		this.setProperty(aRes, "filename", "");
+    		this.setInternalProperty(aRes, "filename", "");
     		//this.clearProperty(aRes, "filename"); //if any was set
     	sbCommonUtils.dbg("associateFilename: "+filename);
     	sbCommonUtils.log("associateFilename: new override state: "+this.getProperty(aRes, "filename"));
