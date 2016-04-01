@@ -165,6 +165,8 @@ var sbDataSource = {
             } else {
                 cont.AppendElement(newRes);
             }
+            if (newItem.type == "folder")
+            	this.needFolderPath(newRes);
             this._flushWithDelay();
             return newRes;
         } catch(ex) {
@@ -359,7 +361,7 @@ var sbDataSource = {
         return sbCommonUtils.RDFCU.IsContainer(this._dataObj, aRes);
     },
 
-	//Ensures that a given item ID is unused (altering it if needed)
+	// Ensures that a given item ID is unused (altering it if needed)
     identify : function(aID) {
         while ( this.exists(aID) ) {
             aID = (parseInt(aID, 10) + 1).toString();
@@ -411,6 +413,28 @@ var sbDataSource = {
             ret.unshift(this.getProperty(aRes, "title"));
         }
         return ret;
+    },
+    
+    //Ensures a directory exists for a folder resource and returns a directory object.
+    needFolderPath : function(folderRes) {
+    	if (!folderRes)
+    		throw "needFolderPath: invalid null resource received";
+    	resType = this.getProperty(folderRes, "type");
+    	if (folderRes.Value == "urn:scrapbook:root") {
+    		sbCommonUtils.log("path: "+path);
+    	} else
+    	if (resType != "folder") {
+    	    throw "needFolderPath() called on a non-folder item: "+resType
+    	} else {
+    		var title = this.getProperty(folderRes, "title");
+    		var aParent = this.findParentResource(folderRes);
+    		path = this.needFolderPath(aParent);
+    		path.append(title);
+    		//TODO: Sanitize title
+    		//TODO: If changed, store original title in index.lst
+    	}
+		if ( !path.exists() ) path.create(path.DIRECTORY_TYPE, 0700);
+		return path;
     },
 
     outputTreeAuto : function(aWindow) {
