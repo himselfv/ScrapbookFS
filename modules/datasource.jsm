@@ -177,6 +177,12 @@ var sbDataSource = {
 
     moveItem : function(curRes, curPar, tarPar, tarRelIdx) {
         try {
+	        var resType = this.getProperty(curRes, "type");
+	        sbCommonUtils.log("moveItem: resType = "+resType);
+	        if (resType == "folder") {
+	        	var resDir = this.needFolderPath(curRes); // we'll be unable to calculate it after removing
+	        	sbCommonUtils.log("moveItem: resDir = "+resDir.path);
+	        }
             sbCommonUtils.RDFC.Init(this._dataObj, curPar);
             sbCommonUtils.RDFC.RemoveElement(curRes, true);
         } catch(ex) {
@@ -193,6 +199,16 @@ var sbDataSource = {
             } else {
                 sbCommonUtils.RDFC.AppendElement(curRes);
             }
+            
+	        //Move the folder on disk
+			if (resType == "folder") {
+	        	sbCommonUtils.log("moveItem: moving the folder");
+	        	var targetDir = this.needFolderPath(tarPar);
+	        	sbCommonUtils.log("moveItem: targetDir = "+targetDir.path);
+	        	resDir.moveTo(targetDir, "");
+	        } else {
+	        	sbCommonUtils.log("moveItem: by this point, resType == " + resType);
+	        }
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE2", [ex]));
             sbCommonUtils.RDFC.Init(this._dataObj, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
