@@ -419,16 +419,16 @@ var sbDataSource = {
     needFolderPath : function(folderRes) {
     	if (!folderRes)
     		throw "needFolderPath: invalid null resource received";
-    	resType = this.getProperty(folderRes, "type");
+    	var resType = this.getProperty(folderRes, "type");
     	if (folderRes.Value == "urn:scrapbook:root") {
-    		sbCommonUtils.log("path: "+path);
+    		var path = sbCommonUtils.getScrapBookDir().clone();
     	} else
     	if (resType != "folder") {
     	    throw "needFolderPath() called on a non-folder item: "+resType
     	} else {
     		var title = this.getProperty(folderRes, "title");
     		var aParent = this.findParentResource(folderRes);
-    		path = this.needFolderPath(aParent);
+    		var path = this.needFolderPath(aParent);
     		path.append(title);
     		//TODO: Sanitize title
     		//TODO: If changed, store original title in index.lst
