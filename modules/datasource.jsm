@@ -484,14 +484,16 @@ var sbDataSource = {
     },
     
     
+    
     //Replaces all characters that the file system might not support with safe characters.
     sanitizeFilename : function(filename) {
     	if (!filename) return "";
         return filename.replace(/[\x00-\x1F\x7F\<\>\:\"\/\\\|\?\*]/g, " ");
     },
     
-    //Selects a unique filename based on a given pattern. Returns the name.
-    selectUniqueFilename : function(parentDir, filename, ext) {
+    //Selects a non-existent filename based on a given pattern. Returns the name as string.
+    //If existingName is given, it is assumed to be ours (so when stumbling upon it, we'll not consider it taken)
+    selectUniqueFilename : function(parentDir, filename, ext, existingName) {
     	var finalName;
 		if (ext != '')
 			finalName = filename + "." + ext
@@ -500,6 +502,7 @@ var sbDataSource = {
 
 		var index = 1;
     	while (true) {
+    		if (finalName == existingName) return existingName;
 			var finalPath = parentDir.clone();
 			finalPath.append(finalName);
 			if (!finalPath.exists()) return finalName;
@@ -515,8 +518,8 @@ var sbDataSource = {
     //Selects a folder name for a folder resource and stores it in the folder properties, if needed.
     //Handles name sanitization and duplicates.
     //Once selected, the name will not be changed until this is called again (i.e. when moving to a new place).
-    //Does not create the folder itself because this is also used to choose the target filename when moving.
-    initFolderDir : function(folderRes) {
+    //Does not create the folder itself because this is used to choose the target filename when moving too.
+    initFolderDir : function(folderRes, wasInitialized) {
     	var parentDir = this.needFolderDir(this.findParentResource(folderRes));
     	
     	var title = this.getProperty(folderRes, "title");
@@ -527,6 +530,15 @@ var sbDataSource = {
     	else
     		this.clearProperty(folderRes, "filename"); //if any was set
     	return filename;
+    },
+    
+    //Returns a filename associated to a resource, without any path. Does not choose a suitable one, just tells how it's configured now.
+    //The resource is assumed to be initialized (initFolderDir called at least once).
+    getAssociatedFilename : function(folderRes) {
+    	var filename = this.getProperty(folderRes, "filename");
+		if (filename == "")
+			filename = this.getProperty(folderRes, "title");
+		return filename;
     },
     
     //Retrieves a directory associated with a specified folder resource, whether it exists or not.
@@ -544,10 +556,7 @@ var sbDataSource = {
 		var aParent = this.findParentResource(folderRes);
 		var path = this.needFolderDir(aParent);
 		
-		var filename = this.getProperty(folderRes, "filename");
-		if (filename == "")
-			filename = this.getProperty(folderRes, "title");
-		path.append(filename);
+		path.append(this.getAssociatedFilename(folderRes));
 		return path;
     },
     
@@ -564,15 +573,25 @@ var sbDataSource = {
 	//Old dir and new parent must be given explicitly since this is often called when moving stuff and the internal bookkeeping may be in tatters.
 	//It is okay for the old path to point to non-existing folder.
 	moveFolderDir : function(folderRes, oldDir, newPar) {
-			sbCommonUtils.dbg("moveFolderDir: moving folder: "+oldDir.path);
-			//We need to choose the target name in any case, or we risk stealing already existing folder.
-        	var targetDir = this.needFolderDir(newPar);
-        	var targetName = this.initFolderDir(folderRes); //choose a new suitable name at a target place
-        	sbCommonUtils.dbg("moveItem: new target name: "+targetName);
-			if (oldDir.exists()) {
-				sbCommonUtils.dbg("moveItem: folder exists, moving: "+oldDir.path);
-				oldDir.moveTo(targetDir, targetName);
-			}
+		sbCommonUtils.dbg("moveFolderDir: moving folder: "+oldDir.path);
+    	var targetDir = this.needFolderDir(newPar);
+
+    	//If we're moving to the same folder and the name hasn't changed, keep it --
+    	//or initFolderDir will consider it taken and give us another one
+    	if (oldDir.parent.equals(targetDir) && (oldDir.leafName == this.getAssociatedFilename(folderRes))) {
+    		sbCommonUtils.dbg("moveFolderDir: same path and name, skipping");
+    		return;
+    	}
+    	
+		//We need to choose a target name even if there's no data to move,
+		//or we risk stealing already existing folder.
+    	var targetName = this.initFolderDir(folderRes); //choose a new suitable name at a target place
+    	sbCommonUtils.dbg("moveItem: new target name: "+targetName);
+
+		if (oldDir.exists()) {
+			sbCommonUtils.dbg("moveItem: folder exists, moving: "+oldDir.path);
+			oldDir.moveTo(targetDir, targetName);
+		}
 	},
 
     outputTreeAuto : function(aWindow) {
