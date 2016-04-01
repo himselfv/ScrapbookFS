@@ -1,0 +1,3812 @@
+Manifest-Version: 1.0
+
+Name: install.rdf
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nji7K5rQEd/l2zG2nAYdcw==
+SHA1-Digest: q9unkUCtV2yBHvtfarTkch1cias=
+
+Name: chrome.manifest
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FrrQfLspAC2kfIKmVTpZPg==
+SHA1-Digest: qfTzF+foPPUAvLQX6rKaO7da/Do=
+
+Name: AMO_NOTES.txt
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YFAA2tKaJsRUroGQk1HOGA==
+SHA1-Digest: bug/3ilCteAtIESIwZXoigvJKL8=
+
+Name: LICENSE.txt
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: gVylmcnfJHoMf2GbqxI9rQ==
+SHA1-Digest: l0TO3OCZ9yezJ82ZE6H9xYp/VZk=
+
+Name: README.txt
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6uHaW29UfL4O/sdJghIaKw==
+SHA1-Digest: ErrM+9I3EOtNGSo6BYBVv6L25dk=
+
+Name: RELEASE.txt
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: oOayRFdwynBMmrCbfn8J6A==
+SHA1-Digest: nxc0MSRQm38ZmepkoYtg1RKRldQ=
+
+Name: chrome/content/scrapbook/cache.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +bk3O0ul0m88VJu6YFYiDw==
+SHA1-Digest: ZM/E2+uUbZ5R7nl30JUTCGcUZvs=
+
+Name: chrome/content/scrapbook/calculate.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ox7wvd+/c2CNf29RavDZ6w==
+SHA1-Digest: YDaUgStieajIZMB297Tb05kS2B0=
+
+Name: chrome/content/scrapbook/calculate.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RaF1ED9XhQHa0NByp+KrcA==
+SHA1-Digest: WBprvUnDrJ40BzP8g2WNxz9BvjM=
+
+Name: chrome/content/scrapbook/capture.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +IyRQvvCle5hdEqQSnzXzA==
+SHA1-Digest: wjGZhKsQ9IHpMXCkYQUBBKhkejs=
+
+Name: chrome/content/scrapbook/capture.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2a4Y+IpvNzyKy+5+yFuy1g==
+SHA1-Digest: SDLgolDhgSfat3nLWm3QXHMLj7Y=
+
+Name: chrome/content/scrapbook/combine.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4UtCiwYiRswymzOoIqw6sA==
+SHA1-Digest: vSv2+8+Eeu4yPEfBVtGWE2xRWfQ=
+
+Name: chrome/content/scrapbook/combine.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OXXqepD5Iqts54UWqlQZEg==
+SHA1-Digest: 5A05U6whY2jdnh2wNg/51M3WuSk=
+
+Name: chrome/content/scrapbook/common.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: d/5CweGsJ/z5AlZfRACA1g==
+SHA1-Digest: Z1kSOlPLuu0ZRGS3la8rIbYpF8M=
+
+Name: chrome/content/scrapbook/customTree.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eFcbNeveFJ8mDK1ENE3d8A==
+SHA1-Digest: hXeXRmtZvZmrlDfIkEKcvEdJ6Sg=
+
+Name: chrome/content/scrapbook/detail.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 35t8m3J2s1Hdac4NJVWHgQ==
+SHA1-Digest: Ne+Eyhu/yCXXVsR+yXlwuBEeRWM=
+
+Name: chrome/content/scrapbook/detail.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nT9qJHjBycKR7pzb6nwjag==
+SHA1-Digest: XngCVjc5wlHkwtxEOIOnjMrbhMo=
+
+Name: chrome/content/scrapbook/editor.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 3g0qEB3/bYM1CUbYRKOyFA==
+SHA1-Digest: 1Km4uWyVsWzmVjpqtx38hsjHQgk=
+
+Name: chrome/content/scrapbook/editor_backup.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: aF4urrNzTXHGArWUS0kqiQ==
+SHA1-Digest: HKUmjE3fv/CJPfDbkcEtWKlhB44=
+
+Name: chrome/content/scrapbook/editor_backup.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: oV6t9p6JCaYLHW2pzy2x9w==
+SHA1-Digest: 3nGfvHDLdJsI2K3AEx/kRVKaW0I=
+
+Name: chrome/content/scrapbook/editor_color.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FFpuvNE2Za+ddNUeIkW8+w==
+SHA1-Digest: YxAmgzxzzqIK1EK244TvIVM1yJg=
+
+Name: chrome/content/scrapbook/editor_color.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: NQVse/XzSBHjMyJXurhqFA==
+SHA1-Digest: KPwRJtdVBVqzmRQ40gLsyoDPZX4=
+
+Name: chrome/content/scrapbook/editor_file.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UdfTOvEU7r1n/+AVZCxJNw==
+SHA1-Digest: ruiJNgf98qhnbnzbPoxgq/4jyFQ=
+
+Name: chrome/content/scrapbook/editor_file.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vrITm+IoRsLqn/E/XRnOLQ==
+SHA1-Digest: oJ26xD0bxZobCb+s9oexH6Xjjlw=
+
+Name: chrome/content/scrapbook/editor_link.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 21M0K/apOPJ2lP0RwK0rCA==
+SHA1-Digest: 19keZEBXQJM2I1/+jutzu+PeoPY=
+
+Name: chrome/content/scrapbook/editor_link.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LDFXhUedfQrTgOY2mXBBYA==
+SHA1-Digest: qPsxAAf8xiEx3FhZdo4y0J8iJFE=
+
+Name: chrome/content/scrapbook/editor_source.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ewtwatukyHlKLlclq2qPng==
+SHA1-Digest: pszn1ENS7K4j2egml0uCJMWflME=
+
+Name: chrome/content/scrapbook/editor_source.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: J6JsrKYiHjraaQuTQFPi8g==
+SHA1-Digest: TO24Uj5WcCoxPVJvnDDFyaHhVFE=
+
+Name: chrome/content/scrapbook/folderPicker.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: s8cQi8eOlL/PQF/aZuNFrg==
+SHA1-Digest: oM1hp04ypMtwbM3g2kKUvYYkOno=
+
+Name: chrome/content/scrapbook/folderPicker.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: O46YbSZcYYD/hVnaqDP8Wg==
+SHA1-Digest: YlL/MgAbHJHcOM3izJtzAFhLRJs=
+
+Name: chrome/content/scrapbook/fulltext.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Dsd3qmxK9gmbHO/asaEM0g==
+SHA1-Digest: dmtB0pOyCNLfeHgw8sTQyu/7Nhw=
+
+Name: chrome/content/scrapbook/highlighter.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: voE/Zd2W6+e/1WDpM21LoA==
+SHA1-Digest: p3IWOgDf1Ip+cx2drLZ71unudck=
+
+Name: chrome/content/scrapbook/hlCustom.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qOr7MWbSupBIYu2MnDubMw==
+SHA1-Digest: 4lWFoZL4wuqnKJN0VMr3g7xYeAA=
+
+Name: chrome/content/scrapbook/hlCustom.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1Q1kS9+rDsmnbLI1JmzV9g==
+SHA1-Digest: JIhtjef870gqbXHkkGXqJG2zbN8=
+
+Name: chrome/content/scrapbook/manage.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Bd85ktObrCjk2RlkaRRMmQ==
+SHA1-Digest: IRJ42z6ukYRRkIrpWmGOf7USOww=
+
+Name: chrome/content/scrapbook/manage.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: aYTuw7s77/iEiEBjpQpiXg==
+SHA1-Digest: xYjaKkWL0jzQRbQNf2+yLADt3NU=
+
+Name: chrome/content/scrapbook/mbEdit.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2qbiVDsej0ASbifrA2JxNQ==
+SHA1-Digest: mia59F7diQAMQXFn6xbQSniA1tI=
+
+Name: chrome/content/scrapbook/mbEdit.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ztTH5BFCjkrJswltdMnctw==
+SHA1-Digest: F4lYjm71UXphY+jDBfJia8FRiOs=
+
+Name: chrome/content/scrapbook/mbManage.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rgHS7xeLivKjty6jNBkUlA==
+SHA1-Digest: uPMLS5u40eYhMwx4DnaGiwS6aT8=
+
+Name: chrome/content/scrapbook/mbManage.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mU+Gi4Lpn3LOY1uljEYwcg==
+SHA1-Digest: jWLRR+j0T8UWz3coicoxy25z20M=
+
+Name: chrome/content/scrapbook/mbService.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cHOO7cJpW+KmEuos9L/irw==
+SHA1-Digest: clV8Wd1gyPad2wvByKTZtaOQBhs=
+
+Name: chrome/content/scrapbook/multiple.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 46zRrhf+CUG8TJgMAcH8eg==
+SHA1-Digest: 6prWM5NEbzk+IJ709Kjvkx3S0Dc=
+
+Name: chrome/content/scrapbook/multiple.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yqNxcuhVq7pvyFNoRPxzfw==
+SHA1-Digest: yybdjgJEV7rcIOhTdSIza5tjnQ4=
+
+Name: chrome/content/scrapbook/note.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +g14348IrL1+XTsG5qEKNg==
+SHA1-Digest: paC6REbfteBpGLVzqTH0iehiKZA=
+
+Name: chrome/content/scrapbook/note.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8pQbyE1g1ma7JBijtKg98Q==
+SHA1-Digest: a0F5Ht/z71AI9y3J+56+YLL+Wlo=
+
+Name: chrome/content/scrapbook/note_template.html
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ciuPpGb2MccNV62Vn6Wq2g==
+SHA1-Digest: z1dDl6Yjdm9LIwH4sEnRprjmuow=
+
+Name: chrome/content/scrapbook/notex_template.html
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ww1A9lGuOEClvcZs4wxs7w==
+SHA1-Digest: f3w8dR80GNEeza0Aa9nHuNsB/FA=
+
+Name: chrome/content/scrapbook/output.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: AK6Ky5CSkPc4IRlxjENCNA==
+SHA1-Digest: ZuTEFNs9pNpN291XKO+XShmFbps=
+
+Name: chrome/content/scrapbook/output.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kNrh+pqZBCzWqpYg99oTNw==
+SHA1-Digest: +7ihz8+oRxGatf5yokyf1UasLFE=
+
+Name: chrome/content/scrapbook/overlay.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 5LYOoFPXszbNHID//qPNJg==
+SHA1-Digest: 0QGiVoK9nGFdYc1ZD3pCubfXKO4=
+
+Name: chrome/content/scrapbook/overlay.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OMQ1rUB83COYJaBqWyr17g==
+SHA1-Digest: IDSQPtDrPkiZ+B0gZhuMG8VWfCI=
+
+Name: chrome/content/scrapbook/prefs.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: smuwwG79lnI9b2HIKJ9f5g==
+SHA1-Digest: 4ofC8uX5XI7A5aFosP6kzeAUKao=
+
+Name: chrome/content/scrapbook/prefs.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LJMPXfBI6ZMHrISaHQRp6Q==
+SHA1-Digest: JgH+9018hf8Cg7D7PhUmQPnGnLw=
+
+Name: chrome/content/scrapbook/property.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xLireFqn0FpjqcPVm63DFA==
+SHA1-Digest: /K+JTIP9t2KXraFl/PJa64owTVg=
+
+Name: chrome/content/scrapbook/property.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wOx+0hdss13qbxY0FsQMSg==
+SHA1-Digest: vVg7R8En3+iRz05PcJCO2GsZEzU=
+
+Name: chrome/content/scrapbook/repair.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8Rf/HipAVmfGfREk2xOcDw==
+SHA1-Digest: PZ9a9Mzx6ac4Aed8z9MVJsEdPGk=
+
+Name: chrome/content/scrapbook/repair.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9A/DfGeXJ6Yrh6DWlOCp7g==
+SHA1-Digest: xQfhkJWvgM8g5kXf6YsHqR/82tA=
+
+Name: chrome/content/scrapbook/result.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Q1rE261nxjcViASuMy62Tw==
+SHA1-Digest: LZQoNQ4dzRkNpVSEc/weLYTOGEI=
+
+Name: chrome/content/scrapbook/saver.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1prl2cOzHmgbDUlG/nwrFQ==
+SHA1-Digest: Ch61lAnmslUaGeSQTElz4htI4Xw=
+
+Name: chrome/content/scrapbook/scrapbook.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: D2FwCjCObyt8SCCTNCKPcQ==
+SHA1-Digest: GQuHYg4ojiM7i+WGpXrP1HOcNaY=
+
+Name: chrome/content/scrapbook/scrapbook.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QHyi6Kb9JWjw56a6LZNpLw==
+SHA1-Digest: H95Hcls9unytzxzcOYOh5QM3BJU=
+
+Name: chrome/content/scrapbook/scrapnote.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZG27q0Fcx2Z/b/sIgFhTyw==
+SHA1-Digest: jB6hVjNUhvj72ud4yVDnsopF7eQ=
+
+Name: chrome/content/scrapbook/sort.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: A+5BeVl0ToHTTJYI2hL0Mg==
+SHA1-Digest: QFd4tfdEoZDJps9XAWsFIHFEbw8=
+
+Name: chrome/content/scrapbook/sort.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pKtx9kwBYkJ4T5qPZvIgcw==
+SHA1-Digest: yHXmUBDKIPft9cCEAHqxoF2jaKE=
+
+Name: chrome/content/scrapbook/templateHelp.xhtml
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8g3yTRnyhhk6DYgKckYb9g==
+SHA1-Digest: FKjfwpVl45QfRr3uoKiDqMLGM1Y=
+
+Name: chrome/content/scrapbook/trade.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EQK/BKisbM7RPKGxpmjbbg==
+SHA1-Digest: hcE0pD3Ar+NGIcOZIo1CxOJzhYQ=
+
+Name: chrome/content/scrapbook/trade.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: m+t5jYabj8m3IcZRmxjwbw==
+SHA1-Digest: /4acZyT1QlT+ybiGgdSDxgWSmHQ=
+
+Name: chrome/content/scrapbook/tree.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: huuA4yUm+YR2dAl0TANX9A==
+SHA1-Digest: 6txQk6jqmxqTY/unCj49IeBgono=
+
+Name: chrome/content/scrapbook/tree.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PeOQPutBOQmHKJyBJGGflA==
+SHA1-Digest: kD60o+qdrBSnn/CyJcFUOu9APN8=
+
+Name: chrome/content/scrapbook/view.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YGrnsdNnAkSOtF6X6Fm2Qg==
+SHA1-Digest: VGl845n27/LwTbk5AVp1q+t2Zbk=
+
+Name: chrome/content/scrapbook/view.xul
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: gaE3eBj+Q148xcihgU13gA==
+SHA1-Digest: gHL/P32D6+2ctCWLmT6In7k8sVY=
+
+Name: chrome/content/scrapbook/lib/phpjs.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: aFweZtIizAzi5MUAokHwNQ==
+SHA1-Digest: pk+gKho/P7hYKoggb5NdcHk4alU=
+
+Name: chrome/locale/ar/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OsaxFbw8DG/yJNB6merhfA==
+SHA1-Digest: okOIa/bgAWXnd9eiBlaOzHCPKmM=
+
+Name: chrome/locale/ar/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8S0w+UE1Ok7gkB2L2TqXdA==
+SHA1-Digest: zFthHTeSVmjvr/yP6PXuHH8b3Es=
+
+Name: chrome/locale/ar/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4CfhNu5ssFGQrPNj8R06qg==
+SHA1-Digest: GnxolwVqw4O2yHoc9dzo+EfYmnY=
+
+Name: chrome/locale/ar/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1oggFc7v/tTtEdY7GA1M+w==
+SHA1-Digest: 2hBsHyI5FuxmJ/G36x0lVxgsnOk=
+
+Name: chrome/locale/ar/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yayItA1XIuQ5RNDo7yRzMg==
+SHA1-Digest: prXoQQdgl1sA3AceIIRzMURNMDQ=
+
+Name: chrome/locale/ar/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: agtzSPsWM3+OZ37ytHSGZA==
+SHA1-Digest: L5BOIsPoqfrrUREk0ug7OiRMcs4=
+
+Name: chrome/locale/ar/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: D9CYFdn1BcnZ1QbfNtB9TA==
+SHA1-Digest: 6K+u84oio0wasfdNDxVxxdeQ+uY=
+
+Name: chrome/locale/ar/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Z8XoGah5klPLE0VdXvldGw==
+SHA1-Digest: +VFn8bPb25X/7DLnTLTZVHTQhS8=
+
+Name: chrome/locale/ar/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6HY7/72YP4H/Wmfz7uKFrQ==
+SHA1-Digest: Tq4HWVMJ2wI3CA/5IGSptBdc98c=
+
+Name: chrome/locale/ar/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ksPKQCVjnBcaVxj3CosFgA==
+SHA1-Digest: 8C2P0vc73+JIs/L9ybIkkZqW8FQ=
+
+Name: chrome/locale/ar/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nOuss8g/qEfp3HkSQi1TVQ==
+SHA1-Digest: k0FlwbNrADVXx9ZcuYTWOFCre7g=
+
+Name: chrome/locale/ar/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ldxl4AqgCEyNlRIsFLexfw==
+SHA1-Digest: +/T9xiSBxS1zzhX8qWGHmjS6ejg=
+
+Name: chrome/locale/ar/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: crbApo8CIKn6kh5+OI3XWg==
+SHA1-Digest: qxD8B7iePYBzdWRLFlJFNc0e7K8=
+
+Name: chrome/locale/ar/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fw8bgUvKjZysq4/JqyQQlQ==
+SHA1-Digest: tnPhGdUi4EIyWk5X9cmY7dBaUMg=
+
+Name: chrome/locale/ar/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RFXcU8Z1eQfsstM4gSDrtA==
+SHA1-Digest: W56Tlxn1oj4D0jjEX23fg+d8x9s=
+
+Name: chrome/locale/ar/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7gmK+jTZl8guRNRxFE5AfQ==
+SHA1-Digest: +dFKJx4xaxK8r9YME791EMnkuLA=
+
+Name: chrome/locale/ar/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ADy9FT+0F+QB4DN1Ok0rZA==
+SHA1-Digest: n2QKrOhyjIDGkc5IlIBToPMydhQ=
+
+Name: chrome/locale/ar/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qzLY1loRnyCz+KzE1pfZbQ==
+SHA1-Digest: 4Me8XIYo7gh1TSAMfg2JQO+Gptk=
+
+Name: chrome/locale/ar/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4gqHgxO1UYZTNb1IE8jruw==
+SHA1-Digest: LgwydPY9luAYl4pHRg7kw7kLvfk=
+
+Name: chrome/locale/ar/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cOtFoEKRpgahk7xKxc3txw==
+SHA1-Digest: lSrR+CwEnRM/vQgZdZJFzRdjJUA=
+
+Name: chrome/locale/ar/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QTLQV6fYBBAg5CF/GHybaw==
+SHA1-Digest: WNu6CyGvE5k6SkM5Tmj7V7h5G0I=
+
+Name: chrome/locale/ar/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fsXjbt2Tl+VlPx75w+YdfA==
+SHA1-Digest: d1zaObgir9x+QNGeCS6uJWDdewA=
+
+Name: chrome/locale/ar/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XkU1n3foRORf4CkPptpFGQ==
+SHA1-Digest: J7bcc2G7SOJvX9aw9zaamlaW1Hk=
+
+Name: chrome/locale/ar/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qAgeVhJWAqfGUzzHxCorMQ==
+SHA1-Digest: Snb1DnbPBtER0T7GLBnd5Fx8IkA=
+
+Name: chrome/locale/ar/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +IMt6dP/jxOgjJkRr58vdA==
+SHA1-Digest: 7DxJbSkMVH39jSn/CmNKMFmAEJ0=
+
+Name: chrome/locale/ar/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8ZwiaJGPqr8J3sw8HP6IZQ==
+SHA1-Digest: OVx7/oVsU7wNXuvdJT+WT44Se+Q=
+
+Name: chrome/locale/ar/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kv9LvvuAd+mbbbw64qQA4Q==
+SHA1-Digest: ZsdWw6Mvn0TyIgiQFVVP0JkrIlk=
+
+Name: chrome/locale/cs-CZ/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MENsIuglLcK429ULkCju/A==
+SHA1-Digest: 4WR3hLZ2q2IpVTwLoVhBzZySqFc=
+
+Name: chrome/locale/cs-CZ/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: uLEPJT+YS2aWUcH7mJeJmA==
+SHA1-Digest: wNHCFGBQ/6v46MCAzI/sEZq1CO0=
+
+Name: chrome/locale/cs-CZ/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lfAwP8dj6bjQNU1v3DBjqw==
+SHA1-Digest: +RihIt79j82Ns+P71x3quVwpvf8=
+
+Name: chrome/locale/cs-CZ/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PFSsp6CUDCkmS2zcdBUIyw==
+SHA1-Digest: /uJaBVUorkBLG5v37FTUiN4cJsM=
+
+Name: chrome/locale/cs-CZ/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vtaUQWbRG2ywFL94LuXOhw==
+SHA1-Digest: gAkaIxp+n37XvS6y5/z3vH9z7x0=
+
+Name: chrome/locale/cs-CZ/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: DtCyb7vEU4r/ryW1XIoW5w==
+SHA1-Digest: 3kEujCHVLIkpzHT1yUrOqvi2jC4=
+
+Name: chrome/locale/cs-CZ/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UewdHhmxZTxZSetxv1pi5w==
+SHA1-Digest: 3j5d4WpTH3pswIEz2vaR4frbmEg=
+
+Name: chrome/locale/cs-CZ/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8DmovlOSfaP6Y/QPvoiqVA==
+SHA1-Digest: i4O9dlFGtBf1CEjJcboAkKLyl1o=
+
+Name: chrome/locale/cs-CZ/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zbWiYOmdbOKZfaCcqVC6ww==
+SHA1-Digest: Mzkivw5QegUkOsQCQeS0+o46Fbs=
+
+Name: chrome/locale/cs-CZ/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 23uC+Nz+42imhCBrKOZo/Q==
+SHA1-Digest: au15K0x2zfSLEGt5Zrg9ewytAPg=
+
+Name: chrome/locale/cs-CZ/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8fJmMYiQp7kmTnguxyK3oQ==
+SHA1-Digest: 7hXLDSj72WQ+g68vMGzrw/k2CqM=
+
+Name: chrome/locale/cs-CZ/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rVF3c0ZX5+C7qRYkgw1PnA==
+SHA1-Digest: vUX62bgA9sT4EaVLmMbEoH/KoyU=
+
+Name: chrome/locale/cs-CZ/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UkMjNnZh5jitNUZZ0tzvxw==
+SHA1-Digest: m71ptct6yaowTOaMp6UTFkylU4Y=
+
+Name: chrome/locale/cs-CZ/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ck7WrBqVO5wl2/LQCZyuNw==
+SHA1-Digest: hEj746YRz8XPrmhopoAQ/LRpK7g=
+
+Name: chrome/locale/cs-CZ/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dT0UZ15Cl/LPBycAFT/3qg==
+SHA1-Digest: 0C7ABre9O2+u28kTLUdNPtVqP5A=
+
+Name: chrome/locale/cs-CZ/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YkwusEclUTv2dLMoq/uDfA==
+SHA1-Digest: g17a8qvIJjPiCUUQpZHJUjq04RU=
+
+Name: chrome/locale/cs-CZ/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QI8E5Bb5z07xBPpPEk+TDw==
+SHA1-Digest: JQekABByPPhs9GI1pj5yQnN/fcc=
+
+Name: chrome/locale/cs-CZ/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rIvAUUpCer+SWOxRVpY1QQ==
+SHA1-Digest: tJArDsUpaLWJDMekxJGTQD+57qE=
+
+Name: chrome/locale/cs-CZ/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2I2JYJq3HT2XIXwYG28BSQ==
+SHA1-Digest: bY0gnbz+zI3frIHwDycXy1QVkW8=
+
+Name: chrome/locale/cs-CZ/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LEaEJPgS1eSgjeFXn/CLAA==
+SHA1-Digest: nZUcDF/FIDWNxFBIViM7dIyQif0=
+
+Name: chrome/locale/cs-CZ/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ki77nXpzwFO4JiuVCYkDyw==
+SHA1-Digest: cjXHWI7uRmBsYQFDtKFAtVuK3r8=
+
+Name: chrome/locale/cs-CZ/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6bF3/kjTnIB1AS7cxWz7Aw==
+SHA1-Digest: TGfeN+kTVO9MlBuxzey5N1Fk+hc=
+
+Name: chrome/locale/cs-CZ/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9vge0FSP3y+e66KJHKGkdQ==
+SHA1-Digest: degxa+C7dhuxHyMEd8VPHATJ6/8=
+
+Name: chrome/locale/cs-CZ/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7upLAILqyNeG4WsrSWYc/A==
+SHA1-Digest: Zsxlg2BNrGq6S53z5O5obEkBFOA=
+
+Name: chrome/locale/cs-CZ/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BnmCBLMP22WAWy0FpDAo0w==
+SHA1-Digest: kr8EWxnCOVmaeQD1hvmHbNsulbY=
+
+Name: chrome/locale/cs-CZ/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pqi2kgLkIqEsNh1Y489QDg==
+SHA1-Digest: Ll85JTIS3gN172ctjqTKyUMH+UY=
+
+Name: chrome/locale/cs-CZ/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: P0tofT7VhsQOM1hcvEYGsg==
+SHA1-Digest: 02GdT+x0sVAZ0RVybNqeFW50VX4=
+
+Name: chrome/locale/de/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Gnuzjx0YB/nph8mxvaJjsA==
+SHA1-Digest: wFTZb9ccIUtEkYgWwNF6ixnUAuc=
+
+Name: chrome/locale/de/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: d41X9hFzIfpeFprtRZwZ0w==
+SHA1-Digest: w7vvSc+N+2rKCPv4c3f1tTMalE0=
+
+Name: chrome/locale/de/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dPiRmD1+Df8sDRMdAz2WjA==
+SHA1-Digest: CrqebV3dTkcop6gs2qqBLFu2bAc=
+
+Name: chrome/locale/de/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vSC4HVSknErEhN+rQvkHxg==
+SHA1-Digest: W7YWUrL9/1ZDhsGg0pnWXOlcDDk=
+
+Name: chrome/locale/de/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZFKXmkk9fp2cxNOwTq/Ykg==
+SHA1-Digest: 4IwC2PVCRj4I0tMysyvnXKiFZus=
+
+Name: chrome/locale/de/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ib8dEBrUHbXy9NZj40lnLA==
+SHA1-Digest: imXoXpG9OSMuLvYTCOvyqh6pP6g=
+
+Name: chrome/locale/de/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sNBH0gjJh9un94z8Ps9w8w==
+SHA1-Digest: IdbYx2lP185yH42gF7v58HcRnNw=
+
+Name: chrome/locale/de/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9W+RUD4bgOH6rLsRqiGW6w==
+SHA1-Digest: MM8y9UmRz0Q9njw+/glApr7vcB0=
+
+Name: chrome/locale/de/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: igBsIS7PPpMcgV05fXBxoQ==
+SHA1-Digest: R7FQAHS/RGmvsiw9g0dpGV646pk=
+
+Name: chrome/locale/de/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: O8he3GetxNgAdyb52ZCubA==
+SHA1-Digest: tMOtV0gpv79NfS1ailObdYXi5mA=
+
+Name: chrome/locale/de/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8N63hXGnBbCFE3LDpwbvjQ==
+SHA1-Digest: B8Uq0W9hiaEsMQI2BqFvcxxI7b0=
+
+Name: chrome/locale/de/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vhPrpfdpEni8Xiu9Wc9aDQ==
+SHA1-Digest: efYAHiHEUVg9cDrIDFpL+f1T584=
+
+Name: chrome/locale/de/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MdLad2inBwcTDDblkrgL5Q==
+SHA1-Digest: EIsk0EmsxaupJZA2KsOqVK+oWrg=
+
+Name: chrome/locale/de/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tOpHD3brJ7xa2YYjoK3FWQ==
+SHA1-Digest: gPz2nxNjIkQ/cS1Kl2iqKCEgqe4=
+
+Name: chrome/locale/de/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mP3YzjicgfghX2w3t3pHsA==
+SHA1-Digest: E5v//icZGbXUEJclhmU+Eabiu/s=
+
+Name: chrome/locale/de/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8cZh66aOgRHde+Mdx48oKw==
+SHA1-Digest: YhLG5yAQ1wDU4cRxJdJJGiirQ5Y=
+
+Name: chrome/locale/de/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GalBhwXHyyPlXcqiiQyMSA==
+SHA1-Digest: hIu/fMIex+WhC6K/Baxg9XZxHb4=
+
+Name: chrome/locale/de/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: c5sQxhi3ELSjG4wSFuTzbw==
+SHA1-Digest: Sns9Qq/BxHum9kga8rfsX8TlG40=
+
+Name: chrome/locale/de/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xNTlR+ifQxAcWu8t/HLv8Q==
+SHA1-Digest: 1wGwdvOLKJFqo706zADqtLqcusQ=
+
+Name: chrome/locale/de/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UZiG75brjFDt5NEeolbMBQ==
+SHA1-Digest: DHulQIK19iJVrUHs6Bki9DXkPAY=
+
+Name: chrome/locale/de/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Q79/Tx9pIzMT4mGawKwatA==
+SHA1-Digest: 2zT+v6k3FK4y2uGLeU3XQTld8Qk=
+
+Name: chrome/locale/de/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 5TJlW4QkVt9RGSBxLO9kfA==
+SHA1-Digest: c80yiWBtkKPdH3ExMBS8+u7ucRE=
+
+Name: chrome/locale/de/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BFN3KPbcgSHnyQsRQfeuxg==
+SHA1-Digest: afopKqKvv8GrFdbL86tr2FVo2ZQ=
+
+Name: chrome/locale/de/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZqJ8KjH0wIFf+xfX5tcNBQ==
+SHA1-Digest: W5CKR+3BEAK8SqfDURLQepGdFbE=
+
+Name: chrome/locale/de/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jz1r5YCYaiIHXws31khRqw==
+SHA1-Digest: FBCVGK8Bsh8QKCnT7Vo/I7RTKBs=
+
+Name: chrome/locale/de/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1p5SSR5+xp0wgU+UtmWKwQ==
+SHA1-Digest: s6i1hbpiOIlbVOc7a+9tO2phMI4=
+
+Name: chrome/locale/de/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ylfl8dK7iIpu2pbwhGPR4w==
+SHA1-Digest: gY4zDM340zzyGWFdXTi626vB+3s=
+
+Name: chrome/locale/en-US/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dnbBQfyPz4xtnVtRkf8qPA==
+SHA1-Digest: oFQRRWeX/rCkWXgPXlP5rD3HPxY=
+
+Name: chrome/locale/en-US/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: TM5shSLqqGUL8hx6ifJ2vA==
+SHA1-Digest: 5+B3yQDTXJYE2YPoJ8EJhLzREIg=
+
+Name: chrome/locale/en-US/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YG+xrrD1/xL6vFVjFAijdw==
+SHA1-Digest: 3mu4lVoslC3H7+z+EueGFMvjxWA=
+
+Name: chrome/locale/en-US/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6O3sWLsT8nxtr65MbXG7PQ==
+SHA1-Digest: 1c8bbvi7v2/yAMMlQ9W212ZjVNc=
+
+Name: chrome/locale/en-US/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: hF7t0tPIKt/umn7ZSJCv0g==
+SHA1-Digest: JZOlfJjmo/wMr854vkZubCOCkiQ=
+
+Name: chrome/locale/en-US/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: soRMdHgEuk3v0TxIOJLNBQ==
+SHA1-Digest: 9W090M40eOz/PRQ+1ZCPNGpwqhE=
+
+Name: chrome/locale/en-US/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: h1lOVmzBx+EvrM74slyCjw==
+SHA1-Digest: iKr+7LtXlg2v4cAG3t/3uByhO30=
+
+Name: chrome/locale/en-US/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: V+fx32L4qVeu8Q1X6M3AAA==
+SHA1-Digest: g8I6Fux2EMNmUTNc1uGYVAE9kmU=
+
+Name: chrome/locale/en-US/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WgI8rJOPIVHKKzG7IGh8Ow==
+SHA1-Digest: YeSu+rZ8qmJHmXJwRXiLO1axCXU=
+
+Name: chrome/locale/en-US/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: o0TYx6e0U7JLg58kGNXCNw==
+SHA1-Digest: jG6sJb5ujqvOzMOxIZx/VXrbDgw=
+
+Name: chrome/locale/en-US/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YlsjPP2/yGnlApY6znOzaw==
+SHA1-Digest: rOQwrOhz2ry+TfErH0VVjCyaqy8=
+
+Name: chrome/locale/en-US/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UWYEJStd5Hz9CQB3fieAsg==
+SHA1-Digest: xfqs1czegwp98+hS4QWVqQlgwUs=
+
+Name: chrome/locale/en-US/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eCqo3au724y70eHaiX08cA==
+SHA1-Digest: 82ICfIcbA55OQw8aIMLLIa3n34Y=
+
+Name: chrome/locale/en-US/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ShuzGbCyKculIphRuCIYdg==
+SHA1-Digest: 1Hlth43nDzXr0A0Wv1hRYP1dxpw=
+
+Name: chrome/locale/en-US/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: P5qbKXh/rDjHBPVTYb0wbw==
+SHA1-Digest: IHy5Qt3Trdvnj9HJxwbQg1ciNSc=
+
+Name: chrome/locale/en-US/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: P/SuN4K6x8wP6Np52YcFqg==
+SHA1-Digest: RdcCXcrK6FQIG0d0lE/jgR57vuQ=
+
+Name: chrome/locale/en-US/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZGFOqUuAFIiaG0o+Tnfk0Q==
+SHA1-Digest: QIQwpiDcDiHWghTK4umAtPCLNKI=
+
+Name: chrome/locale/en-US/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wnq09YpqDgfM41OutRtfMg==
+SHA1-Digest: 7urst2jl51LABH6vP6S+wkqf2ig=
+
+Name: chrome/locale/en-US/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LlkCgNYoWmCkRZjxXqenCw==
+SHA1-Digest: VQpo40tZbhywe5+sx7q6PJMl9nE=
+
+Name: chrome/locale/en-US/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cQaI9Bz6rWrznqWAba3FbQ==
+SHA1-Digest: f5MK5gKdkAZzdgnl0b1ZKwnN3Sg=
+
+Name: chrome/locale/en-US/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7E1r2FOx9D50wJdCGJv6dQ==
+SHA1-Digest: s7GMxJUB5tGdNkMdEBCZ1dNz3KM=
+
+Name: chrome/locale/en-US/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pBbPOL6ls1Xx6D5Tb0JTmg==
+SHA1-Digest: pqCa+tZr6ftTYOzWfz01golSQTU=
+
+Name: chrome/locale/en-US/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nU3g7UQLfTeVbCJa8iKfkQ==
+SHA1-Digest: guE2ey2Q22pn5w1J/CDg9ivKMXw=
+
+Name: chrome/locale/en-US/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: TGRn1QF9aNbQ59afiBrZ+g==
+SHA1-Digest: pQL+ZnZGDHxCMpRy4W5fZk8Pu7I=
+
+Name: chrome/locale/en-US/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: b6DKLIBlaLwgyn+G4rblZQ==
+SHA1-Digest: dRhPqA8sQmRdzgB3OPl223p9obk=
+
+Name: chrome/locale/en-US/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WJb/QKZwTcJHZL5n18QUug==
+SHA1-Digest: OLajrjBkqDvuf4N+9C72/xj70BY=
+
+Name: chrome/locale/en-US/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wef9Aanny4QhbE0mEdag8w==
+SHA1-Digest: Gx7BJBwWqK/ORVlLWGKdcMznUhc=
+
+Name: chrome/locale/es-ES/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PGtd5VHpvVRBD3e6xxTk1Q==
+SHA1-Digest: vQrP5iUAdX5KCDyeNilXoBEDLQU=
+
+Name: chrome/locale/es-ES/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pZEHvHlDm/3O6CnDD7vqNg==
+SHA1-Digest: x8vjpVMH4z8rj4+W3zXO292k/oY=
+
+Name: chrome/locale/es-ES/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 0QwewvsBaW6Krnzaz5xBfg==
+SHA1-Digest: ksCDEh+SSJXpVP8N8biRopYkpyg=
+
+Name: chrome/locale/es-ES/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: J2IMcfRYGCoKBG6Avn6MmA==
+SHA1-Digest: DP/GbPawPn6GETGDSlRzzqmJpvs=
+
+Name: chrome/locale/es-ES/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XBeFVFAuhBOQs/QehMPCRg==
+SHA1-Digest: Mwp19bzvVDrjL4e2F0prze37lnw=
+
+Name: chrome/locale/es-ES/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LoUgQkFoYevfqzC5dy0kpQ==
+SHA1-Digest: ZlAFEimQ0DPkWytumcJJVqb91Fk=
+
+Name: chrome/locale/es-ES/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: e/ZDVV+cKowV2ObF4B7z2A==
+SHA1-Digest: a5LSDOkq2rfFyMImt6n7lETHIR8=
+
+Name: chrome/locale/es-ES/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sfQvoTGm/lPm2FhfFn0khA==
+SHA1-Digest: 1rSvGfUJTX1fyB7EMTwA4HAJkko=
+
+Name: chrome/locale/es-ES/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dqG+7WE7oKzWL1qHlzRjRw==
+SHA1-Digest: Enf29M4ViaAp4D7RcFDWgu6IurU=
+
+Name: chrome/locale/es-ES/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eYzsD680USP3fyDry5qUqg==
+SHA1-Digest: dQfk+Iiob3Dhom2IgBUyvEjiqR4=
+
+Name: chrome/locale/es-ES/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SfDsmZUkSiTHnps9fleYWg==
+SHA1-Digest: 6+an1ddqiivDy/DJOiBfnzmdxOg=
+
+Name: chrome/locale/es-ES/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 44WO7A2XFpKruSz++ZccCg==
+SHA1-Digest: WP6forWAW+9Dtkh/ihmKswT+ctA=
+
+Name: chrome/locale/es-ES/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ciaNKc+TzNgxBXx69uagxQ==
+SHA1-Digest: F1nOrKbaJ0cIW8/RenWHY09hawI=
+
+Name: chrome/locale/es-ES/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: K3aMDySz90ai/GqDhLaVHA==
+SHA1-Digest: E+MIiRxn5d+MjMheRbuTy17ABN0=
+
+Name: chrome/locale/es-ES/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tjILuJiY7GQIomyxH9qZfQ==
+SHA1-Digest: bL2w6haVUfCWyheVfBHxMdgm4t0=
+
+Name: chrome/locale/es-ES/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ko/jOdEAIDPKnk8Vw3KhxQ==
+SHA1-Digest: C1H2szR80ZEf7LoB3auaMpnmd04=
+
+Name: chrome/locale/es-ES/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RkmZQDxcDA9zfqXCbZNOXg==
+SHA1-Digest: WIsW3Lkx6zCX+67PrOJq1lvtwi0=
+
+Name: chrome/locale/es-ES/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: e5oMFQW6XQ0ZKkb4kYFXNQ==
+SHA1-Digest: F0Q4w45PKrHP9c8LyGUq90abkCk=
+
+Name: chrome/locale/es-ES/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tMnjjYffMXI4E/OWG9BEWg==
+SHA1-Digest: 8gT6p9oFUrfZ3yTcf/NAzUf318I=
+
+Name: chrome/locale/es-ES/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Uqhh7d+KP6Pm3QxwNpVW0w==
+SHA1-Digest: 6KUKlef9NiRbks698AqxCfoCLFQ=
+
+Name: chrome/locale/es-ES/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: h0CKjHornbVy/6+Y3r460A==
+SHA1-Digest: GloorSH3lExzRSCrBIPhieCo0LY=
+
+Name: chrome/locale/es-ES/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UO+UuCLx55nCJ4HYDgm11w==
+SHA1-Digest: pDVBrPC07wJQKBZ3kjroq+uX6fY=
+
+Name: chrome/locale/es-ES/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WMcpctwmdrOHffvhygbiZA==
+SHA1-Digest: 7CzzBQ5N39dmYLqmv0BSbdGpnUg=
+
+Name: chrome/locale/es-ES/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vMiA9UBO8Zvb0vOEhobR7g==
+SHA1-Digest: 3MqHtvvt4Zd2S2xwJg/iP5uTv9w=
+
+Name: chrome/locale/es-ES/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: etUoOorfbwJfiHg5fFwnqA==
+SHA1-Digest: /gY4obnViMalQQzkUZYZvkNiPGI=
+
+Name: chrome/locale/es-ES/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /I1d8gx7z391JEIhq97MZg==
+SHA1-Digest: 4SaSN7uNVkRCV1tLAR5VB6p5NXo=
+
+Name: chrome/locale/es-ES/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BiMrUqVIPaFsfpnR0HSgTg==
+SHA1-Digest: GiSdDuB29DnRMF9ywi3GExWLCdk=
+
+Name: chrome/locale/fi-FI/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: AI549rHYnMdT7+ZeCnAczA==
+SHA1-Digest: Avp/mwjYzUtKlmKxYkgTnA9Nuis=
+
+Name: chrome/locale/fi-FI/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dP3Xoa516kTF6r3Hp4q/QQ==
+SHA1-Digest: 1DeCz6n5gBOV79GQV4n3fcPClGQ=
+
+Name: chrome/locale/fi-FI/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jyMIoORA4FK3CduALQ3aeA==
+SHA1-Digest: BOI6keGQfYQoea7j3S6Z37AQt4k=
+
+Name: chrome/locale/fi-FI/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FbFPNXLhVvBAvWqH20N2kA==
+SHA1-Digest: rcJxU1hlIApIgICE8wJnim2ttCE=
+
+Name: chrome/locale/fi-FI/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Cr+6NkxghWjiNcvbe4a+xA==
+SHA1-Digest: m+CCLDZGZTkLJSAaSMldV0MjN3g=
+
+Name: chrome/locale/fi-FI/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: gj8JumgzabPFo22CngW8fw==
+SHA1-Digest: w2dzi2bvJJNkFbjXIBTTjHiImNY=
+
+Name: chrome/locale/fi-FI/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yFBFrfotMB7jS0UL4uQrJQ==
+SHA1-Digest: Dl7RvMjoaOrz6VaOawHl5edpzxI=
+
+Name: chrome/locale/fi-FI/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /KXV4e9gSDtf47EUqAZuHw==
+SHA1-Digest: Hk+fFmu+r1jxENYeuDSSnWV23pU=
+
+Name: chrome/locale/fi-FI/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Bo2hCI/+cDgdI3EdCef1SQ==
+SHA1-Digest: VoxqCcLTiWJpv2AozECKNf/fwls=
+
+Name: chrome/locale/fi-FI/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zy35o6rIY93ZTGBe17h42A==
+SHA1-Digest: kj+pkO/JSQsT/q1gc8Z6SMSBbWk=
+
+Name: chrome/locale/fi-FI/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bZqkMJ6+ZXvf5Fgz5mAC/g==
+SHA1-Digest: lt7GEA75uDAekaerHjp3R5nGggY=
+
+Name: chrome/locale/fi-FI/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vMW/j8uiGqUgiCQ80mJdEA==
+SHA1-Digest: V3as2oOn+8sxoZYD+PuWb3ZdLl8=
+
+Name: chrome/locale/fi-FI/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2HZrIR0uQ/SRAa5OYhzsYw==
+SHA1-Digest: QayOgn1JJznVSNX2t95gcvv0BEc=
+
+Name: chrome/locale/fi-FI/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 5Ff/S++/BstcEigLJLI5Gg==
+SHA1-Digest: O/z3dsPNOSA9V446iRYYtKEHa24=
+
+Name: chrome/locale/fi-FI/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4b3O0Hoy3OB93MvNtn604Q==
+SHA1-Digest: 6bMCUf6p6M7h1TTorlqZ2nsayjw=
+
+Name: chrome/locale/fi-FI/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ym79HTWCBUMhA/UaPw45Tg==
+SHA1-Digest: a05n9EZXdQwOkYHLnubwKSdXx1U=
+
+Name: chrome/locale/fi-FI/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zWRj6wKZD6CznIQ6kFJ4ug==
+SHA1-Digest: st5UzlFApcYVavV9Vf6wuNm9AcU=
+
+Name: chrome/locale/fi-FI/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RHgo9vg3cpa0JrPFBRPnKg==
+SHA1-Digest: dPe9hWB7wqr2+eYk3b4CEr/+dow=
+
+Name: chrome/locale/fi-FI/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Fe2gYWmazFbIZsmGBIYlug==
+SHA1-Digest: 7vFKm1kSUs5c+/WIJcoT2XLFYtE=
+
+Name: chrome/locale/fi-FI/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tA5yK2WXvcWZoClVzGhy1g==
+SHA1-Digest: PklQOePeOErK6YIAITLqzO56L3Q=
+
+Name: chrome/locale/fi-FI/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: om28bhLjSAiDwkVgYFASWg==
+SHA1-Digest: nI8BO49JT+K3jchL0RpCVteNyXk=
+
+Name: chrome/locale/fi-FI/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rTTIm5CxcBaHPxBTWVKGWA==
+SHA1-Digest: MlNv3I9ekIa8q0Eo3gksMqWKgag=
+
+Name: chrome/locale/fi-FI/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nFUXZetjPUuS4/frH02Vcg==
+SHA1-Digest: 8YspwXwJFDhjG8XAHOpCm25GQ1Y=
+
+Name: chrome/locale/fi-FI/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 5JIs23FovzvbTnHAPXspGg==
+SHA1-Digest: t4OsftDaRiEGRORUbdqPmMrF/nY=
+
+Name: chrome/locale/fi-FI/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: p3pAl+Pv0VXgnWHeFRcYhw==
+SHA1-Digest: pexsj1eCXgciFUozhs7iwSp4G38=
+
+Name: chrome/locale/fi-FI/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: STCYK4Ga8ZqXl21BEfVXrA==
+SHA1-Digest: IT5tE2cp9szyZv7gSs9pCqjxSP8=
+
+Name: chrome/locale/fi-FI/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: u7WfXV2TjPbP3hcwbTLQxg==
+SHA1-Digest: QNF2/LnBhpCznPmY3ymyi0h/LKI=
+
+Name: chrome/locale/fr/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Sdav3lnAMKxLDgNkA/+s7Q==
+SHA1-Digest: AHOhnpCAL2l5NxTTukMcc++NHes=
+
+Name: chrome/locale/fr/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: JjjOR+rOCBjzori9rvDddA==
+SHA1-Digest: F5QGqR15/dIu6YBQQEhhoHfwyGo=
+
+Name: chrome/locale/fr/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: X06kI72T11AkF9NJuUWxGQ==
+SHA1-Digest: 819Tign7xgzKB/HhTaKreuqL1Os=
+
+Name: chrome/locale/fr/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: S10QKMWRLGbTs0EsnjmC0Q==
+SHA1-Digest: lUm2aCDj7lmeB97UATchyLcZkVk=
+
+Name: chrome/locale/fr/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jwL8E3LeqgSkiNr/GKOskg==
+SHA1-Digest: jS37g/WuiA94tEk1a5YVQYKTjCU=
+
+Name: chrome/locale/fr/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 63EDWnhOdsAY7+QJy/mMXg==
+SHA1-Digest: h1S94IBfUasiM+daqT319NNPdUI=
+
+Name: chrome/locale/fr/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 0cLmKM2yZXQEpfWZv5buHg==
+SHA1-Digest: zMvjF6DRTuHlHJ+z/oJ6x1S8O78=
+
+Name: chrome/locale/fr/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: L5ki+7bI1oIPCkNfWoggJg==
+SHA1-Digest: IaHLjBhSkhDrnw1QK+cRZXUbGUg=
+
+Name: chrome/locale/fr/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: A/LWYm4PBgc/FigsLjCetA==
+SHA1-Digest: qBzs/UlGAo0pGf3scgQdijvMST0=
+
+Name: chrome/locale/fr/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: v76W1AKkAjDZML5JzPh37A==
+SHA1-Digest: Yi//h6DL6Dp/sSmANJ2SVXg+QrA=
+
+Name: chrome/locale/fr/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Mmec9CX/8wcDPbcsNicLIA==
+SHA1-Digest: flJBS3z2gkVqt2Rqk8LWBRI8srY=
+
+Name: chrome/locale/fr/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kD5rFskABf8A11nTd+8oug==
+SHA1-Digest: DkufabX5s10wPQX2p57/3XTSxkk=
+
+Name: chrome/locale/fr/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rwIeylXzrlouW2bVvJ++/g==
+SHA1-Digest: uqR508NJD4KLXduYRj3+kQWqIKE=
+
+Name: chrome/locale/fr/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: K0dShpItk2M8HE3E7fKP8g==
+SHA1-Digest: +8DcZ0UeSeGtzA/207M9KVuHEgM=
+
+Name: chrome/locale/fr/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MC/h9mWCAGtgFFUJ9jkUZA==
+SHA1-Digest: +xuxVGgNrfFRLVUIniGFevk8gLI=
+
+Name: chrome/locale/fr/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vFuP8LFfXs3tnh/vlb6oZw==
+SHA1-Digest: +T5n/Q7F8lVMTT2CYu519h+d624=
+
+Name: chrome/locale/fr/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RkrHdtkUhiD0LeCttG+W8Q==
+SHA1-Digest: KvwTxJoTe6luDr2xlGylY4irNro=
+
+Name: chrome/locale/fr/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sAXOzNukT8MeRZpRqgXsWQ==
+SHA1-Digest: vnXW3PEWOd+vBQpVWai+DxdaFo8=
+
+Name: chrome/locale/fr/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: j/BgPCU8xXD4M2XlTpoGmg==
+SHA1-Digest: Re/0aLYXqavYqLFr8wDIyp/rSOg=
+
+Name: chrome/locale/fr/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9oqn4yN37eKKC45rM+mhLQ==
+SHA1-Digest: TjUzXUn3Hq6HE2CBbhDBt+G4ZjE=
+
+Name: chrome/locale/fr/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QtJVRPyZ4imm8U8x7JuEtw==
+SHA1-Digest: AV9v/xgARY9VjKiJK8HS1/9VcMc=
+
+Name: chrome/locale/fr/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: d/NwLBGz1T9MNRw20E0t5g==
+SHA1-Digest: hNwHKB4J9SWCufVB9lqXnfP8j70=
+
+Name: chrome/locale/fr/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +P2JHQglZvPmTkXT9AMl+Q==
+SHA1-Digest: By2UOm+cga9d4ykyQixa0sFUlFU=
+
+Name: chrome/locale/fr/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: TGRn1QF9aNbQ59afiBrZ+g==
+SHA1-Digest: pQL+ZnZGDHxCMpRy4W5fZk8Pu7I=
+
+Name: chrome/locale/fr/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: x1S4rKy9SxjySXE4n7JpWw==
+SHA1-Digest: suBtg/v4hul0YokKlMV6w0cFnDs=
+
+Name: chrome/locale/fr/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4ZVKzjcQrXUm0BjrYTLgFg==
+SHA1-Digest: FOQgQWCIBLSyu9mOrd07g0LwVhk=
+
+Name: chrome/locale/fr/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ls5t4CJpUj+O3nGOd8ARlw==
+SHA1-Digest: 2AKckjW71tMxFe4IwnBzBM6ZNy8=
+
+Name: chrome/locale/gl-ES/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: b85WSWBXgew19tesjDT2lA==
+SHA1-Digest: bh6gC0/1UDyQjdH0ps8My56dQvo=
+
+Name: chrome/locale/gl-ES/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fHd8BFoIXoel68BALagCvw==
+SHA1-Digest: C0hMxJ80ZfVXg7gSLQ0mtwGbaww=
+
+Name: chrome/locale/gl-ES/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ztSL7uxmRqc5UM0ptD09IQ==
+SHA1-Digest: juT+xKlyReYJ8YuK77XDtIhxaYI=
+
+Name: chrome/locale/gl-ES/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sTcTOaDYODQBSixGfxdHGw==
+SHA1-Digest: meba+R+xh36j+DlgZdB7Mh70qjc=
+
+Name: chrome/locale/gl-ES/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vg+jksapE54rslCMerKewg==
+SHA1-Digest: sYnicwNFinI9kiOAsaR2UeXtK3w=
+
+Name: chrome/locale/gl-ES/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: d73LKDvDKxYCzZSruJauNA==
+SHA1-Digest: qy2f/SvtMTHSPZ8h266xDUXzDlc=
+
+Name: chrome/locale/gl-ES/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: oTZ1R4B4vzIxf+Oa2HZm3w==
+SHA1-Digest: cUwYIaV9eFZzzHlAX0z2uadZ64o=
+
+Name: chrome/locale/gl-ES/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: K7bonpVs+e4Fmiwts1fL3w==
+SHA1-Digest: TW1xSBtP0dnGqwrtkAgACGbRl60=
+
+Name: chrome/locale/gl-ES/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ClHDwsd1xfjGZyTtjLd2FQ==
+SHA1-Digest: C/3ggU3fQjbJMshf9POFK9V1NmA=
+
+Name: chrome/locale/gl-ES/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Izp11S2/GkuGH3fc4cVS2g==
+SHA1-Digest: jGsnFRED48IUf7fYqmAgaUVwcrw=
+
+Name: chrome/locale/gl-ES/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: o4jN0E6oDey0xjca3OsFeA==
+SHA1-Digest: 7jr4Hi6OAqIqw38zzPn+x3C6qPg=
+
+Name: chrome/locale/gl-ES/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pHAmKuxw228on77blwSMFg==
+SHA1-Digest: Bcl6oTTXM0zAbTkqQ09AF6RsoT4=
+
+Name: chrome/locale/gl-ES/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GY+i7sY1n0bwTXUnvy+jWg==
+SHA1-Digest: 7b61J9YfREMa4YY4pTFYXDpQncY=
+
+Name: chrome/locale/gl-ES/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1QugjDjlBJwvHD/9WBcaKQ==
+SHA1-Digest: VFC+BpXKCT5P7L+eEcAHrvHFOPI=
+
+Name: chrome/locale/gl-ES/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cFVIeaBdwXJt1fODChZMyQ==
+SHA1-Digest: 5O1uZaDaPcnRCNprh5TpxGSvXrI=
+
+Name: chrome/locale/gl-ES/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: hAiZJ6wb5rf0NWO1c33P9A==
+SHA1-Digest: IZZaIrCNuHdYm7OKjIqc6gBqMw0=
+
+Name: chrome/locale/gl-ES/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: AXGwEYSfVj1yNk7RCT5dBA==
+SHA1-Digest: GHf5zZ96Ml5GXAo3U5Q+L1exsrY=
+
+Name: chrome/locale/gl-ES/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HL5IMm0ACLQlld3dbBNE7g==
+SHA1-Digest: FSwd883FjgsJPnCkh0n6kQ0iubw=
+
+Name: chrome/locale/gl-ES/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mALeZPqVS5HtGYcAE6zhdQ==
+SHA1-Digest: fFbC6gWr7U5eIZ1BMWza/8NNuF4=
+
+Name: chrome/locale/gl-ES/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Re0R+nghNbyBqsSGG3kV3w==
+SHA1-Digest: BXd9OvRa5EYNt0IeYlA3a9VJnWc=
+
+Name: chrome/locale/gl-ES/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4i/rYoiW5Ya2eJRaKD2TxQ==
+SHA1-Digest: DsXPvlEWZQojnDcRZVqpyXRPy8I=
+
+Name: chrome/locale/gl-ES/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cobIh5zDeBWPpiljf7lU/w==
+SHA1-Digest: eu1VhW8ST4/k4e8a7rdeevfochM=
+
+Name: chrome/locale/gl-ES/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZLK5wDkHE4FH1m3iDkcttg==
+SHA1-Digest: YyT4zwupu5Iq3HyKZG9TXEYurOI=
+
+Name: chrome/locale/gl-ES/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: chYmpslZMGI/WcFZB0VpDQ==
+SHA1-Digest: cTM+k7EEplDYxksGUFmZhVwuKk4=
+
+Name: chrome/locale/gl-ES/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: piBXQ3XOaoINdy0Kc5akkw==
+SHA1-Digest: c2pz4hpwSW73QOuclyV9YT5UMrY=
+
+Name: chrome/locale/gl-ES/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: X39aL39wtxbJOjnS4YZAyg==
+SHA1-Digest: tTZ3qsC3JjIRilKBPDvz4m1JhFQ=
+
+Name: chrome/locale/gl-ES/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KXrBigVKWoYssYwvivBUOg==
+SHA1-Digest: doXZAv+WxEMOJg4HT27aPxVfdFw=
+
+Name: chrome/locale/hu-HU/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UInU4BS9Th78+BBuzCucxA==
+SHA1-Digest: RQDN1LeujDdipHLe+MXbNzVBRVI=
+
+Name: chrome/locale/hu-HU/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 0LXgLXVwjJToDjqwTc62Zw==
+SHA1-Digest: YWTEZHkcaCp9cVJ8bJ4Jc+N04l4=
+
+Name: chrome/locale/hu-HU/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZpFXw9AlqltUXNmtUi40JA==
+SHA1-Digest: dHbWndNI/Q58uemYlBpGcYAE80c=
+
+Name: chrome/locale/hu-HU/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: gPHLQ90t5C/f9Qftb0iFZQ==
+SHA1-Digest: CRoHFCmionF0JtCfRTZbnf9YzBo=
+
+Name: chrome/locale/hu-HU/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cfx1AA2j+F1LjIGvkT97lg==
+SHA1-Digest: fTgl1Nc0zb3OpuXXcezJDs0j4cI=
+
+Name: chrome/locale/hu-HU/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 3xVSp96rfMcrx6Eufu35AA==
+SHA1-Digest: Zqu6uQgtPRqkgfYEJn6O5JZWIIk=
+
+Name: chrome/locale/hu-HU/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ACZUXA+rk3V+IWfo6/nBrA==
+SHA1-Digest: XONtHnMGfluyXpHeiC9mAY/+i2U=
+
+Name: chrome/locale/hu-HU/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rWvgEnDHdTBPyDsXFyrv/Q==
+SHA1-Digest: TghLVyQmcNGwGdXElrY310bAZ8E=
+
+Name: chrome/locale/hu-HU/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: r1R/Co9oJ6w8TaypuJTbDw==
+SHA1-Digest: yt/LCEhrr0PCuRw4aukPYfB4OiU=
+
+Name: chrome/locale/hu-HU/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9wVGnlgGKsjTUKxjcHhmNQ==
+SHA1-Digest: IbrEwWbUj98+O3SHrwDARhd6v+A=
+
+Name: chrome/locale/hu-HU/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: TML3unEDy0fPs56fpcubjw==
+SHA1-Digest: dfRIRrO+NqNrGLaFrU2BS95bBCA=
+
+Name: chrome/locale/hu-HU/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Xhq8RG+Z9olcpn3iVQfw2w==
+SHA1-Digest: RYwGCtGHGAjrGRlL+dbTK6i386I=
+
+Name: chrome/locale/hu-HU/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sofe82I4yWL1xOG1LV2ZJg==
+SHA1-Digest: uCilmX+7gXeBDGI6YmAYnOdT8hU=
+
+Name: chrome/locale/hu-HU/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: g5JpRbvLn2b02mKaE2eRog==
+SHA1-Digest: 1auDBRZrb3pidONt8ci1YJcLmOw=
+
+Name: chrome/locale/hu-HU/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: uOXHYWXmD0x2aowYyAcQGg==
+SHA1-Digest: sJso28yYbDpcbxui0o8lQphfffs=
+
+Name: chrome/locale/hu-HU/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: iaRJvVT5SMtyra/QtZTkRw==
+SHA1-Digest: N2nIFZCpfN+cOMUD4cxcfzXG4e8=
+
+Name: chrome/locale/hu-HU/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dgOA9SR1lLsR692yyFXTzg==
+SHA1-Digest: fUENDl/hvFoDiRLoiG1XekyF/qQ=
+
+Name: chrome/locale/hu-HU/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4kppEHCZrUiXTMKfZ2TTVQ==
+SHA1-Digest: tBeDcN0bd1ZX68Y/Dlnt/USLXjA=
+
+Name: chrome/locale/hu-HU/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ykgS+pM0CDJYFLQGc9Z9ew==
+SHA1-Digest: Wfu4l4DBpN/rj8FR2NXSUGZFLWE=
+
+Name: chrome/locale/hu-HU/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: o60n8r3s9z6Cs06iPS4D3g==
+SHA1-Digest: kjBwPox7kFeiNzB6dPQuJ7m5d9E=
+
+Name: chrome/locale/hu-HU/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: u6wvVTXEKEFL3oS1djgUow==
+SHA1-Digest: AysibVAJJyHhcTCfuFFOugtEsgs=
+
+Name: chrome/locale/hu-HU/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qyfCTfbwnDg2D1MN3CxfWQ==
+SHA1-Digest: IEBof3wGo3wLhUzTDTIzY8KMugw=
+
+Name: chrome/locale/hu-HU/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bTzD4keRlgiL5n397Ox4Xw==
+SHA1-Digest: ZsrC+inquu4Zh7xMRP8W0t3QZGM=
+
+Name: chrome/locale/hu-HU/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jjbLFjY2Tqthy1tFlaszOw==
+SHA1-Digest: 4Oucxbo/RhTkuZTgwjiAOHtWBTg=
+
+Name: chrome/locale/hu-HU/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 78KamseKl+z2DoOlvtRfBQ==
+SHA1-Digest: FCronwk//yQzLSUAM3DSEmusIFo=
+
+Name: chrome/locale/hu-HU/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xzw3TJ1qJr6TIev+AoOhlQ==
+SHA1-Digest: l5uK8pw69mnMMELetrCDvNtAVZI=
+
+Name: chrome/locale/hu-HU/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zK1dGoXvFySG1pBC5ODlkA==
+SHA1-Digest: 54qd9Gv3Erek030wR+AQk5LPllI=
+
+Name: chrome/locale/it/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BaMxY5a2vWB5pzs9uvtBDQ==
+SHA1-Digest: 3ypNti2o37Df/gn/V1wfGmGWK/A=
+
+Name: chrome/locale/it/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mSgdAUPim4wYIngVIxRtvg==
+SHA1-Digest: cOcXUufs6FwJ07l7nQAEAtcWv+s=
+
+Name: chrome/locale/it/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HkLeMTKCGkTZChgfq3aoxQ==
+SHA1-Digest: Hp3GBDairdvwuTKNpRIO8cRyH/8=
+
+Name: chrome/locale/it/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: hkElSvqE2nMvWTC1R/mI3w==
+SHA1-Digest: WZ6Wg3bR8RXJUabctQ9vqYkes9w=
+
+Name: chrome/locale/it/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cnJ+JE+9wBEVmJyqCKYRww==
+SHA1-Digest: 6J4YIKufnBWiJXttOOz/SmGsCX4=
+
+Name: chrome/locale/it/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UdntT/fAxCsRr8L8pcLAbw==
+SHA1-Digest: G7NSGUovZ39aOpN4mhO1cdFMixU=
+
+Name: chrome/locale/it/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BiyHVvz1iNnqmvdCvAmd3A==
+SHA1-Digest: d02WdasFknQBFhrwWszL4+ltM7A=
+
+Name: chrome/locale/it/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: x/9b8qtuOns6VHmEBlUH4g==
+SHA1-Digest: 8LKB9LCAb5zM8cnAEO3I9JN3T3c=
+
+Name: chrome/locale/it/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qK9Q2kt6kOI62OOL5EVZvg==
+SHA1-Digest: DQ1XMUnJvGu5JIEwOxK7bNPU9RM=
+
+Name: chrome/locale/it/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FVVnAAbrmTAJ6X3duTB8Aw==
+SHA1-Digest: pSDTWaJgNU1Z4Qj65zmKqY3L0c0=
+
+Name: chrome/locale/it/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: T+/jG+hdjTH89K/zmvO10Q==
+SHA1-Digest: Y5mGBGS7Thuwy4k+EDMWVurjJgw=
+
+Name: chrome/locale/it/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kcVImUWEKZcJGUkceWej6g==
+SHA1-Digest: /vfZwiWhKL1k503jGws/enEeAfM=
+
+Name: chrome/locale/it/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vbOI+aTJKjQDisLogEDsRw==
+SHA1-Digest: 8HTJsRvLdxCZfRe6HbCuRtb3FPo=
+
+Name: chrome/locale/it/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: j+FuGDAAcqWmR6pr3mgEsQ==
+SHA1-Digest: CYP8Oku6Do55MHCwRO3VZ/HHXec=
+
+Name: chrome/locale/it/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: r6RXB6keMmeVYzpTfNpODQ==
+SHA1-Digest: U5MRXd2h3pQMByJB4yg5VRohUos=
+
+Name: chrome/locale/it/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Knam8UZ8TseVCM7sBIgXHQ==
+SHA1-Digest: SZ2ZrHvCwJpumMLB2N1D24VfcGM=
+
+Name: chrome/locale/it/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: C3/YlQ9+jvDUDBJNfDSDMA==
+SHA1-Digest: +wmDe8WhKABQGcZKPikQiMyzTTA=
+
+Name: chrome/locale/it/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 67TCIQx+yWsGmrIyepljwg==
+SHA1-Digest: jmVxBvaK/1oVrEdjP2F8vNQmRsE=
+
+Name: chrome/locale/it/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8xZZxBpLaL5EiuYm4Cr/wg==
+SHA1-Digest: 55iEiMNd+nB1GlZaWEBGVAcmmpo=
+
+Name: chrome/locale/it/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /IHx3azknXap/3GJ4J98eA==
+SHA1-Digest: j1ZpNdXGmP6Uns+tYhwKTsZ2nnM=
+
+Name: chrome/locale/it/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xgyzv0IhPVo8WbZotZM12A==
+SHA1-Digest: km/7DqZ2M3VWG4Dp8EpeqmLcqY0=
+
+Name: chrome/locale/it/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: A3rPs403ZtPBbbInQ3/fNQ==
+SHA1-Digest: S2er0puZkYtYgeQxCfo4pQd4mnI=
+
+Name: chrome/locale/it/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xbo8nz5lGZPqDbykp0MnYg==
+SHA1-Digest: C5I1hLvzfO9MA2qhmkWAIvCwDvA=
+
+Name: chrome/locale/it/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jbK5H7u/eSnulPI0GW8HFg==
+SHA1-Digest: AIRwLL8gZQuQrTLpMnOT1ji1Il8=
+
+Name: chrome/locale/it/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fQMzeojyY0sbmjliGqi+sw==
+SHA1-Digest: QicD+CRx3TZ5ug0FtMcYFO3fx5E=
+
+Name: chrome/locale/it/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KYegfRCpnX0HysxFxRFppQ==
+SHA1-Digest: 3ZZ3cMELKlKYgeP5XucZOE1IJfI=
+
+Name: chrome/locale/it/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: AwIEEKgjFyNAiAt/vma8xg==
+SHA1-Digest: miOF8A+MzkD4QT/Ipronyv+AR94=
+
+Name: chrome/locale/ja/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OTl3034x+//RT04RV/lf1A==
+SHA1-Digest: RrCplIA6dZ8lE4U0Ee247pvwXPs=
+
+Name: chrome/locale/ja/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +BICzKqSooNqutFTY10qBw==
+SHA1-Digest: wJHoHRe4olGUGqQ4THrAlvDHUs0=
+
+Name: chrome/locale/ja/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: t8MRNgfVR1zsWpLsNRtX9w==
+SHA1-Digest: ri4TLA0Ngu0jMelkNJmog/LZqLo=
+
+Name: chrome/locale/ja/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fT8YhOpJNiDeCHrfG0tO5g==
+SHA1-Digest: gUKK6Kfj+zr9ZLkR+b3zqlP1azk=
+
+Name: chrome/locale/ja/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Q0Gsu2X1KgtoS4ILYlzhlg==
+SHA1-Digest: BeY3ma1xbMiRL7iy5iop/lzsC68=
+
+Name: chrome/locale/ja/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 0vN/YYThC94cp8LdOcn9EA==
+SHA1-Digest: ApWEJh19+CGSReqwdpD+kzWuMQk=
+
+Name: chrome/locale/ja/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: C6C0UQ0/QgYOgeJe++oxXg==
+SHA1-Digest: viYWgqGEIaU34rVLhosFBVOkrxE=
+
+Name: chrome/locale/ja/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: R9UfL5DKr/W51Wo0e1+HnQ==
+SHA1-Digest: asziFZU0wZ/jjO6HH9TCwcVHiSw=
+
+Name: chrome/locale/ja/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lpz8KottrRza7y/mPsMwMQ==
+SHA1-Digest: e2BrsS1fc00jz2jIXJ72zpds6l8=
+
+Name: chrome/locale/ja/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cAljKDgey3VIHFuE6TO/dQ==
+SHA1-Digest: wn9QccFxp6d06MFnHizZg36uLFQ=
+
+Name: chrome/locale/ja/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GxgXLqtkLzWjm8vVPS/fTg==
+SHA1-Digest: E+Qw4jtiao4i5prPaKfyK8nI/Og=
+
+Name: chrome/locale/ja/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: P4iR/kaRq5LA5tVAgwH04w==
+SHA1-Digest: C+BjnNUXGim+IpAGpBAvu2UnGOA=
+
+Name: chrome/locale/ja/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: T3I75oldBNU4WTUeCAegYg==
+SHA1-Digest: hOJanJszkqSAYJ7nPmtlHJNujxU=
+
+Name: chrome/locale/ja/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1NFSW8jEZa9OmttYU75AOQ==
+SHA1-Digest: 8RdKMhL7igtAboMfavlfXbtgUOw=
+
+Name: chrome/locale/ja/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bxRRTl/pB+KwY+YRRsxcCQ==
+SHA1-Digest: 8V5yjW4woNX02j4krNgP1E4tOio=
+
+Name: chrome/locale/ja/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: IWWR+vesLHkt+6EzWCREqQ==
+SHA1-Digest: 1airibLqipVbse0g9gDcWh2BH04=
+
+Name: chrome/locale/ja/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: hjF7MyWs1UhFC8UivG1dWA==
+SHA1-Digest: I2T0u44m+UkJRG1hOnv14YNVr2U=
+
+Name: chrome/locale/ja/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: U8P+OVXFFFE53JpoovRu8Q==
+SHA1-Digest: +wsK+nNfFMWr9BCuzdXENbYv79c=
+
+Name: chrome/locale/ja/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pJrl3jmJjqg9gFnWJHDWug==
+SHA1-Digest: 3sqiK+29TMASulUC2tNoVZTIjh4=
+
+Name: chrome/locale/ja/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /D16L1gIIwtQQzJDVWfKIw==
+SHA1-Digest: Gs9hhj0PsLEV38B5sy7z2/oaVMs=
+
+Name: chrome/locale/ja/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /WMWo4GkAomzYFe4nxlQGQ==
+SHA1-Digest: WQleBaDFZKhceRdzs9QdieXqysc=
+
+Name: chrome/locale/ja/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Vseusawtnwscoxo7PPf7zw==
+SHA1-Digest: GKCDNkeDLA3YxEm8gyBh+VrlZmg=
+
+Name: chrome/locale/ja/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FFv1smAAcLZGz0ql6Htf7A==
+SHA1-Digest: imhawRH/IHilSHlaLvwh9SfvUIA=
+
+Name: chrome/locale/ja/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XOpgN2KukjGFCzR9ixpcbg==
+SHA1-Digest: 2AQCf2AcLHnw3WDKmbpDT5bgog0=
+
+Name: chrome/locale/ja/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 27ttNCCkDIU9MXY8Nkv3Bg==
+SHA1-Digest: xCAf4NDYrp1rHtDraw02CtuKxKU=
+
+Name: chrome/locale/ja/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pAsFL9sJpCBkAXRAOcJ+cg==
+SHA1-Digest: i9BiAA6+tBE3JpZA+3dTigPMTVU=
+
+Name: chrome/locale/ja/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: JO+LH2Ii/hdCkFoZv07R+Q==
+SHA1-Digest: aMt8fVdEn+tM5mOiq5ug3NeLMi4=
+
+Name: chrome/locale/ko-KR/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: f72OGPbjJt9DUjB0UohNhw==
+SHA1-Digest: AmjmJ3C76etlGLxYU3BNfbd4bFE=
+
+Name: chrome/locale/ko-KR/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: F34c0a1JrhTboU8iTpqztg==
+SHA1-Digest: 17PBraHrsCNQczFsiMmRHGQh+Mk=
+
+Name: chrome/locale/ko-KR/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Q9BuuWD7zM4gqadI1+1YSw==
+SHA1-Digest: ZUqhzc6A3vW4Mlx7psJjf74m4i4=
+
+Name: chrome/locale/ko-KR/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ux2rxAd5dpsl8f9gCh2BKQ==
+SHA1-Digest: LGGD4SrjnqeSfP9TGRU1ju89oT4=
+
+Name: chrome/locale/ko-KR/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BjarreTjrkYwoiX70A0PKA==
+SHA1-Digest: J3luNLHx3kf+MIDArXf26hOGV5A=
+
+Name: chrome/locale/ko-KR/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: TAgyl1CLsHQ3oyzNw6qbYA==
+SHA1-Digest: ngc0ORCnx0oiG8A/jCT0tAse+oU=
+
+Name: chrome/locale/ko-KR/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: DxR7vvgQWP3my9+MJF6svA==
+SHA1-Digest: 8Lqe/Ge4rpAIORY2mn3ItPHqa1c=
+
+Name: chrome/locale/ko-KR/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 79USXnj2yh9cjgZPzV41MQ==
+SHA1-Digest: tj0/xuIgXNilv/ZBqTeIIHPjx38=
+
+Name: chrome/locale/ko-KR/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OYVbufq5jP2kccbKmQla/Q==
+SHA1-Digest: Y7xPJcnSRSnWhzWCvrvQ2sCF3PE=
+
+Name: chrome/locale/ko-KR/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zo4d2OitcPH+tNNtyzYVCQ==
+SHA1-Digest: +ub8yjYbIuj0pOenI+zezHsNphM=
+
+Name: chrome/locale/ko-KR/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Oikn2V5EFgfaWmXCmW9sjA==
+SHA1-Digest: Wyvzq7nJl1jzFoGepcUqOrx1wSo=
+
+Name: chrome/locale/ko-KR/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /9FUNV+znwViTPNdKkFPpQ==
+SHA1-Digest: CFPNSaF8HmUPpUNET34DXtEAJMA=
+
+Name: chrome/locale/ko-KR/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SvOG87wraSmjemwZtTfNOg==
+SHA1-Digest: u4aaVRowNR5A9R7Vaa1iTOkuOIo=
+
+Name: chrome/locale/ko-KR/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: O9O8HORxT44s8foTQmkfuw==
+SHA1-Digest: GdPh6R2lMQfcJCeYJSHg9iCITzE=
+
+Name: chrome/locale/ko-KR/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ugijIZwGbJqSCOjyaZjZgw==
+SHA1-Digest: Dct7EVQQ8zdexFaL4uzkF3UWGWc=
+
+Name: chrome/locale/ko-KR/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jbsuNTxf7vNnBDeCNYJn6w==
+SHA1-Digest: aXalxF0/+8xCstc44t8w5jQrVgI=
+
+Name: chrome/locale/ko-KR/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: N/5SmislvxlX2lkYf6DBoQ==
+SHA1-Digest: 8Ge5/AIpjwYqU/utAsvIDHw2GZM=
+
+Name: chrome/locale/ko-KR/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: DnzteGMGwurZx3/5qP4mgA==
+SHA1-Digest: KCeatAdCw7qL8A3eVjCs6kGPyfo=
+
+Name: chrome/locale/ko-KR/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Kq44Sclw33dBBtgSll4KYQ==
+SHA1-Digest: mXCQxBELbAOl7j256rXEtKzDOf0=
+
+Name: chrome/locale/ko-KR/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: D7K/PCPhKnxfAECQEbdwDg==
+SHA1-Digest: MLJYeT8y4UJuQwfH1ZJM0Et1SpA=
+
+Name: chrome/locale/ko-KR/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: R16pgknTeErljWTqpWSYNQ==
+SHA1-Digest: qmoFySIQPFxKa8YtdlFEyha25Rw=
+
+Name: chrome/locale/ko-KR/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: M/fEjTId0bauEQQfWWU0nA==
+SHA1-Digest: KHNuim7KyF3PbQJnLSbnLuHYCeo=
+
+Name: chrome/locale/ko-KR/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cvNu/E8yUtaGotJ9fxpMuA==
+SHA1-Digest: xA2UQSS/1xi5eRIggjrlcL6ZzYs=
+
+Name: chrome/locale/ko-KR/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XOpgN2KukjGFCzR9ixpcbg==
+SHA1-Digest: 2AQCf2AcLHnw3WDKmbpDT5bgog0=
+
+Name: chrome/locale/ko-KR/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Z/sH0A5j8XEq1ZeqDgJN0Q==
+SHA1-Digest: vYcxdI73kjPK88Lpq4ZqmNSieQA=
+
+Name: chrome/locale/ko-KR/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9i002onMOJcXYO4rv3GjxA==
+SHA1-Digest: 9Zxd7JyGPXfxA2DuqFk+qOd0JD4=
+
+Name: chrome/locale/ko-KR/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 5Sqtucqccb8AflAq4b1GcA==
+SHA1-Digest: Z7bo+YxW1hdwNjDFMWcjXd+LKsA=
+
+Name: chrome/locale/pl/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rP3IJ1RYfwadvu4A8ZojFw==
+SHA1-Digest: L2lduYkxLDPwb43l+WfhCgnUoeg=
+
+Name: chrome/locale/pl/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: w1/xITuhUebzUIiWGgUNqg==
+SHA1-Digest: I6ClK3jC72hrIfVOmC9hw1pzj2g=
+
+Name: chrome/locale/pl/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HQx+BsErIrFhfiRFBXvDcw==
+SHA1-Digest: QUWj9ZXMoegydwJBgRKh85zTjIc=
+
+Name: chrome/locale/pl/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BSiZFAHDE3tFhgACMJ3Q6w==
+SHA1-Digest: huuk7egC+UpQFaxtM8u7ujIxOyM=
+
+Name: chrome/locale/pl/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LH/9xflNdJV+zBNtDC3X3w==
+SHA1-Digest: hRrmIiZi8L0hcIq7Yf4ZuDat500=
+
+Name: chrome/locale/pl/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KAQTrwP6D3w34DAduy8yNg==
+SHA1-Digest: 91uvWDXGjOnrFXChgRNna6pPAeM=
+
+Name: chrome/locale/pl/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8U9Kfz9NLg8WmmIWscY0dw==
+SHA1-Digest: IT+JlVsyRxF3DHGNLL/q72m2PKM=
+
+Name: chrome/locale/pl/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: djLSuqsaoM8T6qCyp4X0KA==
+SHA1-Digest: O+RzdKTnrF+vgtsunmZxK14pWeU=
+
+Name: chrome/locale/pl/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sxWZ2/KFuveW+dd3gHMqxg==
+SHA1-Digest: ChCF56MCivYnC2HtwI/+kPf2u0M=
+
+Name: chrome/locale/pl/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pAuaw4lt/ypfmtiUf3VJjQ==
+SHA1-Digest: 1U+En1Phw3ED4oTx1n7CJtqbhnc=
+
+Name: chrome/locale/pl/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PtDN3Gx8Y4hBi8/KeUk8Tg==
+SHA1-Digest: OD3trQFXDZHoPDaEWCYPcA9GVBw=
+
+Name: chrome/locale/pl/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EX62soR3ga+T/7i4wrwiCg==
+SHA1-Digest: /P1+0258+yyMFXz3uyBcfRs0eJs=
+
+Name: chrome/locale/pl/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qTVRI6zaDZQsYqCCsP2Dmg==
+SHA1-Digest: g2koOoDt0NdGue0AzAcOhxyHPhk=
+
+Name: chrome/locale/pl/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fenD+Mw6pCO5GUkalGx6fw==
+SHA1-Digest: kDEpm0xMjz4JNqyI7Wk1JdxFBxs=
+
+Name: chrome/locale/pl/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xWFhZYXdp74NKA1WGwkGQg==
+SHA1-Digest: Bjm8bTTAw2w2jBtDWrOe+kZZtBw=
+
+Name: chrome/locale/pl/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EYMS5anWHp3c8PtR9qGllQ==
+SHA1-Digest: ugt0ARKHTL0+JPgQql1GqagAPxU=
+
+Name: chrome/locale/pl/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: i0g9PZ1BoqFIDtPxCk+TWg==
+SHA1-Digest: Ia/hXbmEzgRwjhKKoRHR5mVW2QA=
+
+Name: chrome/locale/pl/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lH0B8g2elUnRenQ46GnlaQ==
+SHA1-Digest: NrzVpnv+5H0YWvstXELlOxzi/Gw=
+
+Name: chrome/locale/pl/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: G+3CTPDOrrrzaxF9J6xV9w==
+SHA1-Digest: BKPyMLCe5zJcDs89M0ggO+6ibts=
+
+Name: chrome/locale/pl/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: p7R7mxd0J8MuHdiH94NACg==
+SHA1-Digest: tZ7/wDK86Uoau/7cY6Mc/kbU+20=
+
+Name: chrome/locale/pl/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6G6UgopNz/CwWYOtPubZLg==
+SHA1-Digest: mgaBnDUoy7YlPc34clQ0nk6wu0o=
+
+Name: chrome/locale/pl/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xtcD8NmjrXpbnDm4uWu4XQ==
+SHA1-Digest: ygOddAdXyjYCJViJZgWR5/+0Eyw=
+
+Name: chrome/locale/pl/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BdnY7U0k/NEm/iviHxzKQA==
+SHA1-Digest: uafDRefDhLq7zG+uUa0dJnrZvAU=
+
+Name: chrome/locale/pl/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: VGuYSrwalTZUboyYj0NZXg==
+SHA1-Digest: Dkt4OI4Un4VnY7KaSXoeCMmm5HA=
+
+Name: chrome/locale/pl/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KKNKGMJ3SHSPcNuZuR7Oqg==
+SHA1-Digest: 2swIDsd6K1MFNviQjEibMf92y+8=
+
+Name: chrome/locale/pl/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OfQ+6kgLf3XqIqNR33Y3gQ==
+SHA1-Digest: YNtRuN6o8HahaoJer0ptpUkOsI4=
+
+Name: chrome/locale/pl/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GTs/eZL0295vnYyB/PuuVg==
+SHA1-Digest: kgP8+u+YxHGYtBr3785naTwuKag=
+
+Name: chrome/locale/pt-BR/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UYoU0OR42yshDNSJuRxKRw==
+SHA1-Digest: nrNnS6SMrg1P79GmzTJMiEMRr/s=
+
+Name: chrome/locale/pt-BR/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rj2gigIDJXmNChZDDxoBsg==
+SHA1-Digest: h3bSHP+AeTNUjQZl7dIEO+WfMNc=
+
+Name: chrome/locale/pt-BR/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KhLr+gZCkN6eHH/liIw9vA==
+SHA1-Digest: ZYwgOqg1xy7fm175LsjJPcLpWtc=
+
+Name: chrome/locale/pt-BR/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 3XfD7TgPRKB3mo1zfWRjaQ==
+SHA1-Digest: UTfhGshfQQsCld/Gm1SVYEC4vLw=
+
+Name: chrome/locale/pt-BR/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ny01isx6GRfR+1asLOp89g==
+SHA1-Digest: yuBdpHK+TJ0mnCeI1r6dUt48V4w=
+
+Name: chrome/locale/pt-BR/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wJXRg+09uiN1uXwSXDSpiw==
+SHA1-Digest: WjdrmmYRn/ykaLNllQE26GLgoqg=
+
+Name: chrome/locale/pt-BR/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2MSjf9Aw3nUswBByFbdlJw==
+SHA1-Digest: rYNoyLthlqWnT1nkpAhu7Yb7HYs=
+
+Name: chrome/locale/pt-BR/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9kVr1ARP9ioB1MqKPjzLNg==
+SHA1-Digest: tfGuUnJhQBqATzjgWrgUJ+LWuO0=
+
+Name: chrome/locale/pt-BR/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RtaiSMuQwXmUtgXauoQCyA==
+SHA1-Digest: iI9UshqoLzndLhCazle0mcExBY4=
+
+Name: chrome/locale/pt-BR/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bvjcDJSP43Ddm0Y6iazGKg==
+SHA1-Digest: HK5ySXXeSY031LaZ5naRq4jMTGI=
+
+Name: chrome/locale/pt-BR/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ytITC866OiOGwrIuiIY6eA==
+SHA1-Digest: 672wQQpvab+mdAFfM3a54KhN9Ck=
+
+Name: chrome/locale/pt-BR/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ggBY8QsGlaw6nOBRRhSicw==
+SHA1-Digest: U//jUSD11qioLR6FFm3rzEHXFkc=
+
+Name: chrome/locale/pt-BR/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wsEalkedK+nvNYVk24Q5/g==
+SHA1-Digest: 4oobZGAJ9Iw8qu8fqZBJSL5uH0A=
+
+Name: chrome/locale/pt-BR/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ShuzGbCyKculIphRuCIYdg==
+SHA1-Digest: 1Hlth43nDzXr0A0Wv1hRYP1dxpw=
+
+Name: chrome/locale/pt-BR/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: iH+IUuGlwiXETK1X90AY+w==
+SHA1-Digest: Cba/HCdI6uri/AKKeNWsI+ho8iE=
+
+Name: chrome/locale/pt-BR/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: CZ8zX/szenDZyw3SXqjLuQ==
+SHA1-Digest: PqcZVz8jcAgc6/R+GZMGoEQTHfI=
+
+Name: chrome/locale/pt-BR/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: X7cYGRaZG7dGObBLNt1ttA==
+SHA1-Digest: /Kfaz8njwHk2CWMrC/3Gmr17iFo=
+
+Name: chrome/locale/pt-BR/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lyXepr1ysN9Eggw0Fgwm3A==
+SHA1-Digest: bIJqqDUdew/wPnoFluLEMCEj8kE=
+
+Name: chrome/locale/pt-BR/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qASLheDuBDF5CnUt4owMXA==
+SHA1-Digest: eq1TFZ5CMdeypaWLpsnA+ccUIwE=
+
+Name: chrome/locale/pt-BR/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mGVxacMQAO9rKHr3/8/9Qg==
+SHA1-Digest: zI0PfoZKrnATvLbXL3jD/VLGj90=
+
+Name: chrome/locale/pt-BR/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: x35CeyqBXNSbhHHImleKyA==
+SHA1-Digest: uJWAV9IPV2mOMz/vC395xS6ROxQ=
+
+Name: chrome/locale/pt-BR/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yhP756Psh67V2h2qAGgQfA==
+SHA1-Digest: SDkOrkOFiRgoPaLdRYKsip69ISU=
+
+Name: chrome/locale/pt-BR/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: p7yFFRm79Sz6rc+86qn/qQ==
+SHA1-Digest: lePd65/imCB8oUU98blqFzdQJnY=
+
+Name: chrome/locale/pt-BR/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: V6kVbQ+Vyj+ERGzrEpfmuQ==
+SHA1-Digest: 8Nj8CTCAz6IbLF/5FdetUopR7Ds=
+
+Name: chrome/locale/pt-BR/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: il7wAqAAtq9OK/JaXuLHIA==
+SHA1-Digest: ufepEYshM6oNEzMS6jJPDON1m0o=
+
+Name: chrome/locale/pt-BR/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ey8iSGEkHs9Iko/oPxYfrg==
+SHA1-Digest: mbVdRgNFqFrom178P1YzQssSBSU=
+
+Name: chrome/locale/pt-BR/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KKL9SSrtyWN45TBrjXx9iw==
+SHA1-Digest: eJaHqqoNE63HopYjt+c417mVHzo=
+
+Name: chrome/locale/ro/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: VoeQUT+XdJgmr1rBr9tAuQ==
+SHA1-Digest: fxucPIfb3CX9+wU4RBqXUR9zpok=
+
+Name: chrome/locale/ro/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xGmlt1UtFeyv3p62x00F/w==
+SHA1-Digest: wycin1VwbwNLEM5WkU/Kf5OnZlc=
+
+Name: chrome/locale/ro/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZROubaXFBfXswYQ5bzle/g==
+SHA1-Digest: Fo5zi23I9a+ZHiPzRtat+Pfljyk=
+
+Name: chrome/locale/ro/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Lk3ERWpQ+r2kCwSU+ur6mA==
+SHA1-Digest: fjfbLokQToHFiC3dDIJsSRMuqnQ=
+
+Name: chrome/locale/ro/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 0WqrvL4afgj2NF1dye0wIw==
+SHA1-Digest: ulfk62bDSMVa9jqqEtpMe/reYP8=
+
+Name: chrome/locale/ro/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +6uFDP1j6JpOBRPvs7GLJA==
+SHA1-Digest: /8epJCY+1tYUbHwBGB+X0b23BgY=
+
+Name: chrome/locale/ro/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZT0cVybzZE3Z7BCq9HFt8w==
+SHA1-Digest: yTXWvjeKE7yuhDT1II1wthxCeCQ=
+
+Name: chrome/locale/ro/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: DWcIPnfZuX98SdoMqXHXSw==
+SHA1-Digest: /4G0zQOWEiThWIxweIfOdTJZaTY=
+
+Name: chrome/locale/ro/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: uwHXaaIydHc4aSdOeIvdxg==
+SHA1-Digest: 6jd7yJlXXH00TXYN38eGM+RydPo=
+
+Name: chrome/locale/ro/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HcAau+i3j+AOrMh2+6IwCQ==
+SHA1-Digest: Rh8sEvMPlpSArEuBvc7U9Sgt1lQ=
+
+Name: chrome/locale/ro/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7J805ROgy7r/N1W54iCFGA==
+SHA1-Digest: cCfGSNSTdVg0NtlXNRnv6ztdfdo=
+
+Name: chrome/locale/ro/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: JUCQi8syYWZ0BBaW70/nLw==
+SHA1-Digest: OUUD5DCgUyPPMWzn+mixbTWmCwU=
+
+Name: chrome/locale/ro/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WPiyLmozD6kiO2qnj55KqQ==
+SHA1-Digest: eey0bSxt8fS0IdFtzcoKBoFP3Z0=
+
+Name: chrome/locale/ro/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: H0cUV95quIepoUTPSncPZQ==
+SHA1-Digest: T1GLt8MAEi10kiANi5Go/pVXEf0=
+
+Name: chrome/locale/ro/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bMMkHjJXtT8+8BIsuyEQkQ==
+SHA1-Digest: mgh/jveLofCCuCDbPUFTeQ23ODU=
+
+Name: chrome/locale/ro/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: D3hSQlnZlOLVttjQZwwiyw==
+SHA1-Digest: DQjoQO/3XF88MV0pdSD/dc2Q1SM=
+
+Name: chrome/locale/ro/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OY4U962p4NGxRR4YlKDKPA==
+SHA1-Digest: xPf8qH89V3dauvw+TyFc/uoqL60=
+
+Name: chrome/locale/ro/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: aU0SnlfmX+DiQTbGzoZ91g==
+SHA1-Digest: QzxjsirXC4TDeDn2/e+Avl9dXnY=
+
+Name: chrome/locale/ro/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: blwNZ47+ReybqSqX+pnNLA==
+SHA1-Digest: /S6D3SSFfQdyXLZOkwaHIl7xR8o=
+
+Name: chrome/locale/ro/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GMY4Z73LJWwVe9QOAoyuvw==
+SHA1-Digest: dUwkVKohvuMW/xUWqOBrz2BbXPI=
+
+Name: chrome/locale/ro/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SvB2JOUcMeLmocNs9wse3A==
+SHA1-Digest: txoRuUJ/BbttGVxc6+169O8lJiM=
+
+Name: chrome/locale/ro/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: uxAVhCZF20/wBN6W4BQnLQ==
+SHA1-Digest: u89qah5fbtfJF5HxgdhOq1Q120g=
+
+Name: chrome/locale/ro/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yl9xcWUq2StGPZIEw2gDrA==
+SHA1-Digest: YwK3G/VtNZ6n6vvN13GzxpCPYcw=
+
+Name: chrome/locale/ro/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: r5ooaa2XgSEnxP3ibvr/VA==
+SHA1-Digest: ZVyhE8bZ0ozITManh12U10tdhL0=
+
+Name: chrome/locale/ro/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WErb+5y4LNLABAUCttbaPQ==
+SHA1-Digest: qjLXvz9bXVQu74HO45ezbs9ZGNE=
+
+Name: chrome/locale/ro/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8skwGtlU3SNEZGqSsZ3EFw==
+SHA1-Digest: 4n1okxa/RHODFEkUafFDJoQgKMA=
+
+Name: chrome/locale/ro/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XD5a+1leLUIepg3lE+7e2g==
+SHA1-Digest: 4o2PjyEfrtyHpsoMG3EdLx4r2PM=
+
+Name: chrome/locale/ru-RU/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zZVrzl77Wjz4sjGo1hCAHQ==
+SHA1-Digest: eRomR3d7JrLA0b+5/cD41g8EZpc=
+
+Name: chrome/locale/ru-RU/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RGPIKzDkZnbxjh0Ini/h/g==
+SHA1-Digest: 7bJiiEnbn0zZOJVGHMQPExLlCyI=
+
+Name: chrome/locale/ru-RU/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: barkNJBun8LQixq4YFDuOg==
+SHA1-Digest: n3UwkiJ1OLaFW67P28QoLjwQI3I=
+
+Name: chrome/locale/ru-RU/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Y8ShI6TeivbLdhbtvhn1Tw==
+SHA1-Digest: ZXv0iNQbLeLKk3V3uf9hjVzjLUo=
+
+Name: chrome/locale/ru-RU/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kaJ5QD0MT1bBke/O4DDjxA==
+SHA1-Digest: IYhZAwV4mZJlGroVpMJzkdThQgg=
+
+Name: chrome/locale/ru-RU/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1qbu6yAhA6KccWToki/NQw==
+SHA1-Digest: q0883ASNY9nab3l4ppneGPUccoU=
+
+Name: chrome/locale/ru-RU/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pB28pIhtv4Ur4z93TlQljA==
+SHA1-Digest: 4izt7Yx1ykL3+0BVk1ml5gycdPw=
+
+Name: chrome/locale/ru-RU/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ootoN8q8YyTGOBZAelZ8SQ==
+SHA1-Digest: v8JA/0Ety8CQy2bnvjVu59YiN+w=
+
+Name: chrome/locale/ru-RU/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QOiIwif/yFtkuqrfr8NW9g==
+SHA1-Digest: kGKSeHIlWMR4rOhjscRSOs6wCwc=
+
+Name: chrome/locale/ru-RU/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: IZIOcHNUsl905BEsDToR4A==
+SHA1-Digest: 9nHmt7NNY34vmGYBSQoGx90vLbY=
+
+Name: chrome/locale/ru-RU/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +2eXJK4uA0E8n62/lJpPUw==
+SHA1-Digest: ImHgDzMNoQzvxo6NPk3u74Apwf4=
+
+Name: chrome/locale/ru-RU/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WVi82ZvcQGM4yU4I40Vtvw==
+SHA1-Digest: LKayTuWv7LTGVSbdUO1qa14QO1o=
+
+Name: chrome/locale/ru-RU/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qJd5ZtGSsjs0UMD5dzzi1A==
+SHA1-Digest: g/0QCoGbRprQaC3342nhJRlqgW4=
+
+Name: chrome/locale/ru-RU/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: g0tZru1gG9pLjqKvt05w2g==
+SHA1-Digest: Fk7d/8lcfUehSRX82T2q4+PEvmY=
+
+Name: chrome/locale/ru-RU/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kWm5QDELh8+7rrRCpQJAtQ==
+SHA1-Digest: psNQQMrfC21BhiMVHXGGZXat7QE=
+
+Name: chrome/locale/ru-RU/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PMzp6Hhwp5QRKkSgG6wyhA==
+SHA1-Digest: FX6fK9xUe8ja2GVbHm5tUbqsBBU=
+
+Name: chrome/locale/ru-RU/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: iAFpToGuAwsvQkR0ofIhog==
+SHA1-Digest: /LcDfOVfnSFduZqPzs6aFOKIwwg=
+
+Name: chrome/locale/ru-RU/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WMUAxBrQO2RnpiQHTuw2AA==
+SHA1-Digest: x7LhsnnA6nXjtho/XiIORQC6vSg=
+
+Name: chrome/locale/ru-RU/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8Wbcg0miE1UdA9myFxYt9Q==
+SHA1-Digest: JuQtjVKawLYcyHaRsFrXhM5TohU=
+
+Name: chrome/locale/ru-RU/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 3PJe87OV/P2FTlDNC/yrpw==
+SHA1-Digest: 6dED1qXYuV0rTrJVBzcvH475ys0=
+
+Name: chrome/locale/ru-RU/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: aVQw7t0Nq51QjRWAiLNVmg==
+SHA1-Digest: yKLQmZAaEpo2mIRW+H2rwtDV6ME=
+
+Name: chrome/locale/ru-RU/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 3AladBJPwRrhlTROaNk58Q==
+SHA1-Digest: BsbHdOy/pGM+wRReNZFpDcgXOIU=
+
+Name: chrome/locale/ru-RU/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UUux8NWGrKjWUb65HQGoGA==
+SHA1-Digest: Dmj/sACpLmmS3Cu3liuoiZpUrzM=
+
+Name: chrome/locale/ru-RU/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HH/08z2kMa1W9R8CV9JKXA==
+SHA1-Digest: RcQ3rmomvXS3S2oK0ojNyp0alHU=
+
+Name: chrome/locale/ru-RU/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wmr1f7gZq/YOCD/kYhnT2Q==
+SHA1-Digest: MwYqnK1zBS4YpdvO3+D3KXwDWlU=
+
+Name: chrome/locale/ru-RU/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Xc4ljmHXh2MgUfoXWzzLlQ==
+SHA1-Digest: hxHOREkgPOSXonUsln5kO2Uvdp4=
+
+Name: chrome/locale/ru-RU/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kEra+ZqEqDaW8fbLRJ674g==
+SHA1-Digest: NqRFm7ujgmKc5iFU3pBHk1OWCHE=
+
+Name: chrome/locale/sk-SK/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rk7UtU8cnSVG9KGy/N4HAg==
+SHA1-Digest: eI1IpjsQR8qVZCqt1Drw32wwkqw=
+
+Name: chrome/locale/sk-SK/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 49VSER4tfuzbHibvMExoYQ==
+SHA1-Digest: GncRNPRU2bbVbWJLaqyfcbjPHiw=
+
+Name: chrome/locale/sk-SK/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8shzN+IirMTZT/sczsNL3g==
+SHA1-Digest: 8NRGHnffmMqpCLz4sVY+Mwk4AZk=
+
+Name: chrome/locale/sk-SK/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tCHPof6D67stbRNqCfo+FQ==
+SHA1-Digest: qBeQeRNoAtqUA/75OT9KdBqTVDc=
+
+Name: chrome/locale/sk-SK/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xhylOg35LiJf738Vv+g+6Q==
+SHA1-Digest: MssKPU9Hru5JNOlTu+bNM22+2sE=
+
+Name: chrome/locale/sk-SK/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7skt4HAVy0bj1d27TS806g==
+SHA1-Digest: PnV4hg+XdblCN1DglkdXOSW3oUE=
+
+Name: chrome/locale/sk-SK/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PSfd2kdVJm0EOXgxaBl4Zg==
+SHA1-Digest: qpUwvdOUVjJBLmXiZwSbtbWDBNA=
+
+Name: chrome/locale/sk-SK/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KjM8qC6vnz8HPmIwQBLf4w==
+SHA1-Digest: xEYXQwJtwqIFOIrLe4JQZ230jF8=
+
+Name: chrome/locale/sk-SK/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QWbtUNvt9Ii/C/o/dI06sw==
+SHA1-Digest: BmNfLPzYSFQLyComKYqFgjhCijg=
+
+Name: chrome/locale/sk-SK/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: /q9Si20xocfm7LE7t82UJA==
+SHA1-Digest: WgQZNtULYjNVLrV4teQUXYluGk4=
+
+Name: chrome/locale/sk-SK/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pVDQfcHGzczvrbvTvJBjgw==
+SHA1-Digest: 4ZD2NtcQY38sNjLA1ZS0/fErjhs=
+
+Name: chrome/locale/sk-SK/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: T2m4deFfZDizOCXBqVCfLg==
+SHA1-Digest: uQSGe7jBeVLnYBsPki6JKrvif9E=
+
+Name: chrome/locale/sk-SK/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: g6Akq36Guyi2r2jyS5ijUg==
+SHA1-Digest: oXsQT1BsFab1jRu51o+tYO3gbH4=
+
+Name: chrome/locale/sk-SK/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: i87zppkuiNQY9/57Yiza+g==
+SHA1-Digest: Ytzzn4mcGKXNBtO7DVZRcpDllPg=
+
+Name: chrome/locale/sk-SK/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7lLNk0C/QEyhSv12G8fKbA==
+SHA1-Digest: xbRzjmqZPhT59r25NG/lTEkq5C4=
+
+Name: chrome/locale/sk-SK/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: VZrhvlHs0rP/wO+Hp/85Wg==
+SHA1-Digest: fbw8/yJZZQArqge6LdkXDqUCSbg=
+
+Name: chrome/locale/sk-SK/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zEHpQEDv4ecNVR5v0bWFhg==
+SHA1-Digest: VCfSRHllsZxn8FR9+lijnrpbmbU=
+
+Name: chrome/locale/sk-SK/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HtCgkhQNQKVO5/y+4tirSw==
+SHA1-Digest: 7jMFyJYaFeHlSzmEZPUrbtNb8ek=
+
+Name: chrome/locale/sk-SK/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ABdl65AnMeBQPW0b0fCS/Q==
+SHA1-Digest: Ab7mO950kXNFaLNSZwoexHIMSBU=
+
+Name: chrome/locale/sk-SK/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SJWeR9s+y1KjVIt38TArwQ==
+SHA1-Digest: VqnqPI7gHzouEnJxDn7/jk4c+qY=
+
+Name: chrome/locale/sk-SK/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GH+odmj+Tu/DI4Pw+YMKIg==
+SHA1-Digest: I1QS1issGY7aokOk3wTkXb0d+BM=
+
+Name: chrome/locale/sk-SK/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Z+n2pXSpgVs0+knK/Pqf2A==
+SHA1-Digest: vQ+VgMOhO1HFBlmatTDU8XmUd4Y=
+
+Name: chrome/locale/sk-SK/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Jgk+DM5AYAXGloP4lxjWZA==
+SHA1-Digest: gVi5vU5QNqJkSh4Zu49MDsOHkEo=
+
+Name: chrome/locale/sk-SK/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Z37rAGdfl4bqnldsEGQdig==
+SHA1-Digest: Tz4FyMbD9G6YMwL8iFA6zGxKP/I=
+
+Name: chrome/locale/sk-SK/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sAHVsBRMOj7VrcZmIK6vPA==
+SHA1-Digest: FfEeuJGiCik7WGu2s6ys3zH9kLE=
+
+Name: chrome/locale/sk-SK/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZS0vl8MZKyUeQ8wUZmBVNw==
+SHA1-Digest: tS7/pMzGR5QuwEr8NAbjLUjMnUU=
+
+Name: chrome/locale/sk-SK/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: s5PSO04oRWiRExsb4+Ro4g==
+SHA1-Digest: 3acHo/u0/qA8Odu5x0qxulI40Sk=
+
+Name: chrome/locale/sv-SE/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SOCaCSZYSLNopC2qaFqbGQ==
+SHA1-Digest: 6lmAX75VI3JWoSsyxd+WA2LoUV4=
+
+Name: chrome/locale/sv-SE/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rnRKf2COddIbH0lxVK385g==
+SHA1-Digest: H2QTWlMLA+1t2XMqDtPxwL8TFUo=
+
+Name: chrome/locale/sv-SE/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ne7b+soRuy2VGZhCxnHPFA==
+SHA1-Digest: j+Hgzja7HyiLQEkQSaR1F2q8kZc=
+
+Name: chrome/locale/sv-SE/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Hu6yWE0HF9gJ/8xkZE3vGw==
+SHA1-Digest: 7HrY3JVck6watC0zQU63GmXdSUw=
+
+Name: chrome/locale/sv-SE/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WUW9qWpfv+iutxV6/5ciSA==
+SHA1-Digest: KrBzhzSeawPVz/WAquHhuyxav7k=
+
+Name: chrome/locale/sv-SE/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jIFTSPD7JTqYsZg0oRyzmQ==
+SHA1-Digest: 51g1oYLC1WLXT0O1DvvlxODl83w=
+
+Name: chrome/locale/sv-SE/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: E2+uvrmoPhexU7PlCO2g4Q==
+SHA1-Digest: 5rgUsDyH/zsofbL0I/hgl6bXrYg=
+
+Name: chrome/locale/sv-SE/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ju4nlt3JEjcZY49UqR0K4Q==
+SHA1-Digest: 2dmqC6tPWFTopERwQHBSdAtEqvs=
+
+Name: chrome/locale/sv-SE/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mB5yQ3apLbVp7Fo7j8PQVA==
+SHA1-Digest: w6xXC6QmXtkePPwOFcEIArHo9lY=
+
+Name: chrome/locale/sv-SE/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: N1evusCfcJcPkL1Vuds6nw==
+SHA1-Digest: ctcTbE9e9fGYAwCT5yPBg8XkO7s=
+
+Name: chrome/locale/sv-SE/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LORRZ4NWdUhiuKtcUWNsrw==
+SHA1-Digest: yz5rbS9pDLevPFMENTPKgTS2RM0=
+
+Name: chrome/locale/sv-SE/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6QLEzEtK3mczNxLli8XZSw==
+SHA1-Digest: InlqAHAAUPX4I1amT0dTR4PUKGw=
+
+Name: chrome/locale/sv-SE/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: hGbabhiFpJFc18dg9Tm9/A==
+SHA1-Digest: GV53TKaGpK692IYdpYXeuOu5mBw=
+
+Name: chrome/locale/sv-SE/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: CgpuCMCltzR6zhWv6FMeTQ==
+SHA1-Digest: 2D9/C0dA0rStb66hHucpetUNeBM=
+
+Name: chrome/locale/sv-SE/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8xpDneBuAYbeYxizokhSMw==
+SHA1-Digest: oRna7ENrjx1u7prewuAXhFXpbbk=
+
+Name: chrome/locale/sv-SE/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: orPKSECGufgricJHA1TBkw==
+SHA1-Digest: eHAgQ9gd1X//DVY7C+6yOr9Qnqo=
+
+Name: chrome/locale/sv-SE/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lr7OyIXJD4ET3HdO9f75WA==
+SHA1-Digest: qrq++Z3xuOa/SM31GPKVvMNFHUE=
+
+Name: chrome/locale/sv-SE/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: h7ZkhcCEAlkCI8mPFYKMeg==
+SHA1-Digest: ITem9F1GC4Ss4uKlBpZ8d1VYobM=
+
+Name: chrome/locale/sv-SE/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ta57ObghfZe0N4wcnhae2A==
+SHA1-Digest: 5gyeTmIFs7Sf/6SLilXbMkhIZoc=
+
+Name: chrome/locale/sv-SE/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sAmUgCHnge0fZfEnssoVAg==
+SHA1-Digest: ELezf0jL/gAqMK5neBIP2zc3IFo=
+
+Name: chrome/locale/sv-SE/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rlsLYDfCwWlk+LBJ/wRW9w==
+SHA1-Digest: ziX8XDFfZ6G+wr4ICePpweCCUfQ=
+
+Name: chrome/locale/sv-SE/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eU2wSTJPSgVilDYBv+710g==
+SHA1-Digest: G6BLAhHJJ03D3bdR68TizWLlXns=
+
+Name: chrome/locale/sv-SE/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 50E1OS4hCTIhJcFbLi3lPA==
+SHA1-Digest: Oi1Luk0o+pBa8BqvGg1iWpE/8qQ=
+
+Name: chrome/locale/sv-SE/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HDlybuAhk01aX1mZcBYtwQ==
+SHA1-Digest: e4zWYlhBd65a661jXPkF2D+GbHU=
+
+Name: chrome/locale/sv-SE/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fE3WEqTw9C4UPpVTYPFUpQ==
+SHA1-Digest: rBVuT75lirTOgziJ6WbJELiWjHU=
+
+Name: chrome/locale/sv-SE/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1g4S3GbiTY0GUlgx7alphw==
+SHA1-Digest: KAn5wXkK9mQrsuUrK3fM9iHRb4U=
+
+Name: chrome/locale/sv-SE/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FVl/fIx1LPXgOupMcvG0Jg==
+SHA1-Digest: GbBzfdbkPEIwdGwSXMgRjU8W3zE=
+
+Name: chrome/locale/tr/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: E74qVDBEpVFZC3zdo6jFxw==
+SHA1-Digest: i8ptlY+OAhskzna67OEiRUbvZjQ=
+
+Name: chrome/locale/tr/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Zv/kk95Ukh7Z6KNmhf3nXw==
+SHA1-Digest: 0jpU6LAJTM1eZjcZC8Xrh+YbRyw=
+
+Name: chrome/locale/tr/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cwGilBoD4QrVcMOlUrG9LQ==
+SHA1-Digest: o95sGrZJvMF5hwaYI5aYapdfxKs=
+
+Name: chrome/locale/tr/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: L1zhbC6oIigI8zkEPwF4Jg==
+SHA1-Digest: SL4x0r6GNv1OgGHbrhOHHcV/oWg=
+
+Name: chrome/locale/tr/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ++Uqy/bvMLdg/5r9b46diA==
+SHA1-Digest: +gdHMcKIX8vO1Lp7zQdkYo4FvyQ=
+
+Name: chrome/locale/tr/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: r5FfY450qaJVtnYRCOKcFA==
+SHA1-Digest: /kW/Um5GfXgZtnCthIm8fg09DGs=
+
+Name: chrome/locale/tr/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MorTk4elRIhFetErKfSfBg==
+SHA1-Digest: O9FFWdJs8id2Me4/sjkOwH8hWGc=
+
+Name: chrome/locale/tr/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QOLbUwlfkM+kl8ZE0NFXUw==
+SHA1-Digest: sxQk7WQSkmtR3LM6E0mCP8V6qAQ=
+
+Name: chrome/locale/tr/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: T0YJ+57pLAM5Lr8Ez8CjOw==
+SHA1-Digest: rKpOzYMe1V2aAPiG+IAus6D8LuI=
+
+Name: chrome/locale/tr/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tXMedoQY/8xEDjLUypGQyA==
+SHA1-Digest: DxR95QGDyjoaPd3BUjVakSH5p2E=
+
+Name: chrome/locale/tr/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bXsaiqVJGzmFy5zFf/8dow==
+SHA1-Digest: TyeX2Oa86F5X+KBZQ2NgwXD/fsE=
+
+Name: chrome/locale/tr/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: C/Vi4NQSIq7sza1CUr+i9A==
+SHA1-Digest: 3BJy3tVa3I2vpIf+eZ92hgxktdA=
+
+Name: chrome/locale/tr/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eCqo3au724y70eHaiX08cA==
+SHA1-Digest: 82ICfIcbA55OQw8aIMLLIa3n34Y=
+
+Name: chrome/locale/tr/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xw6gfJmMaxwqqfabcwGXEA==
+SHA1-Digest: 5+aqFMx/bEv6bWSVL0KZ/whasHQ=
+
+Name: chrome/locale/tr/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: dwxjrsTnulkPcFwNansSBw==
+SHA1-Digest: LQ17heVkLMlaxbWgvv/Tc3bI9zM=
+
+Name: chrome/locale/tr/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: oSy94Bjhe5GTffhIDHuMkg==
+SHA1-Digest: uFqNa+rvcwhwrqbt3Q43pXb5vmg=
+
+Name: chrome/locale/tr/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FcBSewFF361465guZdqOOw==
+SHA1-Digest: oEq4vrDjMkU3kpbvUdSTb67YliY=
+
+Name: chrome/locale/tr/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wThfqMk3lxziY+LgGkDIsg==
+SHA1-Digest: nCSP9Ss8CRQNFR7SUdA2GqU5xIw=
+
+Name: chrome/locale/tr/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: R4hNGID2kSRVYiRbHNnJcQ==
+SHA1-Digest: G6A6/IXwLNwPPrvAqCktSy6DYbs=
+
+Name: chrome/locale/tr/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mFHzYtxUjUDMgxednmfbfg==
+SHA1-Digest: 9nBHaKGYua1dscZE3sTziWHNu9c=
+
+Name: chrome/locale/tr/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ufQOH0c6WNkSesSBezZOkw==
+SHA1-Digest: d+ukLXmaVthZE6eo2UJiKpLOFMw=
+
+Name: chrome/locale/tr/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: GyJxS7Z/xIN97iNtI1DlVQ==
+SHA1-Digest: s1qyeBS3CzebYMPs9FDUayO9dB4=
+
+Name: chrome/locale/tr/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: JE6CP36w7ZfLs+svBQ3GMg==
+SHA1-Digest: SgM7xHinR/dpo4O6wAPS9ivbHmQ=
+
+Name: chrome/locale/tr/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6cdnyVy+BDXohDKQ29Mp6Q==
+SHA1-Digest: N8lMOa6XHdeCHcd3uUXoL2zU7ZU=
+
+Name: chrome/locale/tr/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 5aFoC3HcxyEiiMLOgL9WEg==
+SHA1-Digest: MKJG4tIbCKYRxLgP4fTtJ1Lhi7g=
+
+Name: chrome/locale/tr/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sXl7OKkDxUuwA9EoeNaFXQ==
+SHA1-Digest: 41BysQTgyFC/eSawRVj2qoDm5xY=
+
+Name: chrome/locale/tr/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UvZBu2lQg7MQL+xsgKja7w==
+SHA1-Digest: 1e+0vemU87RCebrBOSHL4SYVPCg=
+
+Name: chrome/locale/uk/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nVhT+u5nX7as5aBDYzjzMQ==
+SHA1-Digest: umF0SKusZvuNAqRQQUblfprVems=
+
+Name: chrome/locale/uk/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jUpN5zoEiWEuZI78dVl2Mw==
+SHA1-Digest: EK6ms6PttgGPL0i2HyI6EoZ3BVo=
+
+Name: chrome/locale/uk/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XfehUm/CFVSqGbWmNkyMNA==
+SHA1-Digest: LXK+31DVQ0Vmp6NnT+oXY6nL7Lg=
+
+Name: chrome/locale/uk/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: owoahnsE+1KesaoKk3xLQg==
+SHA1-Digest: USVvXG/H/ySu1ydhjUydUZaTijk=
+
+Name: chrome/locale/uk/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qGwFezAPMceN06q1SFSEqg==
+SHA1-Digest: 3k4cPyTFK/kXXd91EX/zhGiVu8s=
+
+Name: chrome/locale/uk/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bNcxFa6JH+Q+qXjjBNFSkg==
+SHA1-Digest: CiGd5q7y7I6oE2CD7fUPpP7Vq4M=
+
+Name: chrome/locale/uk/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EbGeQURGjD/BTcqUEdhpPA==
+SHA1-Digest: YoJMWk6MOoelV8Jdjt6hiZs50Q4=
+
+Name: chrome/locale/uk/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: f7R06MLsLgK0ZQhRCZlcNw==
+SHA1-Digest: CkC02TQiR5Rx/H8PWjaRoW+l+AI=
+
+Name: chrome/locale/uk/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Ky1su3Ac6ofWI9/Y/F/SJA==
+SHA1-Digest: W+KJnptXTXVrNSP4i7sJ7FrC0o4=
+
+Name: chrome/locale/uk/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: l5DqcQNYGHBTXspd5WUZtw==
+SHA1-Digest: ZSxusRtUE1SgObR2HDJrS+F54/M=
+
+Name: chrome/locale/uk/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: W2kAHuWWVLXma73QQolg8A==
+SHA1-Digest: Oc2QqwQLiM/9cOyCmcvqmS7qD9s=
+
+Name: chrome/locale/uk/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ElfWYOH93e9VaT1EKTyRGQ==
+SHA1-Digest: mC7zdnYxh9TswJzeYwH9GucRzj8=
+
+Name: chrome/locale/uk/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: p6ENytj9aP01Eq600H/Ywg==
+SHA1-Digest: UMtAqeyXmrtEJUb7vhmsUpVGvkc=
+
+Name: chrome/locale/uk/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6SagocC6iEQtOdfXgK5+kQ==
+SHA1-Digest: ZJRoXmqVce1yczIE5OiA7dmF+jk=
+
+Name: chrome/locale/uk/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: giwlDiOVrRLGRA2uh6zKYA==
+SHA1-Digest: DNO+JaHjwrOl8YCYZFEAjkXPI7Y=
+
+Name: chrome/locale/uk/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ueBvkyoKUK3F6o691n8USA==
+SHA1-Digest: BB8af0lMC4Zo2cZuREzXGWCQ16A=
+
+Name: chrome/locale/uk/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RGJQe62XI2DA+Ki0lb7Rfg==
+SHA1-Digest: 7w4yUuwZS4vOzkPord/ctdhqmdg=
+
+Name: chrome/locale/uk/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: hM1YLAIgd0ulp7fzvCj4ZA==
+SHA1-Digest: +ymgFf6MLmSymQNaA2j8oJANQ00=
+
+Name: chrome/locale/uk/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UEVt8RG1gWDafsmiu0L0sQ==
+SHA1-Digest: 5YQnvzikZ62tvYI5YDYZHDugVro=
+
+Name: chrome/locale/uk/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SIJcJOcRKVcT0G4F5PlSOA==
+SHA1-Digest: 5i6oFlLWx30F8bo1Ms9cRHvA+8o=
+
+Name: chrome/locale/uk/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4Ia7zD2uswQmlJCYCa62fg==
+SHA1-Digest: cLpCh4SN5klh2f0O4RRZZVhGsQw=
+
+Name: chrome/locale/uk/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rFfwy5UEO2s9Ffx/bYu7LA==
+SHA1-Digest: IVldrlupAJDhkC5sZ9a4/qNFq5k=
+
+Name: chrome/locale/uk/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PSc3Qdvh6amOCg070GfA7g==
+SHA1-Digest: SaCzLi0CSjHhJ80yAdF6uWIq/hs=
+
+Name: chrome/locale/uk/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: vHghCNcRbUH9xtp2Ke6Ycg==
+SHA1-Digest: jCvOm0fsjh32I2JaMis/hrnQlqc=
+
+Name: chrome/locale/uk/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pZ3hUuAJmYKakXLJRkgPMg==
+SHA1-Digest: 2JH1NvCzzmwZOjTFM3B9/GAvbQs=
+
+Name: chrome/locale/uk/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: VQ5r0TkyHlBW3/i5OqoOPw==
+SHA1-Digest: fdo40e0NB2bMtYY9C58NvBSgAic=
+
+Name: chrome/locale/uk/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 71EVRvMkShFRwvQXUtSFBQ==
+SHA1-Digest: Z0DoYCZgIxGRCkRzbFNtsUijsTo=
+
+Name: chrome/locale/zh-CN/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: spX7GtpPfIWU+AtbRxu4Zw==
+SHA1-Digest: 4w12SWKphxTmf67AarPczud45bA=
+
+Name: chrome/locale/zh-CN/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HZXP5vs246L6HQidiS66/A==
+SHA1-Digest: RjjuLpZN7qyA4VKCWDdZp+PaYog=
+
+Name: chrome/locale/zh-CN/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qBzPzNWIxsusk4WAMomkhQ==
+SHA1-Digest: uWdZU8M7vUfpnHbiG0izfK/m1Aw=
+
+Name: chrome/locale/zh-CN/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6c/273QwoSl9zF/WCLGxgg==
+SHA1-Digest: ixWxZgKUKJ0zJ2mhCtjeHW97TSw=
+
+Name: chrome/locale/zh-CN/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: mwVhXu8WvXA/t3DyKigkVg==
+SHA1-Digest: VlmKhgAnKAuiK9hRaJw51PFFq0A=
+
+Name: chrome/locale/zh-CN/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: oBzUWOkUMe2rksABncL+rg==
+SHA1-Digest: 6DWOajqfXgheujFkDHp95HDPILE=
+
+Name: chrome/locale/zh-CN/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EDKZXcc8v84uk6kL3HO+Og==
+SHA1-Digest: X+RTFK8PQKFTYdi8k4c4sUpC/Uc=
+
+Name: chrome/locale/zh-CN/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4S75wh1o0/Ad5nR9H4Boww==
+SHA1-Digest: siG7Mm2JCw1QTpbHVfrxQS/mJIY=
+
+Name: chrome/locale/zh-CN/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: AXnJ+NGwNcWUoAn4lNdXOw==
+SHA1-Digest: uvTSqKFcDWD7HO5h9croTVj3Zw0=
+
+Name: chrome/locale/zh-CN/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: b+oB+O4I5J20HLWTCXTtrw==
+SHA1-Digest: nBFZ1P/b7hkF8mug3IT7+/wP29Q=
+
+Name: chrome/locale/zh-CN/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: v1yueISycfB1HpuXPGOrfQ==
+SHA1-Digest: 80GmAbgHdYpVAIS8VCHbN73mq84=
+
+Name: chrome/locale/zh-CN/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yltA/zrWxq24ISHxYEf1xg==
+SHA1-Digest: Bypzgytf4hCcpyDF/reGLqDTgvw=
+
+Name: chrome/locale/zh-CN/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xTRwPPk8mI1tIe12c1j71A==
+SHA1-Digest: SzF8G/eghk7HjCDFcxuOaU5UY84=
+
+Name: chrome/locale/zh-CN/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: DPn/E2vn1351aqWLVAtfpg==
+SHA1-Digest: TQRRxT8rx1HqYweurgo7+iuC6nQ=
+
+Name: chrome/locale/zh-CN/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 68IHtLcqMfkQW5GYTQhPGg==
+SHA1-Digest: x2+uJgoFDrtjiXxnO0Ce7YiMpnA=
+
+Name: chrome/locale/zh-CN/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: UYJm4ncW5+7QvENqhAcJsw==
+SHA1-Digest: rkb/fUXX+Ig4O2RsQxjs6OlTa74=
+
+Name: chrome/locale/zh-CN/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: xUKJik9bqgq0cnajN1VZ/g==
+SHA1-Digest: uGbkeC7YWaHJh8Les5riELr3xfI=
+
+Name: chrome/locale/zh-CN/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: qrAEAznkOMQFqMJiZ3t5gw==
+SHA1-Digest: F+qTdesHtk/PS9QdJqfk2OT5m10=
+
+Name: chrome/locale/zh-CN/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: VAeKadTIsKiembrrNfY3EA==
+SHA1-Digest: GwzE8/9LA6219/9t76VnkJs7NAM=
+
+Name: chrome/locale/zh-CN/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: OZqiKPyGeBffqLMqgxIVKA==
+SHA1-Digest: MeDd61s5aEEqHzwRUc51AwBV9ms=
+
+Name: chrome/locale/zh-CN/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2NoVMMcqFuZk9lycMj9KsA==
+SHA1-Digest: 5YKuGwASnOR9oCFSq2LtfkngfLc=
+
+Name: chrome/locale/zh-CN/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 1iUARlb8yrkRsmIi869wZQ==
+SHA1-Digest: Zoe7jA6rTb81eUgdDecP4TNNCDo=
+
+Name: chrome/locale/zh-CN/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Mh/z42RT2/pnK0ryZKqOKw==
+SHA1-Digest: y2x7pbJHuxZHgOgWK87ijHlTQJU=
+
+Name: chrome/locale/zh-CN/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kzw0aE2xu8JCqEfm0VRAtQ==
+SHA1-Digest: 7CxkA4MTuY+2bRICicGyfNt3HFU=
+
+Name: chrome/locale/zh-CN/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: RwMoe08AJtIsUFrv7i03ng==
+SHA1-Digest: qD8lKZ9FLazbfrPjEe0I45xYbpA=
+
+Name: chrome/locale/zh-CN/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eTBeuoZT1JSZGaCDecK+AQ==
+SHA1-Digest: k9FuOanuWGbFhw9g66iNZHjxGRk=
+
+Name: chrome/locale/zh-CN/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pfhlqsPw1AL3Wvz2kgXnxA==
+SHA1-Digest: c6NlrMel9yvLtg0EQ2+FuSTzF6w=
+
+Name: chrome/locale/zh-TW/scrapbook/calculate.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: HJ0Vd3LCzaYSNQymF1Es7A==
+SHA1-Digest: /N2WqgSu/O187EyFa//KbOp/9iQ=
+
+Name: chrome/locale/zh-TW/scrapbook/capture.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WacoI1v6dt9uHfcssCQFUw==
+SHA1-Digest: uebCQEZSN+3zGJD9Fd4tA5fCtjU=
+
+Name: chrome/locale/zh-TW/scrapbook/capture.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: SiTwfBHFzL/unoXxmK0JSQ==
+SHA1-Digest: fKb4OqKRMfuVQyo4zmqMs+ncIbk=
+
+Name: chrome/locale/zh-TW/scrapbook/combine.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nju2B7lyRBx8+ZRHDEHXIA==
+SHA1-Digest: kMAzachSHXqmoYvGcweJw4IMpqE=
+
+Name: chrome/locale/zh-TW/scrapbook/combine.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: K6/cIbUjHwtv6Mew61hZbA==
+SHA1-Digest: R0gmPxkaT6RTnMSsrPa1D1ZYvV0=
+
+Name: chrome/locale/zh-TW/scrapbook/detail.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: VcmrP5JIHuabBoEbs7D8NA==
+SHA1-Digest: OEORM3miP/L2rGLARWfwkl42rVU=
+
+Name: chrome/locale/zh-TW/scrapbook/editor.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: saAE4uVwEELyrfGxUQw9aQ==
+SHA1-Digest: VXrWVpOopfBbwmUns1ITO6OCcvo=
+
+Name: chrome/locale/zh-TW/scrapbook/fulltext.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: djec61AZ0W7Z081f4HBK9w==
+SHA1-Digest: t/1i6pE22k7PYPxVGpzlMRT1wUs=
+
+Name: chrome/locale/zh-TW/scrapbook/hlCustom.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 9CAM5X38QKQgqdEvzglYGA==
+SHA1-Digest: IQPmzCjgLihoaYLpZwP9bn9ZoEI=
+
+Name: chrome/locale/zh-TW/scrapbook/mbManage.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: iY/Vn28vSMH5uuEGDPauKg==
+SHA1-Digest: ER29OcQny1hrFip8f1uNgP/PDAI=
+
+Name: chrome/locale/zh-TW/scrapbook/multiple.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QN6DP0ixDM+xb3/AZcI6jQ==
+SHA1-Digest: EgHxrr6pJDn649zAYUkjrTWHUkY=
+
+Name: chrome/locale/zh-TW/scrapbook/note.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fMPWsrNFCjb8mad9OZL05g==
+SHA1-Digest: G1oCEhKxHEFP1Ist/tgoqLHyoUk=
+
+Name: chrome/locale/zh-TW/scrapbook/notify.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: tBzYsg8HDyDXI1VGa8Wg9Q==
+SHA1-Digest: pOF6rg7Gxox1hv49UIAsf8ztuZ8=
+
+Name: chrome/locale/zh-TW/scrapbook/output.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wpVXWRXFO5V/76sbVTGI5g==
+SHA1-Digest: I91LoNeOwBg1Q1DQyp4gvsM5/KM=
+
+Name: chrome/locale/zh-TW/scrapbook/overlay.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZKO6niFVDaByRJrncvk5lA==
+SHA1-Digest: bDPCcdJA8mvh6XNsD/gPwm/Mlm8=
+
+Name: chrome/locale/zh-TW/scrapbook/overlay.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: b0qz1+Ih/XPQJhcFsYWwUQ==
+SHA1-Digest: u+jW5vpmhBNyJSYYOjFGtL4Q/NU=
+
+Name: chrome/locale/zh-TW/scrapbook/prefs.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nMtYik2QLrI2RldMu+HReg==
+SHA1-Digest: w2mM6sU57fzGh9ThUr55Gfpvrnk=
+
+Name: chrome/locale/zh-TW/scrapbook/property.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EK5n1MMVhbqGO8Q7gXrTtw==
+SHA1-Digest: V5/ZhtRXC4yi3orzh5X6GUjVj5c=
+
+Name: chrome/locale/zh-TW/scrapbook/property.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4YzoDhiZHTMw0Zdhat8A3g==
+SHA1-Digest: LP0bmDCvf7N/G1K0pfgBVarQFN8=
+
+Name: chrome/locale/zh-TW/scrapbook/repair.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: gZYA6Hgk7+bQZwW7Qa6beA==
+SHA1-Digest: 2zgRSkFJVIzDsykiO/UgP3vE3gw=
+
+Name: chrome/locale/zh-TW/scrapbook/scrapbook.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +D9+IfNwCGchQ1LxmZjJ4A==
+SHA1-Digest: uccKZc+s2gzBpcHvyfhpttu/1hA=
+
+Name: chrome/locale/zh-TW/scrapbook/scrapbook.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: TQHJxCdrpNoZ+SvtzS8bSQ==
+SHA1-Digest: rzOFv6VJYBrRWL8O9aHJTD410Qk=
+
+Name: chrome/locale/zh-TW/scrapbook/sort.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 6Uat5hyRYAJPt1UAqxu1iQ==
+SHA1-Digest: DGpc33Xh1lf5Z4JOZuN1gKoyKMo=
+
+Name: chrome/locale/zh-TW/scrapbook/templateHelp.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: zmorUTTEBkbARZmxFeLSIg==
+SHA1-Digest: 0h7rEoRQhbrsuq/jg3p/H9E7z8g=
+
+Name: chrome/locale/zh-TW/scrapbook/trade.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4MNs0TorZ+bbwQH6Rx/sSA==
+SHA1-Digest: 7N+cwX4uaKLx6hO7avWS+dGY69o=
+
+Name: chrome/locale/zh-TW/scrapbook/trade.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MUgyk1rJ6f9NSGTmFuXWEw==
+SHA1-Digest: LBGhMwCLCm6ju15SiXNmWl8jPcQ=
+
+Name: chrome/locale/zh-TW/scrapbook/tree.dtd
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Tc2tkTJgwheWzBNrX6/JIQ==
+SHA1-Digest: /THDaQzyESBqRBU7+OCQBDtDJMM=
+
+Name: chrome/skin/classic/scrapbook/annotation.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 41yEtioxniJ7KOB4KUG2Qw==
+SHA1-Digest: od6Big2tQQrvO2CuU/YgHbKKuOM=
+
+Name: chrome/skin/classic/scrapbook/capture.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: C6AaIgWM+vsN67BO4Kdfhw==
+SHA1-Digest: e3o9jdgNIMs5FSCjPepDU73zOv4=
+
+Name: chrome/skin/classic/scrapbook/capture_entire.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +5l6Z8UOc+6xcyr89mRgRA==
+SHA1-Digest: ulbpvSrM1IM3tMKPAj2+CQ416QQ=
+
+Name: chrome/skin/classic/scrapbook/capture_frame.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: k/X7FU9CAH2DmVKucwFs1A==
+SHA1-Digest: SF16OPzDbMP1hP4I7D+ENwOeGFs=
+
+Name: chrome/skin/classic/scrapbook/capture_partial.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MZe+j4upYc/ybH8vwj6XdA==
+SHA1-Digest: UbDf7Bnu6L0nXCWeCr2ZBpTv9/I=
+
+Name: chrome/skin/classic/scrapbook/capture_target.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: CDe6VGyIlwhuFjIYMB+/Dw==
+SHA1-Digest: MBwa2vVohH0q5m5A2V6pZrwy4oQ=
+
+Name: chrome/skin/classic/scrapbook/combine.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Li+yfz7g64jzfljPn3VaRQ==
+SHA1-Digest: PFnhocYHevslFbwCChSxTv4ekbQ=
+
+Name: chrome/skin/classic/scrapbook/dropdown.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Viy3o09ylrH9ABUIDLTgsg==
+SHA1-Digest: it+Sxxfu62oUFhRfpkbpueu3cH0=
+
+Name: chrome/skin/classic/scrapbook/edit_annotation.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: yY53uYibySiCenIxgvP90w==
+SHA1-Digest: tULAA9k5wCdk331rDLIoHyNRd/M=
+
+Name: chrome/skin/classic/scrapbook/edit_annotation_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: LIqQdz3eEj1K8GtVCDLMNA==
+SHA1-Digest: 2Jti7jyQvNX7GJBENKvRbP2q4vI=
+
+Name: chrome/skin/classic/scrapbook/edit_comment.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FtEu9RWZ13l4S9wF15GLhQ==
+SHA1-Digest: 0LpgmgnYkVuWKdb1qS2mZ0/2uuY=
+
+Name: chrome/skin/classic/scrapbook/edit_comment_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: geJRQWa/zOt0NgmMswllwg==
+SHA1-Digest: 8WvdZNNCTKyCakBw1iuVeb7KqwI=
+
+Name: chrome/skin/classic/scrapbook/edit_cutter.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: DR7muMwxl2XAKlwcAA4P1w==
+SHA1-Digest: p1+/FVhMzWvJ3vpvYDu+B9llfCg=
+
+Name: chrome/skin/classic/scrapbook/edit_cutter_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: j7a91lkFcjeSHNE061MJDw==
+SHA1-Digest: nKR3xojwNVPbv59ku5jXUOu7mYU=
+
+Name: chrome/skin/classic/scrapbook/edit_eraser.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: KB9lik51rB5t16x5x3mr9Q==
+SHA1-Digest: IWEDX7iiZhX2rXqoMtV8qY2PI+g=
+
+Name: chrome/skin/classic/scrapbook/edit_eraser_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cgWp5+3nrhjBE6VioMYpUw==
+SHA1-Digest: cbBiaLGwIzcnRG8oVRQ+eCy736U=
+
+Name: chrome/skin/classic/scrapbook/edit_highlighter.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YW+E8sFoeQ5T04Y9oEBG7A==
+SHA1-Digest: YbqYwgqLIJTnJ+pLj7ByGQ9Pt+8=
+
+Name: chrome/skin/classic/scrapbook/edit_highlighter_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 2aStywBg+8aG+DyejOXsLA==
+SHA1-Digest: HXq5NV9jP7FIDwn8/0S7Yil9daE=
+
+Name: chrome/skin/classic/scrapbook/edit_html.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: g0zDEkn6uySIXuBToevVIA==
+SHA1-Digest: rVRTLY2h0p4JFAptY6YbYDCKxuk=
+
+Name: chrome/skin/classic/scrapbook/edit_html_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZZtGo3g8A8yX//eTl0TWYg==
+SHA1-Digest: NSn5PAPxr9vggsdlJkeG2QCTOlk=
+
+Name: chrome/skin/classic/scrapbook/edit_save.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +4xj2mFJFW0lMb+ZKJWqrw==
+SHA1-Digest: xisVWMCl8mIpGGw+KvBYcle/tFo=
+
+Name: chrome/skin/classic/scrapbook/edit_save_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: O5QJKX2ztcbfwI6eu42ILg==
+SHA1-Digest: tqDJ3drrakwIQK4dOT0TpAHVlxQ=
+
+Name: chrome/skin/classic/scrapbook/edit_status.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: T+cd85TF9qz7+E/e6J3bjg==
+SHA1-Digest: WxuKUEmjqIIj2hb3/s/a6yrWMEQ=
+
+Name: chrome/skin/classic/scrapbook/edit_undo.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kVg0b9Tj7vpJiKH+NvpK4Q==
+SHA1-Digest: ghhptay15bOVrC7pVCx14SRsbS4=
+
+Name: chrome/skin/classic/scrapbook/edit_undo_disable.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jb7nyWBxOqgb3BkeQtyAWg==
+SHA1-Digest: U3R+vRfNGC67euR7QHhTT41atVk=
+
+Name: chrome/skin/classic/scrapbook/exit.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: C+B8cwJFP3i5mqAMxhysJA==
+SHA1-Digest: PBxQio++MmcLzGPrYb0/tFxqGrY=
+
+Name: chrome/skin/classic/scrapbook/expander.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: M9qbNB60mZPP7c3r8Ic9uQ==
+SHA1-Digest: 4BO8SuCBMAgXiv4kt9ASKQeSWe0=
+
+Name: chrome/skin/classic/scrapbook/expander_down.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FZjZePsTjFg+r8Ch1ayepA==
+SHA1-Digest: W88Yj0vB7ewPrdf8sZ7VlavD4kU=
+
+Name: chrome/skin/classic/scrapbook/expander_left.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: MSVHQn2i/pMcci+4RNGzkw==
+SHA1-Digest: au/5wLNKJD2RJnOCOEq7ufPVWTk=
+
+Name: chrome/skin/classic/scrapbook/expander_up.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: iABqMtO4Bt3IhZg3ajnkfw==
+SHA1-Digest: NibE220au6FcVjNH9pxaYAWtQ4Q=
+
+Name: chrome/skin/classic/scrapbook/freenote_delete.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Cg7uDe1IeO8ZxSeoXmQNbA==
+SHA1-Digest: YETFT18erK0oANhdBa/+Lg83T7Q=
+
+Name: chrome/skin/classic/scrapbook/freenote_resizer.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4hXkW4okfMjxOXRM/t/vlA==
+SHA1-Digest: dS6AXEqlMSKl0jheEB9LQQviH/c=
+
+Name: chrome/skin/classic/scrapbook/freenote_save.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: bY3lQerN6u7n3m3NpBseFQ==
+SHA1-Digest: 4eCbiuthP/rH6jkD/yqCdokDIv0=
+
+Name: chrome/skin/classic/scrapbook/go_upper.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FzpGftmqBK1dV6n+sOd50A==
+SHA1-Digest: +DI/7krlke1rs09DCH6DvKHg6GM=
+
+Name: chrome/skin/classic/scrapbook/info.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 7h/hvDeyhMBeCv9pnbR0gA==
+SHA1-Digest: 1KyxnDRZMe/QNQALDfjtzNC40D4=
+
+Name: chrome/skin/classic/scrapbook/info_home0.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: pGYFxsnKXfALfvdnK3xy0w==
+SHA1-Digest: 20ZvLsNrULTjhqWxittyHBrbOvs=
+
+Name: chrome/skin/classic/scrapbook/info_home1.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Rqq9lQbGT6kyhcNIxK7BwA==
+SHA1-Digest: Sh9TFAfFEKiCfDNDaty5+68Y0xc=
+
+Name: chrome/skin/classic/scrapbook/info_link0.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: x/TgFqQc52R9D94bQ1Mc0g==
+SHA1-Digest: 8Q2UwBo9yh/I8q3c7F0PAKBXnI4=
+
+Name: chrome/skin/classic/scrapbook/info_link1.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: gzzQIUR+UGCdjTlOGpMECw==
+SHA1-Digest: upHSQUlfPJWfFwJL61k4dCMRKMQ=
+
+Name: chrome/skin/classic/scrapbook/info_status.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EizbpA2qXU4WwjGcTTcLiQ==
+SHA1-Digest: 6Ku8jvrWFc3VVcjo0zB6Ua5v+x4=
+
+Name: chrome/skin/classic/scrapbook/list_picker.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: u35zI1XnOWUE4wvOW0wHvQ==
+SHA1-Digest: IhAvXWw+WGL4oJGK8jJQxPX3dX4=
+
+Name: chrome/skin/classic/scrapbook/list_selected.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: faBuQuwRobF8otbZ1wlS9w==
+SHA1-Digest: v05MOSWnnLcxNhsMNtfv0Lp61Xk=
+
+Name: chrome/skin/classic/scrapbook/main.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: M57bUQD2qIWkdaFXQuvpig==
+SHA1-Digest: oCgQUIXhgde8rmQX7ENqcf8HNLI=
+
+Name: chrome/skin/classic/scrapbook/main_16.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: M57bUQD2qIWkdaFXQuvpig==
+SHA1-Digest: oCgQUIXhgde8rmQX7ENqcf8HNLI=
+
+Name: chrome/skin/classic/scrapbook/main_24.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: E8NGOkiBGFSqirfOX5o4+w==
+SHA1-Digest: ff5A+/uNbljbIzmWO6H3TQ2gzBs=
+
+Name: chrome/skin/classic/scrapbook/main_32.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: XsD6O4OURKMl9lMiWgOTZw==
+SHA1-Digest: 4sfH+PJnvZrWp2X/2ha2GGAXjN4=
+
+Name: chrome/skin/classic/scrapbook/mbManage.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ezf7I2Mv4uMdC5N9Ej+eog==
+SHA1-Digest: B1u4Lr3vdlsvGhXeCUsBCBz091I=
+
+Name: chrome/skin/classic/scrapbook/menu_create.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: f7sIkzszkb1e9PPpHZtkog==
+SHA1-Digest: JInhHobsDnCH4jre6VcioUf2W+o=
+
+Name: chrome/skin/classic/scrapbook/menu_property.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jbCooaFFyxBho7DVmGTlkg==
+SHA1-Digest: jArMeCeIN6aV2UnJ8ExADovUwjU=
+
+Name: chrome/skin/classic/scrapbook/menu_remove.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: aDQSuUS3wFI2OyMrMtIxgw==
+SHA1-Digest: cx+S+WirAzS/KiduNl46eLuT3kc=
+
+Name: chrome/skin/classic/scrapbook/note.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 0LzcIAm02QsUGbCTFN7Y7w==
+SHA1-Digest: EjwSVnH68nb+qJS/SGkEF9z8mp8=
+
+Name: chrome/skin/classic/scrapbook/note_htmlview0.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ZZtGo3g8A8yX//eTl0TWYg==
+SHA1-Digest: NSn5PAPxr9vggsdlJkeG2QCTOlk=
+
+Name: chrome/skin/classic/scrapbook/note_htmlview1.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: g0zDEkn6uySIXuBToevVIA==
+SHA1-Digest: rVRTLY2h0p4JFAptY6YbYDCKxuk=
+
+Name: chrome/skin/classic/scrapbook/notify.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Z3znWKb+eXLrVY6SIzEzYw==
+SHA1-Digest: /C+Br+ZCRSh+i/h1yGq6k50N2Qg=
+
+Name: chrome/skin/classic/scrapbook/output.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: eCWBbhlPirKEwyT58L382g==
+SHA1-Digest: bUCcldN+cbu4qPBbCYZa/bJeD4w=
+
+Name: chrome/skin/classic/scrapbook/overlay.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wAZjcTwCT/vPPa4iYrQxZA==
+SHA1-Digest: gn7lPq7k+Li0azEdd/3MEYqF8VQ=
+
+Name: chrome/skin/classic/scrapbook/prefs.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sBRbxrAd5QjZIUrggnw1LA==
+SHA1-Digest: apLxI7jqsHzDK6dZMwKgDuvIFwY=
+
+Name: chrome/skin/classic/scrapbook/prefs.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QDp1hPw7aUn3W4lyzcxAJA==
+SHA1-Digest: D/He6gJScj9BPPBX+/6SoaC4In4=
+
+Name: chrome/skin/classic/scrapbook/property.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kDQoxUM0OpV8NnRBrXhLHg==
+SHA1-Digest: uSCMPphxdRS+JGY5yym//yIQpOs=
+
+Name: chrome/skin/classic/scrapbook/scrapbook.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: A6JIgNlbI9hPDe85ST2+lA==
+SHA1-Digest: Ao0WYPsTdVEenpOsoiPDdyFocf8=
+
+Name: chrome/skin/classic/scrapbook/search_all.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8Pzf/L805IKU75yVbiXM2Q==
+SHA1-Digest: 37geXDgZyfgLJTAtg2LSbzkw5Ao=
+
+Name: chrome/skin/classic/scrapbook/search_comment.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: q7h9dwZqKQCrmI5rXGnywQ==
+SHA1-Digest: 7beDzSDOmHhsMxhIDvjSJ1pQeyk=
+
+Name: chrome/skin/classic/scrapbook/search_fulltext.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: F2zTqSnCgC5SokHhfO9PXQ==
+SHA1-Digest: mSw8JXAODdlRzJHe/FssJmTKIqg=
+
+Name: chrome/skin/classic/scrapbook/search_id.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kbE1hiFT+e/XrvkS4UShVA==
+SHA1-Digest: zwZaeC1dAWE+STHD9ZJy1PZhj3g=
+
+Name: chrome/skin/classic/scrapbook/search_source.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: umDyKbazVetM5+qEMOOIiw==
+SHA1-Digest: 3DiTkAhD4H9C2M+GCXyizjsoxjo=
+
+Name: chrome/skin/classic/scrapbook/search_title.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 3FD186BzdA5nTL4evlcxkg==
+SHA1-Digest: BrkA5W4ShS+GHWaz9VggWLCB/rQ=
+
+Name: chrome/skin/classic/scrapbook/sitemap.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: lb+xKykJgjApaPi6uL/lGQ==
+SHA1-Digest: dD9M8XTQr7niSfJ/CFlVoBGpEIw=
+
+Name: chrome/skin/classic/scrapbook/sitemap.xsl
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EEp6mCNj3EJuD12vOqXWag==
+SHA1-Digest: EBpWFTzQbTzZ0Gxw0x9fmXjoQCw=
+
+Name: chrome/skin/classic/scrapbook/status_busy.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: PbjyLVd3rBlr4YOg1mgWzw==
+SHA1-Digest: 8u6vXYJzJH44KKGom9aROEbhCrQ=
+
+Name: chrome/skin/classic/scrapbook/sticky_delete.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: h7526zF+tsLT6buW4jzuTQ==
+SHA1-Digest: rCULOOsdMFk7Q5yoaYJrmWcfbis=
+
+Name: chrome/skin/classic/scrapbook/sticky_header.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: ETbuj43hzUBWEnFRHVX/zQ==
+SHA1-Digest: 7q51A/XaPLOLnK271iYFOg2A96A=
+
+Name: chrome/skin/classic/scrapbook/sticky_resizer.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: AqiDFadtmtSisgqAfds96Q==
+SHA1-Digest: WG2cdcTvU6Rw+HGXCno30WAklJA=
+
+Name: chrome/skin/classic/scrapbook/sticky_save.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: wrgMWtB681rJTNSBYAO1Kw==
+SHA1-Digest: S872EBVCWvFEQevIA5JIcT+8nA0=
+
+Name: chrome/skin/classic/scrapbook/toolbar_create.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: WUhvckNhOCILht20WWfoSw==
+SHA1-Digest: V6fSLKYwZ8yINglRNUjt8LWVxjQ=
+
+Name: chrome/skin/classic/scrapbook/toolbar_listview.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: EBv8OpDJg17yMmDWzV0GLQ==
+SHA1-Digest: Ayaf1L3+aG4V3wYJaFenbI4cwfU=
+
+Name: chrome/skin/classic/scrapbook/toolbar_move.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: YQyID4GP0bYoe+HU2WcQqg==
+SHA1-Digest: V1Ow5LoGMvBWD2j2kDU/sHm4HJg=
+
+Name: chrome/skin/classic/scrapbook/toolbar_toggle.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: cysSG4XmhhWVTjPexL0ufw==
+SHA1-Digest: blSMt+mFiJ31j1RhBT/tgcnqjjc=
+
+Name: chrome/skin/classic/scrapbook/trade.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: B2JRoTAqecTXBk0FBLINPA==
+SHA1-Digest: pgWliwaGaoNs4taBZuokx5gWkaQ=
+
+Name: chrome/skin/classic/scrapbook/treefolder.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: sTxFInclVu7nkR/58dlFUA==
+SHA1-Digest: G6HFIHrFetIWnSS9oAqwwEszKYE=
+
+Name: chrome/skin/classic/scrapbook/treefolder_open.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fWnvxSPuMQ2sHr23gJgW/Q==
+SHA1-Digest: /WaN3bOTjDqlrsUB9S/XIaprP+8=
+
+Name: chrome/skin/classic/scrapbook/treeicon.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QZ+H1w/u2ZF6XioTcyAw9Q==
+SHA1-Digest: QfF8gptMRPQxPfa2kCumRm6WZD0=
+
+Name: chrome/skin/classic/scrapbook/treeitem.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: QZ+H1w/u2ZF6XioTcyAw9Q==
+SHA1-Digest: QfF8gptMRPQxPfa2kCumRm6WZD0=
+
+Name: chrome/skin/classic/scrapbook/treenote.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Chl5GVAkMxI3mUluadUl8w==
+SHA1-Digest: YReC1C++uQjUXPBY1rDqNcwC0lw=
+
+Name: chrome/skin/classic/scrapbook/treenotex.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: BkBoNwtEQwnp8c+MyJs/pg==
+SHA1-Digest: EnXdN+b/1n/86fEg/hvt7GILp20=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/cbox-check.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 4k/R0q9r6RQWbXZf4Bld+w==
+SHA1-Digest: 5mZNByUocFtDb4cGlZrPw1MSOj4=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/cbox-not-check.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: Cp357X4JZDuGrBYHZFuSTw==
+SHA1-Digest: d0IkqW13S6DFb8snB9JrXngDJ+I=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/expander_down_dis.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +QEtwkg1Qekz+ubHe20Y7Q==
+SHA1-Digest: yhzsZGcCs32Hxp0LNtYNNCfRuTw=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/expander_up_dis.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: kMEkoC2atWNh7yG/JZW8QQ==
+SHA1-Digest: z6AIZAgoLalqaezjVgcjDdCDGUU=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/failed.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: rVmKJDGGFVZKf7F8Od8+5Q==
+SHA1-Digest: R/dWPBXiW/t2xra28Tyjw1lnSO4=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/menu_remove_dis.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: FBVN27emjGqy/iJHPTV+nw==
+SHA1-Digest: wHc8ok0Q99DUguHaZK5zZEELRXA=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/sbpCapture.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: l0BRd+1qtnfalygbxinUJQ==
+SHA1-Digest: 3ayuNEjrp4pTnWQCg6sHQ01c7fU=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/success.gif
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +51YZreFnOwhxWAeBYGlJA==
+SHA1-Digest: Z8C1GBr7zpUNTWZYF7On/nk9EVc=
+
+Name: chrome/skin/classic/scrapbook/sbpExtra/toolbar_manage.png
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: nO7myuM5gB2DQS+4NIRbtA==
+SHA1-Digest: MuozZV/S/c8aHsOQ/UdfZDAff9M=
+
+Name: defaults/preferences/scrapbook-prefs.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: IHErW2RGSfsW+G0CNzLmkw==
+SHA1-Digest: 6QJya2azY1+fJUD7wygJufG6EAQ=
+
+Name: modules/common.jsm
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: j5pVOYKIOaPhM1lWPbIQdg==
+SHA1-Digest: R25Br+Ot3w7A05sOlAXMMhztCZs=
+
+Name: modules/datasource.jsm
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8t2AH+YGZ+LTYssTEpw+gA==
+SHA1-Digest: Tlrb8KF4my99XOHa/dMbTBnvzpU=
+
