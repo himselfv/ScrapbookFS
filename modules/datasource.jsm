@@ -184,7 +184,7 @@ var sbDataSource = {
 	        resType = this.getProperty(curRes, "type");
 			if (resType == "folder") {
 	        	resDir = this.getFolderDir(curRes); // we'll be unable to calculate it after removing
-	        	sbCommonUtils.log("moveItem: source folder "+resDir.path);
+	        	sbCommonUtils.dbg("moveItem: source folder "+resDir.path);
 	        }
             sbCommonUtils.RDFC.Init(this._dataObj, curPar);
             sbCommonUtils.RDFC.RemoveElement(curRes, true);
@@ -205,10 +205,10 @@ var sbDataSource = {
             
 	        //Move the folder on disk
 			if ((resType == "folder") && resDir.exists()) {
-				sbCommonUtils.log("moveItem: folder exists: "+resDir);
+				sbCommonUtils.dbg("moveItem: folder exists: "+resDir);
 	        	var targetDir = this.needFolderDir(tarPar);
 	        	var targetName = this.initFolderDir(curRes); //choose a new suitable name at a target place
-	        	sbCommonUtils.log("moveItem: target name: "+targetName);
+	        	sbCommonUtils.dbg("moveItem: target name: "+targetName);
 	        	resDir.moveTo(targetDir, targetName);
 	    	};
         } catch(ex) {
@@ -260,9 +260,9 @@ var sbDataSource = {
 	    	//Delete the folder on disk
 	    	if (this.isFolder(aRes)) {
 	        	var resDir = this.getFolderDir(aRes);
-	        	sbCommonUtils.log("removeResource: considering "+resDir.path+" for removal");
+	        	sbCommonUtils.dbg("removeResource: considering "+resDir.path+" for removal");
 	        	if (resDir.exists()) {
-	        		sbCommonUtils.log("removeResource: removing "+resDir.path);
+	        		sbCommonUtils.dbg("removeResource: removing "+resDir.path);
 	        		//By this time all known children are removed. So if there are any unknowns, we can't delete the folder.
 	        		resDir.remove(false); //without children
 	        	}
@@ -286,7 +286,7 @@ var sbDataSource = {
     	//Remove all properties
         var names = this._dataObj.ArcLabelsOut(aRes);
         var rmID = this.getProperty(aRes, "id");
-        sbCommonUtils.log("removeResource: removing "+rmID);
+        sbCommonUtils.dbg("removeResource: removing "+rmID);
         while ( names.hasMoreElements() ) {
             try {
                 var name  = names.getNext().QueryInterface(Components.interfaces.nsIRDFResource);

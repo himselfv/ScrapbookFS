@@ -788,6 +788,11 @@ var sbCommonUtils = {
             Components.utils.reportError(aMsg);
         }
     },
+    
+    //Same as log(), but disabled in release + lets you track debug calls.
+    dbg : function(aMsg) {
+    	this.log(aMsg);
+    },
 
 
     /**
