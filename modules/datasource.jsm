@@ -170,7 +170,6 @@ var sbDataSource = {
 	        switch (newItem.type) {
 	            case "folder":
             		this.associateFilename(newRes); //choose a suitable FS name
-            		sbCommonUtils.dbg("blah");
             		this.needFolderDir(newRes);
             		break;
 	            case "note":
@@ -191,7 +190,7 @@ var sbDataSource = {
     	var resType = "";
     	var resFSO = null;
         try {
-			if (isFilesystemObject(curRes))
+			if (this.isFilesystemObject(curRes))
 				resFSO = this.getAssociatedFsObject(curRes); // we'll be unable to retrieve it later
 			sbCommonUtils.RDFC.Init(this._dataObj, curPar);
 			sbCommonUtils.RDFC.RemoveElement(curRes, true);
@@ -211,7 +210,7 @@ var sbDataSource = {
             }
             
             //Move the item on disk, choosing a new suitable name
-            if (isFilesystemObject(curRes))
+            if (this.isFilesystemObject(curRes))
             	this.moveFilesystemObject(curRes, resFSO, tarPar);
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE2", [ex]));
@@ -360,7 +359,6 @@ var sbDataSource = {
             var retVal = this._dataObj.GetTarget(aRes, sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp), true);
             return retVal.QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
         } catch(ex) {
-        	sbCommonUtils.log("getProperty: exception: "+ex);
             return "";
         }
     },
@@ -384,7 +382,7 @@ var sbDataSource = {
 
             //When changing the title, rename the item on disk
             if ((aPropName == "title") && (oldVal != newVal) && this.isFilesystemObject(aRes)) {
-            	sbCommonUtils.dbg("Changing item title: "+oldVal+" -> "+newVal);
+            	sbCommonUtils.dbg("Changing item title: "+oldVal.Value+" -> "+newVal.Value);
             	var aParent = this.findParentResource(aRes);
             	var oldFile = this.getAssociatedFsObject(aParent).clone();
             	oldFile.append(oldFilename);
@@ -398,6 +396,7 @@ var sbDataSource = {
     },
     
     clearProperty : function(aRes, aProp) {
+    	sbCommonUtils.log("clearProperty: "+aProp);
     	aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp);
     	try {
     		var oldVal = this._dataObj.GetTarget(aRes, aProp, true);
@@ -536,7 +535,8 @@ var sbDataSource = {
     //Handles name sanitization and duplicates.
     //Once selected, the name will not be changed until this is called again (i.e. when moving to a new place).
     //Does not create the folder itself because this is used to choose the target filename when moving too.
-    associateFilename : function(aRes) {
+    //If existingName is given, it is assumed to be ours (we'll not consider it taken if we stumble upon it)
+    associateFilename : function(aRes, existingName) {
     	var aParent = this.findParentResource(aRes);
     	if (!aParent) throw "associateFilename: resource must be attached to a parent";
     	var parentDir = this.needFolderDir(aParent);
@@ -551,13 +551,15 @@ var sbDataSource = {
     	}
     	
     	var title = this.getProperty(aRes, "title");
-    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), ext);
+    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), ext, existingName);
     	if (filename != title)
     		//Chosen name was different from the title. We need to store it as an additional attribute.
     		this.setProperty(aRes, "filename", filename)
     	else
-    		this.clearProperty(aRes, "filename"); //if any was set
+    		this.setProperty(aRes, "filename", "");
+    		//this.clearProperty(aRes, "filename"); //if any was set
     	sbCommonUtils.dbg("associateFilename: "+filename);
+    	sbCommonUtils.log("associateFilename: new override state: "+this.getProperty(aRes, "filename"));
     	return filename;
     },
     
@@ -610,22 +612,26 @@ var sbDataSource = {
     	sbCommonUtils.dbg("moveFilesystemObject: moving "+oldFile.path);
     	var targetDir = this.needFolderDir(newPar);
 
-    	//If we're moving to the same folder and the name hasn't changed, keep it --
-    	//or associateFilename will consider it taken and give us another one
-    	//TODO: There's a bug here, if the name is overriden, changing the title does not change getAssociatedFilename (it returns the overriden version anyway)
-    	if (oldFile.parent.equals(targetDir) && (oldFile.leafName == this.getAssociatedFilename(aRes))) {
-    		sbCommonUtils.dbg("moveFilesystemObject: same path and name, skipping");
-    		return;
-    	}
+    	//If we're moving to the same folder, give associateFilename() old name --
+    	//or it will consider it taken and give us another one
+    	if (oldFile.parent.equals(targetDir))
+    		var oldName = oldFile.leafName
+    	else
+    		var oldName = null;
     	
 		//We need to choose a target name even if there's no data to move,
 		//or we risk stealing already existing item.
-		var targetName = this.associateFilename(aRes); //choose a new suitable name at a target place
+		var targetName = this.associateFilename(aRes, oldName); //choose a new suitable name at a target place
 		sbCommonUtils.dbg("moveFilesystemObject: new target name: "+targetName);
+		
+		sbCommonUtils.log("moveFilesystemObject: override state: "+this.getProperty(aRes, "filename"));
+		sbCommonUtils.log("moveFilesystemObject: associated name: "+this.getAssociatedFilename(aRes));
 
 		if (oldFile.exists()) {
 			sbCommonUtils.dbg("moveFilesystemObject: object exist, moving: "+oldFile.path);
 			oldFile.moveTo(targetDir, targetName);
+		} else {
+			sbCommonUtils.dbg("moveFilesystemObject: old object does not exist, skipping: "+oldFile.path);
 		}
 	},
 	

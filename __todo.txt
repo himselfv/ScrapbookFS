@@ -1,0 +1,7 @@
+Currently I'm handling SetProperty and checking for 'title'. When 'title' is being changed, I rename the object on disk and sometimes this leads to adjusting some properties (e.g. removing or altering filename override).
+
+Unfortunately, the property editor reads all the properties, including the filename override, and then writes all of them back. The filename override happens to come after 'title' and so overwrites my changes.
+
+One solution would be to re-architect the property page, but maybe the cheaper approach is to filter properties on reading/writing: skip hidden properties when reading and ignore them when writing. They're internal after all.
+
+But then we'd have to have a separate setProperty for our own internal uses.
