@@ -244,34 +244,56 @@ var sbDataSource = {
         this._flushWithDelay();
     },
 
+	//Deletes an item and all of its known children, including any associated folders or files on disk.
+	//Does not delete resources not tracked by us.
     deleteItemDescending : function(aRes, aParRes, aRecObj) {
-        if (aParRes) {
-            sbCommonUtils.RDFC.Init(this._dataObj, aParRes);
-            sbCommonUtils.RDFC.RemoveElement(aRes, true);
+    	try {
+	        var rmIDs = aRecObj || [];
+	    	//Remove any children items
+            if (this.isContainer(aRes)) {
+	    		this.flattenResources(aRes, 0, false).forEach(function(aChildRes) {
+	    			if (aChildRes != aRes)
+	    				this.deleteItemDescending(aChildRes, aRes, rmIDs);
+		    	}, this);
+		    }
+		    
+	    	//Delete the folder on disk
+	    	if (this.isFolder(aRes)) {
+	        	var resDir = this.getFolderDir(aRes);
+	        	sbCommonUtils.log("removeResource: considering "+resDir.path+" for removal");
+	        	if (resDir.exists()) {
+	        		sbCommonUtils.log("removeResource: removing "+resDir.path);
+	        		//By this time all known children are removed. So if there are any unknowns, we can't delete the folder.
+	        		resDir.remove(false); //without children
+	        	}
+	    	}
+
+			//Delete the item + properties from RDF
+			if (aParRes) {
+				sbCommonUtils.RDFC.Init(this._dataObj, aParRes);
+				sbCommonUtils.RDFC.RemoveElement(aRes, true);
+			}
+			rmIDs.push(this.removeResource(aRes));
+	        return rmIDs;
+        } catch(ex) {
+            sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_REMOVE_RESOURCE", [ex]));
+            return false;
         }
-        var rmIDs = aRecObj || [];
-        if (this.isContainer(aRes)) {
-            this.flattenResources(aRes, 0, true).forEach(function(res){
-                rmIDs.push(this.removeResource(res));
-            }, this);
-            //TODO: Before that, remove all known items from the folder. If there are any unknowns, we can't delete the folder.
-            //Remove folder if it's empty.
-            
-        } else {
-            rmIDs.push(this.removeResource(aRes));
-        }
-        return rmIDs;
     },
 
+	//Removes a resource with all properties from RDF. Do not call directly, use deleteItemDescending for proper deletion (with recursion and resources)
     removeResource : function(aRes) {
+    	//Remove all properties
         var names = this._dataObj.ArcLabelsOut(aRes);
         var rmID = this.getProperty(aRes, "id");
+        sbCommonUtils.log("removeResource: removing "+rmID);
         while ( names.hasMoreElements() ) {
             try {
                 var name  = names.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
                 var value = this._dataObj.GetTarget(aRes, name, true);
                 this._dataObj.Unassert(aRes, name, value);
             } catch(ex) {
+            	sbCommonUtils.log("removeResource: exception: "+ex);
             }
         }
         this._flushWithDelay();
@@ -381,6 +403,12 @@ var sbDataSource = {
     isContainer : function(aRes) {
         return sbCommonUtils.RDFCU.IsContainer(this._dataObj, aRes);
     },
+
+	//True if the resource is logically a folder (not just by the virtue of having RDF children, though in practice these should match).
+	isFolder : function(aRes) {
+    	var resType = this.getProperty(aRes, "type");
+    	return (resType == "folder");
+	},
 
 	// Ensures that a given item ID is unused (altering it if needed)
     identify : function(aID) {
