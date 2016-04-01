@@ -165,8 +165,10 @@ var sbDataSource = {
             } else {
                 cont.AppendElement(newRes);
             }
-            if (newItem.type == "folder")
-            	this.needFolderPath(newRes);
+            if (newItem.type == "folder") {
+            	this.initFolderDir(newRes); //choose a suitable FS name
+            	this.needFolderDir(newRes);
+            }
             this._flushWithDelay();
             return newRes;
         } catch(ex) {
@@ -176,12 +178,13 @@ var sbDataSource = {
     },
 
     moveItem : function(curRes, curPar, tarPar, tarRelIdx) {
+    	var resType = "";
+    	var resDir = null;
         try {
-	        var resType = this.getProperty(curRes, "type");
-	        sbCommonUtils.log("moveItem: resType = "+resType);
-	        if (resType == "folder") {
-	        	var resDir = this.needFolderPath(curRes); // we'll be unable to calculate it after removing
-	        	sbCommonUtils.log("moveItem: resDir = "+resDir.path);
+	        resType = this.getProperty(curRes, "type");
+			if (resType == "folder") {
+	        	resDir = this.getFolderDir(curRes); // we'll be unable to calculate it after removing
+	        	sbCommonUtils.log("moveItem: source folder "+resDir.path);
 	        }
             sbCommonUtils.RDFC.Init(this._dataObj, curPar);
             sbCommonUtils.RDFC.RemoveElement(curRes, true);
@@ -201,14 +204,13 @@ var sbDataSource = {
             }
             
 	        //Move the folder on disk
-			if (resType == "folder") {
-	        	sbCommonUtils.log("moveItem: moving the folder");
-	        	var targetDir = this.needFolderPath(tarPar);
-	        	sbCommonUtils.log("moveItem: targetDir = "+targetDir.path);
-	        	resDir.moveTo(targetDir, "");
-	        } else {
-	        	sbCommonUtils.log("moveItem: by this point, resType == " + resType);
-	        }
+			if ((resType == "folder") && resDir.exists()) {
+				sbCommonUtils.log("moveItem: folder exists: "+resDir);
+	        	var targetDir = this.needFolderDir(tarPar);
+	        	var targetName = this.initFolderDir(curRes); //choose a new suitable name at a target place
+	        	sbCommonUtils.log("moveItem: target name: "+targetName);
+	        	resDir.moveTo(targetDir, targetName);
+	    	};
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE2", [ex]));
             sbCommonUtils.RDFC.Init(this._dataObj, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
@@ -252,6 +254,9 @@ var sbDataSource = {
             this.flattenResources(aRes, 0, true).forEach(function(res){
                 rmIDs.push(this.removeResource(res));
             }, this);
+            //TODO: Before that, remove all known items from the folder. If there are any unknowns, we can't delete the folder.
+            //Remove folder if it's empty.
+            
         } else {
             rmIDs.push(this.removeResource(aRes));
         }
@@ -431,24 +436,77 @@ var sbDataSource = {
         return ret;
     },
     
-    //Ensures a directory exists for a folder resource and returns a directory object.
-    needFolderPath : function(folderRes) {
-    	if (!folderRes)
-    		throw "needFolderPath: invalid null resource received";
-    	var resType = this.getProperty(folderRes, "type");
-    	if (folderRes.Value == "urn:scrapbook:root") {
-    		var path = sbCommonUtils.getScrapBookDir().clone();
-    	} else
-    	if (resType != "folder") {
-    	    throw "needFolderPath() called on a non-folder item: "+resType
-    	} else {
-    		var title = this.getProperty(folderRes, "title");
-    		var aParent = this.findParentResource(folderRes);
-    		var path = this.needFolderPath(aParent);
-    		path.append(title);
-    		//TODO: Sanitize title
-    		//TODO: If changed, store original title in index.lst
+    
+    //Replaces all characters that the file system might not support with safe characters.
+    sanitizeFilename : function(filename) {
+    	if (!filename) return "";
+        return filename.replace(/[\x00-\x1F\x7F\<\>\:\"\/\\\|\?\*]/g, " ");
+    },
+    
+    //Selects a unique filename based on a given pattern. Returns the name.
+    selectUniqueFilename : function(parentDir, filename, ext) {
+    	var finalName;
+		if (ext != '')
+			finalName = filename + "." + ext
+		else
+			finalName = filename;
+
+		var index = 1;
+    	while (true) {
+			var finalPath = parentDir.clone();
+			finalPath.append(finalName);
+			if (!finalPath.exists()) return finalName;
+    		
+			if (ext != '')
+				finalName = filename + "(" + index + ")"  + "." + ext
+			else
+				finalName = filename + "(" + index + ")";
+			index++;
     	}
+    },
+    
+    //Selects a folder name for a folder resource and stores it in the folder properties, if needed.
+    //Handles name sanitization and duplicates.
+    //Once selected, the name will not be changed until this is called again (i.e. when moving to a new place).
+    //Does not create the folder itself because this is also used to choose the target filename when moving.
+    initFolderDir : function(folderRes) {
+    	var parentDir = this.needFolderDir(this.findParentResource(folderRes));
+    	
+    	var title = this.getProperty(folderRes, "title");
+    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), "");
+    	if (filename != title)
+    		//Chosen name was different from the title. We need to store it as an additional attribute.
+    		this.setProperty(folderRes, "filename", filename);
+    	return filename;
+    },
+    
+    //Retrieves a directory associated with a specified folder resource, whether it exists or not.
+    //Returns a directory object.
+    getFolderDir : function(folderRes) {
+    	if (!folderRes)
+    		throw "getFolderDir: invalid null resource received";
+    	if (folderRes.Value == "urn:scrapbook:root") {
+    		return sbCommonUtils.getScrapBookDir().clone();
+    	}
+    	var resType = this.getProperty(folderRes, "type");
+    	if (resType != "folder")
+    	    throw "needFolderDir() called on a non-folder item: "+resType;
+
+		var aParent = this.findParentResource(folderRes);
+		var path = this.needFolderDir(aParent);
+		
+		var filename = this.getProperty(folderRes, "filename");
+		if (filename == "")
+			filename = this.getProperty(folderRes, "title");
+		path.append(filename);
+		return path;
+    },
+    
+    //Ensures a directory exists for a folder resource and returns a directory object.
+    //If the directory does not exist, it is automatically created, but no other initialization will take place. This may restore
+    //a folder that was accidentally deleted manually, but will not properly choose and register a name substitution anew.
+    needFolderDir : function(folderRes) {
+    	var path = this.getFolderDir(folderRes);
 		if ( !path.exists() ) path.create(path.DIRECTORY_TYPE, 0700);
 		return path;
     },
