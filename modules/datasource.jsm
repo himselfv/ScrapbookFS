@@ -165,10 +165,20 @@ var sbDataSource = {
             } else {
                 cont.AppendElement(newRes);
             }
-            if (newItem.type == "folder") {
-            	this.initFolderDir(newRes); //choose a suitable FS name
-            	this.needFolderDir(newRes);
-            }
+            
+            //Associate any filesystem objects and write to them
+	        switch (newItem.type) {
+	            case "folder":
+            		this.associateFilename(newRes); //choose a suitable FS name
+            		sbCommonUtils.dbg("blah");
+            		this.needFolderDir(newRes);
+            		break;
+	            case "note":
+	            	this.associateFilename(newRes);
+	            	this.writeNoteFile(newRes);
+	            	break;
+	        }
+
             this._flushWithDelay();
             return newRes;
         } catch(ex) {
@@ -179,15 +189,12 @@ var sbDataSource = {
 
     moveItem : function(curRes, curPar, tarPar, tarRelIdx) {
     	var resType = "";
-    	var resDir = null;
+    	var resFSO = null;
         try {
-	        resType = this.getProperty(curRes, "type");
-			if (resType == "folder") {
-	        	resDir = this.getFolderDir(curRes); // we'll be unable to calculate it after removing
-	        	sbCommonUtils.dbg("moveItem: source folder "+resDir.path);
-	        }
-            sbCommonUtils.RDFC.Init(this._dataObj, curPar);
-            sbCommonUtils.RDFC.RemoveElement(curRes, true);
+			if (isFilesystemObject(curRes))
+				resFSO = this.getAssociatedFsObject(curRes); // we'll be unable to retrieve it later
+			sbCommonUtils.RDFC.Init(this._dataObj, curPar);
+			sbCommonUtils.RDFC.RemoveElement(curRes, true);
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE1", [ex]));
             return;
@@ -203,9 +210,9 @@ var sbDataSource = {
                 sbCommonUtils.RDFC.AppendElement(curRes);
             }
             
-	        //Move the folder on disk, choosing a new suitable name
-			if (resType == "folder")
-				this.moveFolderDir(curRes, resDir, tarPar);
+            //Move the item on disk, choosing a new suitable name
+            if (isFilesystemObject(curRes))
+            	this.moveFilesystemObject(curRes, resFSO, tarPar);
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE2", [ex]));
             sbCommonUtils.RDFC.Init(this._dataObj, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
@@ -252,14 +259,14 @@ var sbDataSource = {
 		    	}, this);
 		    }
 		    
-	    	//Delete the folder on disk
-	    	if (this.isFolder(aRes)) {
-	        	var resDir = this.getFolderDir(aRes);
-	        	sbCommonUtils.dbg("removeResource: considering "+resDir.path+" for removal");
-	        	if (resDir.exists()) {
-	        		sbCommonUtils.dbg("removeResource: removing "+resDir.path);
-	        		//By this time all known children are removed. So if there are any unknowns, we can't delete the folder.
-	        		resDir.remove(false); //without children
+	    	//Delete the item on disk
+	    	if (this.isFilesystemObject(aRes)) {
+	        	var resFSO = this.getAssociatedFsObject(aRes);
+	        	sbCommonUtils.dbg("removeResource: considering "+resFSO.path+" for removal");
+	        	if (resFSO.exists()) {
+	        		sbCommonUtils.dbg("removeResource: removing "+resFSO.path);
+	        		//If a folder: By this time all known children are removed. So if there are any unknowns, we can't delete the folder.
+	        		resFSO.remove(false); //without children
 	        	}
 	    	}
 
@@ -341,6 +348,7 @@ var sbDataSource = {
                 var value = this._dataObj.GetTarget(aRes, name, true).QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
                 item[key] = value;
             } catch(ex) {
+            	sbCommonUtils.log("getItem: exception: "+ex);
             }
         }
         return item;
@@ -352,6 +360,7 @@ var sbDataSource = {
             var retVal = this._dataObj.GetTarget(aRes, sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp), true);
             return retVal.QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
         } catch(ex) {
+        	sbCommonUtils.log("getProperty: exception: "+ex);
             return "";
         }
     },
@@ -361,8 +370,8 @@ var sbDataSource = {
         var aPropName = aProp;
         aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aPropName);
         try {
-        	if (aPropName == "title")
-        		var oldFilename = this.getFolderDir(aRes);
+        	if ((aPropName == "title") && this.isFilesystemObject(aRes))
+        		var oldFilename = this.getAssociatedFilename(aRes); //we won't be able to retrieve it later
         	
             var oldVal = this._dataObj.GetTarget(aRes, aProp, true);
             if (oldVal == sbCommonUtils.RDF.NS_RDF_NO_VALUE) {
@@ -374,10 +383,12 @@ var sbDataSource = {
             }
 
             //When changing the title, rename the item on disk
-            if (aPropName == "title") {
-            	sbCommonUtils.dbg("Changing item title: "+newVal);
-            	if (this.isFolder(aRes))
-            		this.moveFolderDir(aRes, oldFilename, this.findParentResource(aRes)); //in the same folder
+            if ((aPropName == "title") && (oldVal != newVal) && this.isFilesystemObject(aRes)) {
+            	sbCommonUtils.dbg("Changing item title: "+oldVal+" -> "+newVal);
+            	var aParent = this.findParentResource(aRes);
+            	var oldFile = this.getAssociatedFsObject(aParent).clone();
+            	oldFile.append(oldFilename);
+            	this.moveFilesystemObject(aRes, oldFile, aParent); //to the same folder
             }
             
             this._flushWithDelay();
@@ -422,11 +433,17 @@ var sbDataSource = {
     isContainer : function(aRes) {
         return sbCommonUtils.RDFCU.IsContainer(this._dataObj, aRes);
     },
+	
+	//True if the resource represents a filesystem object (as opposed to purely virtual resources such as separators)
+	isFilesystemObject : function(aRes) {
+	    resType = this.getProperty(aRes, "type");
+	    return ((resType == "folder") || (resType == "note"));
+	},
 
 	//True if the resource is logically a folder (not just by the virtue of having RDF children, though in practice these should match).
 	isFolder : function(aRes) {
     	var resType = this.getProperty(aRes, "type");
-    	return (resType == "folder");
+    	return (resType == "folder") || (aRes.Value == "urn:scrapbook:root");
 	},
 
 	// Ensures that a given item ID is unused (altering it if needed)
@@ -515,48 +532,64 @@ var sbDataSource = {
     	}
     },
     
-    //Selects a folder name for a folder resource and stores it in the folder properties, if needed.
+    //Selects a filename for a resource and stores it in the resource properties, if needed.
     //Handles name sanitization and duplicates.
     //Once selected, the name will not be changed until this is called again (i.e. when moving to a new place).
     //Does not create the folder itself because this is used to choose the target filename when moving too.
-    initFolderDir : function(folderRes, wasInitialized) {
-    	var parentDir = this.needFolderDir(this.findParentResource(folderRes));
+    associateFilename : function(aRes) {
+    	var aParent = this.findParentResource(aRes);
+    	if (!aParent) throw "associateFilename: resource must be attached to a parent";
+    	var parentDir = this.needFolderDir(aParent);
+    	sbCommonUtils.dbg("associateFilename: parent directory retrieved");
     	
-    	var title = this.getProperty(folderRes, "title");
-    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), "");
+    	var resType = this.getProperty(aRes, "type");
+    	switch(resType) {
+    		case "folder": var ext = ""; break;
+    		case "note": var ext = "txt"; break;
+    		case "bookmark": var ext = "url"; break;
+    		default: throw "associateFilename: unsupported resource type: "+resType;
+    	}
+    	
+    	var title = this.getProperty(aRes, "title");
+    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), ext);
     	if (filename != title)
     		//Chosen name was different from the title. We need to store it as an additional attribute.
-    		this.setProperty(folderRes, "filename", filename)
+    		this.setProperty(aRes, "filename", filename)
     	else
-    		this.clearProperty(folderRes, "filename"); //if any was set
+    		this.clearProperty(aRes, "filename"); //if any was set
+    	sbCommonUtils.dbg("associateFilename: "+filename);
     	return filename;
     },
     
     //Returns a filename associated to a resource, without any path. Does not choose a suitable one, just tells how it's configured now.
-    //The resource is assumed to be initialized (initFolderDir called at least once).
-    getAssociatedFilename : function(folderRes) {
-    	var filename = this.getProperty(folderRes, "filename");
+    //The resource is assumed to be initialized (associateFilename() called at least once).
+    getAssociatedFilename : function(aRes) {
+    	var filename = this.getProperty(aRes, "filename");
 		if (filename == "")
-			filename = this.getProperty(folderRes, "title");
+			filename = this.getProperty(aRes, "title");
 		return filename;
     },
     
-    //Retrieves a directory associated with a specified folder resource, whether it exists or not.
-    //Returns a directory object.
-    getFolderDir : function(folderRes) {
-    	if (!folderRes)
-    		throw "getFolderDir: invalid null resource received";
-    	if (folderRes.Value == "urn:scrapbook:root") {
+    //Retrieves a file/directory associated with a specified resource (as an object), whether it exists or not.
+    getAssociatedFsObject : function(aRes) {
+    	if (!aRes)
+    		throw "getAssociatedFsObject: invalid null resource received";
+    	if (aRes.Value == "urn:scrapbook:root")
     		return sbCommonUtils.getScrapBookDir().clone();
-    	}
-    	var resType = this.getProperty(folderRes, "type");
-    	if (resType != "folder")
-    	    throw "needFolderDir() called on a non-folder item: "+resType;
-
-		var aParent = this.findParentResource(folderRes);
-		var path = this.needFolderDir(aParent);
+    	
+    	var resType = this.getProperty(aRes, "type");
+        switch (resType) {
+            case "folder":
+            case "note":
+            	var aParent = this.findParentResource(aRes);
+            	if (!aParent) throw "getAssociatedFsObject: resource is not attached to a parent";
+            	var path = this.needFolderDir(aParent);
+            	path.append(this.getAssociatedFilename(aRes));
+            	break;
+            default:
+            	throw "getAssociatedFsObject: unsupported resource type: "+resType;
+        }
 		
-		path.append(this.getAssociatedFilename(folderRes));
 		return path;
     },
     
@@ -564,36 +597,45 @@ var sbDataSource = {
     //If the directory does not exist, it is automatically created, but no other initialization will take place. This may restore
     //a folder that was accidentally deleted manually, but will not properly choose and register a name substitution anew.
     needFolderDir : function(folderRes) {
-    	var path = this.getFolderDir(folderRes);
-		if ( !path.exists() ) path.create(path.DIRECTORY_TYPE, 0700);
-		return path;
+    	if (!this.isFolder(folderRes)) throw "needFolderDir: not a folder but "+this.getProperty(folderRes, "type");
+    	var path = this.getAssociatedFsObject(folderRes);
+    	if ( !path.exists() ) path.create(path.DIRECTORY_TYPE, 0700);
+    	return path;
     },
 
-	//Chooses a new suitable filename for a folder under a new parent, and moves the data.
-	//Old dir and new parent must be given explicitly since this is often called when moving stuff and the internal bookkeeping may be in tatters.
-	//It is okay for the old path to point to non-existing folder.
-	moveFolderDir : function(folderRes, oldDir, newPar) {
-		sbCommonUtils.dbg("moveFolderDir: moving folder: "+oldDir.path);
+	//Chooses a new suitable filename for a resource under a new parent, and moves the data.
+	//Old file/dir and new parent must be given explicitly since this is often called when moving stuff and the internal bookkeeping may be in tatters.
+	//It is okay for the old path to point to non-existing file/dir.
+	moveFilesystemObject : function(aRes, oldFile, newPar) {
+    	sbCommonUtils.dbg("moveFilesystemObject: moving "+oldFile.path);
     	var targetDir = this.needFolderDir(newPar);
 
     	//If we're moving to the same folder and the name hasn't changed, keep it --
-    	//or initFolderDir will consider it taken and give us another one
-    	if (oldDir.parent.equals(targetDir) && (oldDir.leafName == this.getAssociatedFilename(folderRes))) {
-    		sbCommonUtils.dbg("moveFolderDir: same path and name, skipping");
+    	//or associateFilename will consider it taken and give us another one
+    	//TODO: There's a bug here, if the name is overriden, changing the title does not change getAssociatedFilename (it returns the overriden version anyway)
+    	if (oldFile.parent.equals(targetDir) && (oldFile.leafName == this.getAssociatedFilename(aRes))) {
+    		sbCommonUtils.dbg("moveFilesystemObject: same path and name, skipping");
     		return;
     	}
     	
 		//We need to choose a target name even if there's no data to move,
-		//or we risk stealing already existing folder.
-    	var targetName = this.initFolderDir(folderRes); //choose a new suitable name at a target place
-    	sbCommonUtils.dbg("moveItem: new target name: "+targetName);
+		//or we risk stealing already existing item.
+		var targetName = this.associateFilename(aRes); //choose a new suitable name at a target place
+		sbCommonUtils.dbg("moveFilesystemObject: new target name: "+targetName);
 
-		if (oldDir.exists()) {
-			sbCommonUtils.dbg("moveItem: folder exists, moving: "+oldDir.path);
-			oldDir.moveTo(targetDir, targetName);
+		if (oldFile.exists()) {
+			sbCommonUtils.dbg("moveFilesystemObject: object exist, moving: "+oldFile.path);
+			oldFile.moveTo(targetDir, targetName);
 		}
 	},
-
+	
+	
+	//Outputs note contents to an associated file
+	writeNoteFile : function(aNoteRes) {
+		//TODO: Implement.
+	},
+	
+	
     outputTreeAuto : function(aWindow) {
         if (!sbCommonUtils.getPref("autoOutput", false)) return;
         if (!this._needReOutputTree) return;
