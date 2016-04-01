@@ -203,14 +203,9 @@ var sbDataSource = {
                 sbCommonUtils.RDFC.AppendElement(curRes);
             }
             
-	        //Move the folder on disk
-			if ((resType == "folder") && resDir.exists()) {
-				sbCommonUtils.dbg("moveItem: folder exists: "+resDir);
-	        	var targetDir = this.needFolderDir(tarPar);
-	        	var targetName = this.initFolderDir(curRes); //choose a new suitable name at a target place
-	        	sbCommonUtils.dbg("moveItem: target name: "+targetName);
-	        	resDir.moveTo(targetDir, targetName);
-	    	};
+	        //Move the folder on disk, choosing a new suitable name
+			if (resType == "folder")
+				this.moveFolderDir(curRes, resDir, tarPar);
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE2", [ex]));
             sbCommonUtils.RDFC.Init(this._dataObj, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
@@ -363,8 +358,12 @@ var sbDataSource = {
 
     setProperty : function(aRes, aProp, newVal) {
         newVal = this.sanitize(newVal);
-        aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp);
+        var aPropName = aProp;
+        aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aPropName);
         try {
+        	if (aPropName == "title")
+        		var oldFilename = this.getFolderDir(aRes);
+        	
             var oldVal = this._dataObj.GetTarget(aRes, aProp, true);
             if (oldVal == sbCommonUtils.RDF.NS_RDF_NO_VALUE) {
                 this._dataObj.Assert(aRes, aProp, sbCommonUtils.RDF.GetLiteral(newVal), true);
@@ -373,10 +372,30 @@ var sbDataSource = {
                 newVal = sbCommonUtils.RDF.GetLiteral(newVal);
                 this._dataObj.Change(aRes, aProp, oldVal, newVal);
             }
+
+            //When changing the title, rename the item on disk
+            if (aPropName == "title") {
+            	sbCommonUtils.dbg("Changing item title: "+newVal);
+            	if (this.isFolder(aRes))
+            		this.moveFolderDir(aRes, oldFilename, this.findParentResource(aRes)); //in the same folder
+            }
+            
             this._flushWithDelay();
         } catch(ex) {
             sbCommonUtils.error(ex);
         }
+    },
+    
+    clearProperty : function(aRes, aProp) {
+    	aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp);
+    	try {
+    		var oldVal = this._dataObj.GetTarget(aRes, aProp, true);
+            if (oldVal != sbCommonUtils.RDF.NS_RDF_NO_VALUE)
+				this._dataObj.Unassert(aRes, aProp, oldVal);
+            this._flushWithDelay();
+    	} catch(ex) {
+            sbCommonUtils.error(ex);
+    	}
     },
 
     getURL : function(aRes) {
@@ -504,7 +523,9 @@ var sbDataSource = {
     	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), "");
     	if (filename != title)
     		//Chosen name was different from the title. We need to store it as an additional attribute.
-    		this.setProperty(folderRes, "filename", filename);
+    		this.setProperty(folderRes, "filename", filename)
+    	else
+    		this.clearProperty(folderRes, "filename"); //if any was set
     	return filename;
     },
     
@@ -538,6 +559,21 @@ var sbDataSource = {
 		if ( !path.exists() ) path.create(path.DIRECTORY_TYPE, 0700);
 		return path;
     },
+
+	//Chooses a new suitable filename for a folder under a new parent, and moves the data.
+	//Old dir and new parent must be given explicitly since this is often called when moving stuff and the internal bookkeeping may be in tatters.
+	//It is okay for the old path to point to non-existing folder.
+	moveFolderDir : function(folderRes, oldDir, newPar) {
+			sbCommonUtils.dbg("moveFolderDir: moving folder: "+oldDir.path);
+			//We need to choose the target name in any case, or we risk stealing already existing folder.
+        	var targetDir = this.needFolderDir(newPar);
+        	var targetName = this.initFolderDir(folderRes); //choose a new suitable name at a target place
+        	sbCommonUtils.dbg("moveItem: new target name: "+targetName);
+			if (oldDir.exists()) {
+				sbCommonUtils.dbg("moveItem: folder exists, moving: "+oldDir.path);
+				oldDir.moveTo(targetDir, targetName);
+			}
+	},
 
     outputTreeAuto : function(aWindow) {
         if (!sbCommonUtils.getPref("autoOutput", false)) return;
