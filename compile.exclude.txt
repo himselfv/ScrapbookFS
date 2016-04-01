@@ -1,0 +1,6 @@
+compile.cmd
+compile.exclude.txt
+compile.include.txt
+.hg\*
+chrome\locale\*
+chrome\locale
