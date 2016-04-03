@@ -576,8 +576,7 @@ var sbDataSource = {
     		//Chosen name was different from the title. We need to store it as an additional attribute.
     		this.setInternalProperty(aRes, "filename", filename)
     	else
-    		this.setInternalProperty(aRes, "filename", "");
-    		//this.clearProperty(aRes, "filename"); //if any was set
+    		this.clearProperty(aRes, "filename"); //if any was set
     	sbCommonUtils.dbg("associateFilename: "+filename);
     	sbCommonUtils.log("associateFilename: new override state: "+this.getProperty(aRes, "filename"));
     	return filename;
