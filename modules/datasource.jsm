@@ -1,35 +1,216 @@
 Components.utils.import("resource://scrapbook-modules/common.jsm");
+Components.utils.import("resource://scrapbook-modules/fakerdf.jsm");
+
+
+//Creates a basic resource. Additional properties may be added by the caller.
+function Resource(parent, type, filename) {
+	sbCommonUtils.dbg('Resource('+parent+','+type+','+filename+')');
+	this.parent = parent;
+	this.type = type; //root, folder, note, ...
+	this.filename = filename;
+
+	this._FSO = null; //explicit filesystem object, only set for root node
+	this.getFilesystemObject = function() {
+		if (this._FSO)
+			return this._FSO //set for root
+		else {
+			var FSO = this.parent.getFilesystemObject().clone();
+			return FSO;
+		}
+	}
+
+
+	this._title = null; //explicit title, if overriden
+
+	this.getTitle = function() {
+		sbCommonUtils.dbg("getTitle()");
+		//If we have overriden title, use that
+		if (this._title) {
+			sbCommonUtils.dbg("returning "+this._title);
+			return this._title;
+		}
+
+		//Strip extension
+		var parts = this.filename.split('.');
+		if (parts.pop().length > 5) {
+			sbCommonUtils.dbg("returning "+this.filename);
+			return this.filename //probably wasn't an extension
+		}
+		else {
+			sbCommonUtils.dbg("returning "+parts.join('.'));
+			return parts.join('.');
+		}
+	}
+
+	// Children 
+	this.children = [];
+	this._index = null; //explicit index, if present
+
+	//Returns the index of the entry with this filename in children
+	this.indexOfFilename = function(filename) {
+		for (var i = 0; i < this.children.length; i++)
+			if (this.children[i].filename == filename)
+				return i;
+		return -1;
+	}
+	
+	this.indexOfChild = function(child) {
+		for (var i = 0; i < this.children.length; i++)
+			if (this.children[i] == child)
+				return i;
+		return -1;
+	}
+	
+	this.childByFilename = function(filename) {
+		var i = this.indexOfFilename();
+		if (i >= 0)
+			return this.children[i]
+		else
+			return null;
+	}
+	
+	this.insertChild = function(child, index) {
+		var cont = this.rdfCont();
+		if ( 0 < index && index <= this.children.length ) {
+			this.children.splice(index, 0, child);
+			cont.InsertElementAt(child.rdfRes, index, true);
+		} else {
+			this.children.push(child);
+			cont.AppendElement(child.rdfRes);
+		}
+	}
+	
+	this.removeChild = function(child) {
+		var index = this.indexOfChild(child);
+		if (index < 0) throw "removeChild: Child not found";
+		return this.removeChildByIndex(index);
+	}
+	this.removeChildByIndex = function(index) {
+		var cont = this.rdfCont();
+		var child = this.children.splice(index, 1);
+		cont.RemoveElement(child.rdfRes, true); //safer to remove by resource than by index
+		return child;
+	}
+
+	this.moveChild = function(child, newIndex) {
+		var index = this.indexOfChild(child);
+		this.moveChildByIndex(index, newIndex);
+	}
+	this.moveChildByIndex = function(oldIndex, newIndex) {
+		var child = this.removeChildByIndex(oldIndex);
+		if (oldIndex < newIndex) newIndex = newIndex - 1; //shifted due to removal
+		this.insertChild(newIndex, child);
+	}
+	
+	// RDF
+	//Register the newly created resource in RDF
+	if (this.type == "root")
+		this.rdfId = "000000000000000000"
+	 else
+		this.rdfId = sbRDF.newId();
+    
+    this.getRdfName = function() {
+    	if (this.type == "root")
+    		return "urn:scrapbook:root"
+    	else
+    		return "urn:scrapbook:item" + this.rdfId;
+    }
+    this.rdfRes = sbCommonUtils.RDF.GetResource(this.getRdfName());
+
+	this.updateRdfProps = function() {
+		if (this.type == "root") return; //root never has attributes
+		/*
+		Standard RDF properties:
+	           NS1:id="20160403063754"
+	           NS1:create="20160403063754"
+	           NS1:modify="20160403063754"
+	           NS1:type="note"
+	           NS1:title=""
+	           NS1:chars="UTF-8"
+	           NS1:icon=""
+	           NS1:source=""
+	           NS1:comment=""
+	           NS1:lock=""
+		*/
+		sbRDF.setProperty(this.rdfRes, 'id', this.rdfId);
+		sbRDF.setProperty(this.rdfRes, 'create', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'modify', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'type', this.type);
+		sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //TODO
+		sbRDF.setProperty(this.rdfRes, 'chars', "UTF-8"); //TODO
+		sbRDF.setProperty(this.rdfRes, 'icon', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'source', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'comment', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'lock', ""); //TODO
+		//These need to be updated every time they're changed for this object.
+		//This may be done automatically if we write wrappers for all these properties, or manually by the caller (usually sbDataSource's setProperty, so its okay too)
+	}
+	
+	this.updateRdfProps(); //do it now
+
+	this._rdfCont = null;
+	this.rdfCont = function() {
+		if (!this._rdfCont) {
+			sbCommonUtils.dbg("creating rdfCont");
+			var rdfName = this.getRdfName();
+			sbCommonUtils.dbg("rdfName: "+rdfName);
+			sbRDF.createEmptySeq(rdfName);
+			this._rdfCont = sbRDF.getContainer(rdfName, false);
+			sbCommonUtils.dbg("rdfCont: "+this._rdfCont);
+		}
+		return this._rdfCont;
+	}
+
+	//Separators additionally need this to be visible in the tree
+	if (this.type == "separator") {
+        sbRDF._dataObj.Assert(
+            newRes,
+            sbCommonUtils.RDF.GetResource("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+            sbCommonUtils.RDF.GetResource("http://home.netscape.com/NC-rdf#BookmarkSeparator"),
+            true
+        );
+	}
+}
 
 var sbDataSource = {
 
     _firstInit : true,
     _flushTimer : null,
-    _dataObj : null,
-    _dataFile : null,
     _needReOutputTree : false,
+    _root : null,
 
     get data() {
-        if (!this._dataObj) this._init();
-        return this._dataObj;
+    	sbCommonUtils.dbg('get data()');
+    	if (!this._root) this._init();
+    	return sbRDF.data;
+    },
+    
+    get root() {
+    	if (!this._root) this._init();
+    	return this._root;
+    },
+    
+    //Returns the file URL to the root of where the data is stored
+    get baseURI() {
+    	return Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService).newFileURI(sbCommonUtils.getScrapBookDir());
     },
 
     _init : function(aQuietWarning) {
+    	sbCommonUtils.dbg('init()');
         if (this._firstInit) {
             this._firstInit = false;
             var obs = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
             obs.addObserver(this, "quit-application-requested", false);
         }
         try {
-            this._dataFile = sbCommonUtils.getScrapBookDir();
-            this._dataFile.append("scrapbook.rdf");
-            if ( !this._dataFile.exists() ) {
-                var iDS = Components.classes["@mozilla.org/rdf/datasource;1?name=xml-datasource"].createInstance(Components.interfaces.nsIRDFDataSource);
-                sbCommonUtils.RDFCU.MakeSeq(iDS, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
-                var iFileUrl = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService).newFileURI(this._dataFile);
-                iDS.QueryInterface(Components.interfaces.nsIRDFRemoteDataSource).FlushTo(iFileUrl.spec);
-            }
-            var fileURL = sbCommonUtils.IO.newFileURI(this._dataFile).spec;
-            this._dataObj = sbCommonUtils.RDF.GetDataSourceBlocking(fileURL);
+        	sbCommonUtils.dbg('init: initializing RDF');
+            sbRDF.init();
+            sbCommonUtils.dbg('init: creating root');
+            this._root = new Resource(null, "root", "");
+            this._root._FSO = sbCommonUtils.getScrapBookDir();
+            sbCommonUtils.dbg('init: building file tree');
+            this._loadChildren(this._root, this._root._FSO, true);
+            sbCommonUtils.dbg('init: tree built');
             this._needReOutputTree = false;
         } catch(ex) {
             if ( !aQuietWarning ) sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_INIT_DATASOURCE", [ex]));
@@ -38,10 +219,112 @@ var sbDataSource = {
 
     _uninit : function() {
         if (this._flushTimer) this.flush();
-        try { sbCommonUtils.RDF.UnregisterDataSource(this._dataObj); } catch(ex) {}
-        this._dataObj = null;
-        this._dataFile = null;
+        sbRDF.uninit();
     },
+
+
+	//Loads index.dat for the directory into ordered {id,title} pairs
+	_loadIndexDat : function (fso) {
+		var index = fso.clone();
+		index.append("index.dat");
+		if (!index.exists())
+			return [];
+		
+		var entries = [];
+		var lines = sbCommonUtils.readFile(index).replace(/\r\n|\r/g, '\n').split("\n");
+		lines.forEach(function(line) {
+			if (line == "") return; //safety
+			var parts = line.split('=');
+			entries.append({
+			  id: parts.shift(),
+			  title: parts.join("=")
+			});
+		});
+		return entries;
+	},
+
+	//Checks the filesystem and loads all the children elements
+	//At this time it can only be used for initial loading, but our final objective is to support reloading:
+	//  we'll try to preserve any existing elements, instead reordering them.
+    _loadChildren : function(aRes, fso, recursive) {
+    	sbCommonUtils.dbg('loadChildren('+fso.path+'): hi children');
+    	if (!fso.exists()) return;
+    	if (!fso.isDirectory()) return;
+
+		//Load index.dat
+		sbCommonUtils.dbg('loadChildren('+fso.path+'): loading index.dat entries');
+		aRes._index = this._loadIndexDat(fso);
+		aRes._index.forEach(function(entry) {
+			if (entry.id == "") return; //safety
+			if (entry.id.startsWith('*')) {
+				aRes.insertChild(new Resource(aRes, "separator", ""));
+				return;
+			}
+			if (aRes.indexOfFilename(entry.id) >= 0) return; //don't list one resource twice //TODO: perhaps call refresh on child anyway, if recursive?
+
+			var childFso = fso.clone();
+			childFso.append(entries.id);
+			var childRes = this._loadResource(childFso, recursive);
+			if (entry.title != "") {
+				childRes._title = entry.title;
+				childRes.updateRdf();
+			}
+			aRes.insertChild(childRes);
+		});
+		
+    	//Now load the rest of the directory entries
+    	sbCommonUtils.dbg('loadChildren('+fso.path+'): loading the rest of the entries');
+    	var entries = fso.directoryEntries;
+    	while (entries.hasMoreElements()) {
+    		var entry = entries.getNext().QueryInterface(Components.interfaces.nsIFile);
+    		var filename = entry.leafName;
+    		if (aRes.indexOfFilename(filename) >= 0) continue; //already positioned
+    		aRes.insertChild(this._loadResource(entry, recursive));
+    	}
+    },
+    
+    //Loads a single Resource, determining its type
+    _loadResource : function(fso, recursive) {
+    	sbCommonUtils.dbg(fso);
+    	var filename = fso.leafName;
+		if (fso.isDirectory()) {
+			var aRes = new Resource(aRes, "folder", filename);
+			if (recursive)
+				this._loadChildren(aRes, fso, recursive);
+			return aRes;
+		} else
+		switch (filename.split('.').pop()) {
+			case "txt": return new Resource(aRes, "note", filename); break;
+			default: return new Resource(aRes, "", filename); break;
+		}
+    },
+    
+    
+    //Takes a string describing a path to a resource, e.g.
+    //  Folder 1/Folder 2/File.txt
+    //  Folder 1:Folder 2:File.txt
+    //Returns the resource object or nil.
+    findResource : function(path) {
+    	path = path.replace(/[\\\/]/g, '/').split(':');
+    	var entry = this._root;
+    	while (path.length != 0) {
+    		var filename = path.shift();
+    		if (filename == '') continue; //double slash, whatever
+    		entry = entry.childByFilename(filename);
+    		if (!entry) return null;
+    	}
+    	return entry;
+    },
+    
+    findResourceByUrn : function(urn) {
+    	if (urn == "urn:scrapbook:root")
+    		return this.root;
+    	var pre = "urn:scrapbook:item:";
+    	if (urn.startsWith(pre))
+    		return findResource(urn.slice(pre.length));
+    	return null;
+    },
+    
 
     // when data source change (mostly due to changing pref)
     checkRefresh : function(aNoCheck) {
@@ -50,30 +333,8 @@ var sbDataSource = {
         sbCommonUtils.refreshGlobal();
     },
 
-    backup : function() {
-        var bDir = sbCommonUtils.getScrapBookDir();
-        bDir.append("backup");
-        if ( !bDir.exists() ) bDir.create(bDir.DIRECTORY_TYPE, 0700);
-        var bFileName = "scrapbook_" + sbCommonUtils.getTimeStamp().substring(0,8) + ".rdf";
-        try { this._dataFile.copyTo(bDir, bFileName); } catch(ex) {}
-        this.cleanUpBackups(bDir);
-    },
-
-    cleanUpBackups : function(bDir) {
-        var max = 5;
-        var today = (new Date()).getTime();
-        var dirEnum = bDir.directoryEntries;
-        while ( dirEnum.hasMoreElements() ) {
-            var entry = dirEnum.getNext().QueryInterface(Components.interfaces.nsILocalFile);
-            if ( !entry.leafName.match(/^scrapbook_(\d{4})(\d{2})(\d{2})\.rdf$/) ) continue;
-            var lifeTime = (new Date(parseInt(RegExp.$1, 10), parseInt(RegExp.$2, 10) - 1, parseInt(RegExp.$3, 10))).getTime();
-            lifeTime = Math.round((today - lifeTime) / (1000 * 60 * 60 * 24));
-            if ( lifeTime > 30 ) {
-                if (--max < 0) break;
-                entry.remove(false);
-            }
-        }
-    },
+    backup : function() { /* nothing to backup in this version */ },
+    cleanUpBackups : function(bDir) { /* nothing to backup in this version */ },
 
     flush : function() {
         if (this._flushTimer) {
@@ -82,7 +343,7 @@ var sbDataSource = {
         }
         this._needReOutputTree = true;
         try {
-            this._dataObj.QueryInterface(Components.interfaces.nsIRDFRemoteDataSource).Flush();
+            //TODO: flush... something? probably index.dat files, though they're per-resource
         } catch(ex) {
             sbCommonUtils.error(ex);
         }
@@ -110,7 +371,7 @@ var sbDataSource = {
     },
 
     unregister : function() {
-        sbCommonUtils.RDF.UnregisterDataSource(this._dataObj);
+        //TODO: remove if no one uses this?
     },
 
 
@@ -121,7 +382,7 @@ var sbDataSource = {
     },
 
     validateURI : function(aURI) {
-        if ( aURI == "urn:scrapbook:root" || aURI == "urn:scrapbook:search" || aURI.match(/^urn:scrapbook:item\d{14}$/) ) {
+        if ( aURI == "urn:scrapbook:root" || aURI == "urn:scrapbook:search" || aURI.startsWith("urn:scrapbook:item:") ) {
             return true;
         } else {
             return false;
@@ -129,53 +390,45 @@ var sbDataSource = {
     },
 
     addItem : function(aSBitem, aParName, aIdx) {
-        if ( !this.validateURI("urn:scrapbook:item" + aSBitem.id) ) return;
+        if ( !this.validateURI("urn:scrapbook:item:" + aSBitem.id) ) return;
         ["title", "comment", "icon", "source"].forEach(function(prop) {
             aSBitem[prop] = this.sanitize(aSBitem[prop]);
         }, this);
         try {
-            var cont = this.getContainer(aParName, false);
-            if ( !cont ) {
-                cont = this.getContainer("urn:scrapbook:root", false);
+            var parent = this.findResourceByUrn(aParName, false);
+            if ( !parent ) {
+                parent = this.root;
                 aIdx = 0;
             }
-            // create a new item and merge the props
-            var newItem = sbCommonUtils.newItem();
-            sbCommonUtils.extendObject(newItem, aSBitem);
-            var newRes = sbCommonUtils.RDF.GetResource("urn:scrapbook:item" + aSBitem.id);
-            for (prop in newItem) {
-                if (prop == "folder") continue;  // "folder" prop is specially handled and do not need to store
-                var arc = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + prop);
-                var val = sbCommonUtils.RDF.GetLiteral(aSBitem[prop]);
-                this._dataObj.Assert(newRes, arc, val, true);
+			
+            //choose suitable and unique filename
+            switch (aSBitem.type) {
+            	case "folder": var ext = "";
+            	case "note": var ext = "txt";
+            	default: var ext = "";
             }
-            if (aSBitem.type == "separator") {
-                this._dataObj.Assert(
-                    newRes,
-                    sbCommonUtils.RDF.GetResource("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
-                    sbCommonUtils.RDF.GetResource("http://home.netscape.com/NC-rdf#BookmarkSeparator"),
-                    true
-                );
-            }
+            var filename = this.reserveFilename(parent, aSBitem.title, ext);
+			
+            //create a new resource
+            var newItem = Resource(cont, aSBItem.type, filename);
+            if (filename != aSBitem.title)
+            	newItem._title = aSBitem.title;
+            
+            //dump all properties for debug
+            //TODO: Remove when I'm certain that I'm handling all the important properties
+            for (prop in aSBitem)
+                sbCommonUtils.dbg("addItem: "+prop+"="+aSBitem[prop]);
+
+            //Insert to parent
             if ( sbCommonUtils.getPref("tree.unshift", false) ) {
                 if ( aIdx == 0 || aIdx == -1 ) aIdx = 1;
             }
-            if ( 0 < aIdx && aIdx <= cont.GetCount() ) {
-                cont.InsertElementAt(newRes, aIdx, true);
-            } else {
-                cont.AppendElement(newRes);
-            }
+           	parent.insertChild(newItem, aIdx);
             
             //Associate any filesystem objects and write to them
 	        switch (newItem.type) {
-	            case "folder":
-            		this.associateFilename(newRes); //choose a suitable FS name
-            		this.needFolderDir(newRes);
-            		break;
-	            case "note":
-	            	this.associateFilename(newRes);
-	            	this.writeNoteContents(newRes, ""); //touch the file so the filename is not stolen
-	            	break;
+	            case "folder": this.needFolderDir(newRes); break;
+	            case "note": this.writeNoteContents(newRes, ""); break; //touch the file so the filename is not stolen
 	        }
 
             this._flushWithDelay();
@@ -240,9 +493,7 @@ var sbDataSource = {
     },
 
     createEmptySeq : function(aResName) {
-        if ( !this.validateURI(aResName) ) return;
-        sbCommonUtils.RDFCU.MakeSeq(this._dataObj, sbCommonUtils.RDF.GetResource(aResName));
-        this._flushWithDelay();
+        //TODO: Remove if there's no point in it.
     },
 
 	//Deletes an item and all of its known children, including any associated folders or files on disk.
@@ -301,37 +552,6 @@ var sbDataSource = {
         return rmID;
     },
 
-
-
-    getContainer : function(aResURI, force) {
-        var cont = Components.classes['@mozilla.org/rdf/container;1'].createInstance(Components.interfaces.nsIRDFContainer);
-        try {
-            cont.Init(this._dataObj, sbCommonUtils.RDF.GetResource(aResURI));
-        } catch(ex) {
-            if ( force ) {
-                if ( !this.validateURI(aResURI) ) return null;
-                return sbCommonUtils.RDFCU.MakeSeq(this._dataObj, sbCommonUtils.RDF.GetResource(aResURI));
-            } else {
-                return null;
-            }
-        }
-        return cont;
-    },
-
-    clearContainer : function(ccResURI) {
-        var ccCont = this.getContainer(ccResURI, true);
-        var ccCount = ccCont.GetCount();
-        for ( var ccI=ccCount; ccI>0; ccI-- ) {
-            ccCont.RemoveElementAt(ccI, true);
-        }
-        this._flushWithDelay();
-    },
-
-    removeFromContainer : function(aResURI, aRes) {
-        var cont = this.getContainer(aResURI, true);
-        if ( cont ) cont.RemoveElement(aRes, true);
-        this._flushWithDelay();
-    },
 
 
     //When reading and writing items, we mostly just copy all the available properties.
@@ -524,7 +744,7 @@ var sbDataSource = {
     //Replaces all characters that the file system might not support with safe characters.
     sanitizeFilename : function(filename) {
     	if (!filename) return "";
-        return filename.replace(/[\x00-\x1F\x7F\<\>\:\"\/\\\|\?\*]/g, " ");
+        return filename.replace(/[\x00-\x1F\x7F\<\>\:\"\/\\\|\?\*\=]/g, " ");
     },
     
     //Selects a non-existent filename based on a given pattern. Returns the name as string.
@@ -551,6 +771,7 @@ var sbDataSource = {
     	}
     },
     
+
     //Selects a filename for a resource and stores it in the resource properties, if needed.
     //Handles name sanitization and duplicates.
     //Once selected, the name will not be changed until this is called again (i.e. when moving to a new place).
