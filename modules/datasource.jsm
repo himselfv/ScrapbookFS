@@ -673,7 +673,7 @@ var sbDataSource = {
 		try {
 			var file = this.getAssociatedFsObject(aNoteRes);
         	var content = sbCommonUtils.readFile(file);
-			return sbCommonUtils.convertToUnicode(content, "UTF-8");
+			return sbCommonUtils.convertToUnicode(content, "UTF-8").replace('\r\n','\r');
 		} catch(ex) {
 			sbCommonUtils.alert("Failed to read note. Abort operation or your data may be lost."); //TODO: Localize
 			throw ex;
@@ -684,7 +684,7 @@ var sbDataSource = {
 	writeNoteContents : function(aNoteRes, content) {
 		try {
 			var file = this.getAssociatedFsObject(aNoteRes);
-			sbCommonUtils.writeFile(file, content, "UTF-8");
+			sbCommonUtils.writeFile(file, content.replace('/\r(?!\n)/', '\r\n'), "UTF-8");
 			return true;
 		} catch(ex) {
 			sbCommonUtils.alert("Failed to save note. Backup the data before continuing, or it may be lost."); //TODO: Localize
