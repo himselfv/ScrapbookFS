@@ -571,6 +571,12 @@ var sbDataSource = {
     	}
     	
     	var title = this.getProperty(aRes, "title");
+    	if (title == "") {
+    		title = resType; //if title is empty, use "Note.txt"
+    		if (title == "") //just in case
+    			title = "Resource";
+    	}
+    	
     	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), ext, existingName);
     	if (filename != title)
     		//Chosen name was different from the title. We need to store it as an additional attribute.
