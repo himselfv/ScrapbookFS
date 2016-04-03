@@ -174,7 +174,7 @@ var sbDataSource = {
             		break;
 	            case "note":
 	            	this.associateFilename(newRes);
-	            	this.writeNoteFile(newRes);
+	            	this.writeNoteContents(newRes, ""); //touch the file so the filename is not stolen
 	            	break;
 	        }
 
@@ -661,9 +661,35 @@ var sbDataSource = {
 	},
 	
 	
-	//Outputs note contents to an associated file
-	writeNoteFile : function(aNoteRes) {
-		//TODO: Implement.
+	
+	/*
+	Note editing.
+	Perhaps this should be moved to scrapnote.js, and datasource only host generic functions.
+	But then what do we do about folders? There's no one governing those.
+	*/
+	
+	//Reads the contents of the note and returns it
+	readNoteContents : function(aNoteRes) {
+		try {
+			var file = this.getAssociatedFsObject(aNoteRes);
+        	var content = sbCommonUtils.readFile(file);
+			return sbCommonUtils.convertToUnicode(content, "UTF-8");
+		} catch(ex) {
+			sbCommonUtils.alert("Failed to read note. Abort operation or your data may be lost."); //TODO: Localize
+			throw ex;
+		}
+	},
+	
+	//Outputs note contents to the associated file. Returns false if failed.
+	writeNoteContents : function(aNoteRes, content) {
+		try {
+			var file = this.getAssociatedFsObject(aNoteRes);
+			sbCommonUtils.writeFile(file, content, "UTF-8");
+			return true;
+		} catch(ex) {
+			sbCommonUtils.alert("Failed to save note. Backup the data before continuing, or it may be lost."); //TODO: Localize
+			return false;
+		}
 	},
 	
 	

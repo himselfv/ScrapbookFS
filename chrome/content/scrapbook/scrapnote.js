@@ -2,11 +2,8 @@
 var sbNoteService = {
 
     get TEXTBOX()   { return document.getElementById("sbNoteTextbox"); },
-    get HTML_HEAD() { return '<html><head><meta http-equiv="Content-Type" content="text/html;Charset=UTF-8"></head><body><pre>\n'; },
-    get HTML_FOOT() { return '\n</pre></body></html>'; },
 
     resource : null,
-    notefile : null,
     changed  : false,
     locked   : false,
     initFlag : false,
@@ -22,9 +19,6 @@ var sbNoteService = {
         newItem.type  = "note";
         newItem.chars = "UTF-8";
         this.resource = sbDataSource.addItem(newItem, aTarResURI, aTarRelIdx);
-        this.notefile = sbCommonUtils.getContentDir(sbDataSource.getProperty(this.resource, "id")).clone();
-        this.notefile.append("index.html");
-        sbCommonUtils.writeFile(this.notefile, "", "UTF-8");
         if ( !("gBrowser" in window.top) ) aForceTabbed = true;
         (sbCommonUtils.getPref("tabs.note", false) || aForceTabbed) ? this.open(this.resource, true) : this.edit(this.resource);
     },
@@ -42,10 +36,8 @@ var sbNoteService = {
             document.getElementById("sbNoteSplitter").hidden = false;
             document.getElementById("sbNoteOuter").hidden = false;
         }
-        this.notefile = sbCommonUtils.getContentDir(sbDataSource.getProperty(this.resource, "id")).clone();
-        this.notefile.append("index.html");
         this.TEXTBOX.value = "";
-        this.TEXTBOX.value = this.getContentFromFile(this.notefile);
+        this.TEXTBOX.value = sbDataSource.readNoteContents(this.resource);
         this.TEXTBOX.mInputField.focus();
         try { this.TEXTBOX.editor.transactionManager.clear(); } catch(ex) {}
         document.getElementById("sbNoteLabel").value = sbDataSource.getProperty(this.resource, "title");
@@ -55,7 +47,7 @@ var sbNoteService = {
     save : function() {
         if ( !this.changed ) return;
         if ( !sbDataSource.exists(this.resource) ) return;
-        sbCommonUtils.writeFile(this.notefile, this.HTML_HEAD + this.TEXTBOX.value + this.HTML_FOOT, "UTF-8");
+        sbDataSource.writeNoteContents(this.resource, this.TEXTBOX.value);
         this.saveResource();
         this.change(false);
     },
@@ -68,7 +60,6 @@ var sbNoteService = {
     exit : function() {
         this.save();
         this.resource  = null;
-        this.notefile = null;
         this.change(false);
         if ( this.sidebarContext ) {
             document.getElementById("sbNoteSplitter").hidden = true;
@@ -87,14 +78,6 @@ var sbNoteService = {
                 sbNoteService.edit(aRes);
             }
         }
-    },
-
-    getContentFromFile : function(aFile) {
-        var content = sbCommonUtils.readFile(aFile);
-        content = sbCommonUtils.convertToUnicode(content, "UTF-8");
-        content = content.replace(this.HTML_HEAD, "");
-        content = content.replace(this.HTML_FOOT, "");
-        return content;
     },
 
     expand : function() {
