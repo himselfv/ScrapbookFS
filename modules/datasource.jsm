@@ -72,7 +72,7 @@ Resource.prototype = {
 	},
 	
 	get isFilesystemObject() {
-		return (this.type == "folder") || (this.type == "note");
+		return (this.type != "separator");
 	},
 
 	//Represents a folder on disk
@@ -262,17 +262,17 @@ Resource.prototype = {
 	updateRdfProps : function() {
 		if (this.type == "root") return; //root never has attributes
 		/*
-		Standard RDF properties:
-	           NS1:id="20160403063754"
-	           NS1:create="20160403063754"
-	           NS1:modify="20160403063754"
-	           NS1:type="note"
-	           NS1:title=""
-	           NS1:chars="UTF-8"
-	           NS1:icon=""
-	           NS1:source=""
-	           NS1:comment=""
-	           NS1:lock=""
+		Standard RDF properties and their handling:
+	       NS1:id="20160403063754"				read-only, set on creation
+	       NS1:create="20160403063754"          read-only, from FS / not availabe for separators
+	       NS1:modify="20160403063754"          -- // --
+	       NS1:type="note"                      read-only, set on creation / by file type
+	       NS1:title=""                         read-write, triggers file move
+	       NS1:chars="UTF-8"                    read-only, always UTF-8 (for now). We may handle other encodings later, but so far as clients are concerned, we'll still present as UTF-8.
+	       NS1:icon=""                          read-write, stored in resource / index
+	       NS1:source=""                        read-write, stored in resource / index
+	       NS1:comment=""                       read-write, stored in resource / index
+	       NS1:lock=""                          read-write, stored as file attribute "read-only" (if this property is what I think it is)
 		*/
 		sbRDF.setProperty(this.rdfRes, 'id', this.rdfId);
 		sbRDF.setProperty(this.rdfRes, 'create', ""); //TODO
@@ -722,63 +722,34 @@ var sbDataSource = {
         }
     },
     
-    //Updates all of resource's data
-    saveItem : function(aRes, item) {
-        for (var prop in item)
-            sbDataSource.setProperty(aRes, prop, item[prop]);
-    },
-    
-	//Sets properties of a resource available to external clients
+	//Sets properties of a resource available to external clients.
+	//This triggers changes in actual data, if you only want to set properties of RDF, see sdRDF.
 	setProperty : function(aRes, aProp, newVal) {
-		if (this.internalPropertyNames.indexOf(aProp) >= 0)
-			return; //internal properties cannot be written
-		return this.setInternalProperty(aRes, aProp, newVal);
-	},
+		aRes = this.getResourceByRdfRes(aRes);
+		if (aRes.isRoot) return; //can't change anything for root
+		newVal = this.sanitize(newVal);
 
-    //Sets any property of a resource, including internal ones
-    setInternalProperty : function(aRes, aProp, newVal) {
-        newVal = this.sanitize(newVal);
-        var aPropName = aProp;
-        aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aPropName);
-        try {
-        	if ((aPropName == "title") && this.isFilesystemObject(aRes))
-        		var oldFilename = this.getAssociatedFilename(aRes); //we won't be able to retrieve it later
-        	
-            var oldVal = sbRDF._dataObj.GetTarget(aRes, aProp, true);
-            if (oldVal == sbCommonUtils.RDF.NS_RDF_NO_VALUE) {
-                sbRDF._dataObj.Assert(aRes, aProp, sbCommonUtils.RDF.GetLiteral(newVal), true);
-            } else {
-                oldVal = oldVal.QueryInterface(Components.interfaces.nsIRDFLiteral);
-                newVal = sbCommonUtils.RDF.GetLiteral(newVal);
-                sbRDF._dataObj.Change(aRes, aProp, oldVal, newVal);
-            }
+		try {
+			switch (aProp) {
+			case "title":
+				if (aRes.getTitle() == newVal) return;
+				sbCommonUtils.dbg("Changing item title: "+aRes.getTitle()+" -> "+newVal);
+				aRes.setCustomTitle(newVal);
+				if (aRes.isFilesystemObject) {
+					// We've set the title override, effectively forcing this title as "visible"
+					// Now we'll ask associateFilename() to choose us something optimal and it'll remove the override if it can save the file under this title
+					var oldFile = aRes.getFilesystemObject();
+					this.moveFilesystemObject(aRes, oldFile); //basically we're asking it to reconsider the filename
+				}
+				break;
+			default:
+				//Changing other properties is not supported at this time.
+			}
 
-            //When changing the title, rename the item on disk
-            if ((aPropName == "title") && (oldVal != newVal) && this.isFilesystemObject(aRes)) {
-            	sbCommonUtils.dbg("Changing item title: "+oldVal.Value+" -> "+newVal.Value);
-            	var aParent = this.findParentResource(aRes);
-            	var oldFile = this.getAssociatedFsObject(aParent).clone();
-            	oldFile.append(oldFilename);
-            	this.moveFilesystemObject(aRes, oldFile, aParent); //to the same folder
-            }
-            
             this._flushWithDelay();
         } catch(ex) {
             sbCommonUtils.error(ex);
         }
-    },
-    
-    clearProperty : function(aRes, aProp) {
-    	sbCommonUtils.log("clearProperty: "+aProp);
-    	aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp);
-    	try {
-    		var oldVal = sbRDF._dataObj.GetTarget(aRes, aProp, true);
-            if (oldVal != sbCommonUtils.RDF.NS_RDF_NO_VALUE)
-				sbRDF._dataObj.Unassert(aRes, aProp, oldVal);
-            this._flushWithDelay();
-    	} catch(ex) {
-            sbCommonUtils.error(ex);
-    	}
     },
 
     getURL : function(aRes) {
