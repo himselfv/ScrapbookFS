@@ -187,7 +187,7 @@ ScrapbookDatasource.prototype = {
 	DoCommand : function(aSources, aCommand, aArguments) { return this.uplink.DoCommand(aSources, aCommand, aArguments); },
 	GetAllCmds : function(aSource) { return this.uplink.GetAllCmds(aSource); },
 	hasArcIn : function(aNode, aArc) { return this.uplink.hasArcIn(aNode, aArc); },
-	hasArcOut : function(aSource, aArc) { return this.uplink.hasArcOut(aNode, aArc); },
+	hasArcOut : function(aSource, aArc) { return this.uplink.hasArcOut(aSource, aArc); },
 	beginUpdateBatch : function() { return this.uplink.beginUpdateBatch(); },
 	endUpdateBatch : function() { return this.uplink.endUpdateBatch(); },
 }
