@@ -8,6 +8,16 @@ predefined functions which take URNs or RDF-resources.
 
 Internally we keep the data in a set of Resource() objects. These Resources update the RDF as they're changed.
 There's an easy way to map URN to Resource(), so first thing we do with outside functions is to retrieve the Resource.
+
+We have three data structures used throughout the SB:
+
+1. JS container with properties. This is a static structure; data is read into it by getItem(),
+  and written back with setItem().
+
+2. RDF resource / URN.
+
+3. Resource().
+
 */
 
 
@@ -29,6 +39,8 @@ There's an easy way to map URN to Resource(), so first thing we do with outside 
     Resource(null, "root"); //use urn:scrapbook:root
     Resource(null, "folder", filename); //auto-generate
     Resource("urn:scrapbook:item12345678901234", ...); //use explicit
+
+  Resource does not have to have a file name. For example, a separator has no file name.
 */
 function Resource(rdfId, type, filename) {
 	sbCommonUtils.dbg('Resource('+rdfId+','+type+','+filename+')');
