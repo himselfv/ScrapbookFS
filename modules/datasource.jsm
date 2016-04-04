@@ -40,6 +40,7 @@ Resource.prototype = {
 			return this._FSO //set for root
 		else {
 			var FSO = this.parent.getFilesystemObject().clone();
+			FSO.append(this.filename);
 			return FSO;
 		}
 	},
@@ -65,6 +66,14 @@ Resource.prototype = {
 			sbCommonUtils.dbg("returning "+parts.join('.'));
 			return parts.join('.');
 		}
+	},
+	
+	//Sets title override. If this is empty, filename is used as title.
+	//Use when the filename which you assign in create/rename/move cannot be represented by FS or conflicts with existing one.
+	setCustomTitle : function(aTitle) {
+		sbCommonUtils.dbg("setCustomTitle: '"+aTitle+"'");
+		this._title = aTitle;
+		sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //update RDF
 	},
 
 
@@ -178,10 +187,14 @@ Resource.prototype = {
 		sbCommonUtils.dbg("registerRdf: id="+this.rdfId);
 		this.updateRdfProps(); //push properties
 
+		//Folders need attached sequence or they won't be displayed as folders
+		if (this.type == "folder")
+			sbRDF.createEmptySeq(this.getRdfName());
+
 		//Separators additionally need this to be visible in the tree
 		if (this.type == "separator") {
 	        sbRDF._dataObj.Assert(
-	            newRes,
+	            this.rdfRes,
 	            sbCommonUtils.RDF.GetResource("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
 	            sbCommonUtils.RDF.GetResource("http://home.netscape.com/NC-rdf#BookmarkSeparator"),
 	            true
@@ -245,7 +258,7 @@ var sbDataSource = {
 
     get data() {
     	sbCommonUtils.dbg('get data()');
-    	if (!this._root) this._init();
+    	if (!this.root) this._init();
     	return sbRDF.data;
     },
 
@@ -260,10 +273,10 @@ var sbDataSource = {
         	sbCommonUtils.dbg('init: initializing RDF');
             sbRDF.init();
             sbCommonUtils.dbg('init: creating root');
-            this._root = new Resource(null, "root", "");
-            this._root._FSO = sbCommonUtils.getScrapBookDir();
+            this.root = new Resource(null, "root", "");
+            this.root._FSO = sbCommonUtils.getScrapBookDir();
             sbCommonUtils.dbg('init: building file tree');
-            this._loadChildren(this._root, this._root._FSO, true);
+            this._loadChildren(this.root, this.root._FSO, true);
             sbCommonUtils.dbg('init: tree built');
             this._needReOutputTree = false;
         } catch(ex) {
@@ -301,10 +314,8 @@ var sbDataSource = {
 			var childFso = fso.clone();
 			childFso.append(entries.id);
 			var childRes = this._loadResource(childFso, recursive);
-			if (entry.title != "") {
-				childRes._title = entry.title;
-				childRes.updateRdf();
-			}
+			if (entry.title != "")
+				childRes.setCustomTitle(entry.title);
 			aRes.insertChild(childRes);
 		});
 		
@@ -342,7 +353,7 @@ var sbDataSource = {
     //Returns the resource object or nil.
     findResourceByPath : function(path) {
     	path = path.replace(/[\\\/]/g, '/').split(':');
-    	var entry = this._root;
+    	var entry = this.root;
     	while (path.length != 0) {
     		var filename = path.shift();
     		if (filename == '') continue; //double slash, whatever
@@ -361,8 +372,10 @@ var sbDataSource = {
     },
     
     findResourceByUrn : function(urn) {
-    	if (urn == "urn:scrapbook:root")
+    	if (urn == "urn:scrapbook:root") {
+    		sbCommonUtils.dbg("findResourceByUrn: returning root ("+this.root+")");
     		return this.root;
+    	}
     	var pre = "urn:scrapbook:item";
     	if (urn.startsWith(pre))
     		return findResourceById(urn.slice(pre.length));
@@ -425,16 +438,10 @@ var sbDataSource = {
         return aVal.replace(/[\x00-\x1F\x7F]/g, " ");
     },
 
-    validateURI : function(aURI) {
-        if ( aURI == "urn:scrapbook:root" || aURI == "urn:scrapbook:search" || aURI.startsWith("urn:scrapbook:item:") ) {
-            return true;
-        } else {
-            return false;
-        }
-    },
+    validateURI : function(aURI) { return sbRDF.validateURI(aURI); },
 
     addItem : function(aSBitem, aParName, aIdx) {
-        if ( !this.validateURI("urn:scrapbook:item:" + aSBitem.id) ) return;
+        if ( !this.validateURI("urn:scrapbook:item" + aSBitem.id) ) return;
         ["title", "comment", "icon", "source"].forEach(function(prop) {
             aSBitem[prop] = this.sanitize(aSBitem[prop]);
         }, this);
@@ -454,15 +461,14 @@ var sbDataSource = {
             	case "note": var ext = "txt";
             	default: var ext = "";
             }
-            var filename = this.reserveFilename(parent, aSBitem.title, ext);
+            var title = (aSBitem.title != "") ? aSBitem.title : (aSBitem.type != "") ? aSBitem.type : "Resource";
+            var filename = this.reserveFilename(parent, title, ext);
             sbCommonUtils.dbg("addItem: reserved filename: "+filename);
 			
             //create a new resource
             var newItem = new Resource(aSBitem.id, aSBitem.type, filename);
-            if (filename != aSBitem.title) {
-            	sbCommonUtils.dbg("addItem: title overridden, setting title");
-            	newItem._title = aSBitem.title;
-            }
+            if (filename != aSBitem.title)
+            	newItem.setCustomTitle(aSBitem.title)
             
             //dump all properties for debug
             //TODO: Remove when I'm certain that I'm handling all the important properties
@@ -478,12 +484,12 @@ var sbDataSource = {
             
             //Associate any filesystem objects and write to them
 	        switch (newItem.type) {
-	            case "folder": this.needFolderDir(newRes); break;
-	            case "note": this.writeNoteContents(newRes, ""); break; //touch the file so the filename is not stolen
+	            case "folder": this.needFolderDir(newItem); break;
+	            case "note": this.writeNoteContents(newItem, ""); break; //touch the file so the filename is not stolen
 	        }
 
             this._flushWithDelay();
-            return newRes;
+            return newItem;
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE", [ex]));
             return false;
@@ -732,8 +738,7 @@ var sbDataSource = {
 
 	//True if the resource is logically a folder (not just by the virtue of having RDF children, though in practice these should match).
 	isFolder : function(aRes) {
-    	var resType = this.getProperty(aRes, "type");
-    	return (resType == "folder") || (aRes.Value == "urn:scrapbook:root");
+    	return (aRes.type == "folder") || (aRes.rdfId == "urn:scrapbook:root");
 	},
 
 	// Ensures that a given item ID is unused (altering it if needed)
@@ -823,23 +828,25 @@ var sbDataSource = {
     },
     
 
-    //Selects a filename for a resource and stores it in the resource properties, if needed.
-    //Handles name sanitization and duplicates.
-    //Once selected, the name will not be changed until this is called again (i.e. when moving to a new place).
-    //Does not create the folder itself because this is used to choose the target filename when moving too.
-    //If existingName is given, it is assumed to be ours (we'll not consider it taken if we stumble upon it)
+    //Chooses a suitable and unused filename for a resource based on it's title. Returns the filename.
+    //This function does NOT claim the name, so if you don't hurry, someone else might take it.
+	//If existingName is given, it is assumed to be ours (we'll not consider it taken if we stumble upon it)
+    reserveFilename : function(aParent, aTitle, aExt, aExistingName) {
+    	var parentDir = aParent.getFilesystemObject();
+    	sbCommonUtils.dbg("reserveFilename: parent directory: "+parentDir.path);
+    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(aTitle), aExt, aExistingName);
+		sbCommonUtils.dbg("reserveFilename: "+filename);
+		return filename;
+    },
+
+	//Same, but takes a resource and also registers the filename override in it. Deprecated.
     associateFilename : function(aRes, existingName) {
-    	var aParent = this.findParentResource(aRes);
-    	if (!aParent) throw "associateFilename: resource must be attached to a parent";
-    	var parentDir = this.needFolderDir(aParent);
-    	sbCommonUtils.dbg("associateFilename: parent directory retrieved");
-    	
-    	var resType = this.getProperty(aRes, "type");
-    	switch(resType) {
+       	switch(aRes.type) {
     		case "folder": var ext = ""; break;
     		case "note": var ext = "txt"; break;
     		case "bookmark": var ext = "url"; break;
-    		default: throw "associateFilename: unsupported resource type: "+resType;
+    		default: var ext = ""; break;
+    			//throw "reserveFilename: unsupported resource type: "+resType;
     	}
     	
     	var title = this.getProperty(aRes, "title");
@@ -849,13 +856,15 @@ var sbDataSource = {
     			title = "Resource";
     	}
     	
-    	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(title), ext, existingName);
+		var aParent = this.findParentResource(aRes);
+    	if (!aParent) throw "associateFilename: resource must be attached to a parent";
+    	
+    	var filename = this.reserveFilename(aParent, title, ext);
     	if (filename != title)
     		//Chosen name was different from the title. We need to store it as an additional attribute.
     		this.setInternalProperty(aRes, "filename", filename)
     	else
     		this.clearProperty(aRes, "filename"); //if any was set
-    	sbCommonUtils.dbg("associateFilename: "+filename);
     	sbCommonUtils.log("associateFilename: new override state: "+this.getProperty(aRes, "filename"));
     	return filename;
     },
@@ -895,9 +904,11 @@ var sbDataSource = {
     //Ensures a directory exists for a folder resource and returns a directory object.
     //If the directory does not exist, it is automatically created, but no other initialization will take place. This may restore
     //a folder that was accidentally deleted manually, but will not properly choose and register a name substitution anew.
-    needFolderDir : function(folderRes) {
-    	if (!this.isFolder(folderRes)) throw "needFolderDir: not a folder but "+this.getProperty(folderRes, "type");
-    	var path = this.getAssociatedFsObject(folderRes);
+    needFolderDir : function(aFolder) {
+    	if (!this.isFolder(aFolder)) throw "needFolderDir: not a folder but "+this.getProperty(folderRes, "type");
+    	sbCommonUtils.dbg("needFolderDir: "+aFolder);
+    	var path = aFolder.getFilesystemObject();
+    	sbCommonUtils.dbg("needFolderDir: path="+path.path);
     	if ( !path.exists() ) path.create(path.DIRECTORY_TYPE, 0700);
     	return path;
     },
