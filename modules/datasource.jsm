@@ -2,27 +2,52 @@ Components.utils.import("resource://scrapbook-modules/common.jsm");
 Components.utils.import("resource://scrapbook-modules/fakerdf.jsm");
 
 
-//Creates a basic resource. Additional properties may be added by the caller.
-function Resource(parent, type, filename) {
-	sbCommonUtils.dbg('Resource('+parent+','+type+','+filename+')');
-	this.parent = parent;
-	this.type = type; //root, folder, note, ...
-	this.filename = filename;
+/*
+  Creates a basic resource. Additional properties may be added by the caller.
 
-	this._FSO = null; //explicit filesystem object, only set for root node
-	this.getFilesystemObject = function() {
+  Each resource has an unique RDF URI:
+    urn:scrapbook:root
+    urn:scrapbook:item12345678901234
+  These 14 digits are called rdfId. In our implementation, they are mostly random and only valid
+  for this session.
+  Resources that are loaded from FS get a random ID. When resources are added from UI, UI generates
+  the ID and we just accept it.
+  
+  You must pass the ID now, or we'll select it automatically.
+  
+  Valid constructors:
+    Resource(null, "root"); //use urn:scrapbook:root
+    Resource(null, "folder", filename); //auto-generate
+    Resource("urn:scrapbook:item12345678901234", ...); //use explicit
+*/
+function Resource(rdfId, type, filename) {
+	sbCommonUtils.dbg('Resource('+rdfId+','+type+','+filename+')');
+	this.rdfId = rdfId;
+	this.type = type;
+	this.filename = filename;
+	this.registerRdf();
+	sbDataSource.nodes.push(this); //auto-register us in a node list
+}
+
+Resource.prototype = {
+	parent : null,
+	type : "", //root, folder, note, ...
+	filename : "",
+
+	_FSO : null, //explicit filesystem object, only set for root node
+	getFilesystemObject : function() {
 		if (this._FSO)
 			return this._FSO //set for root
 		else {
 			var FSO = this.parent.getFilesystemObject().clone();
 			return FSO;
 		}
-	}
+	},
 
 
-	this._title = null; //explicit title, if overriden
+	_title : null, //explicit title, if overriden
 
-	this.getTitle = function() {
+	getTitle : function() {
 		sbCommonUtils.dbg("getTitle()");
 		//If we have overriden title, use that
 		if (this._title) {
@@ -40,36 +65,64 @@ function Resource(parent, type, filename) {
 			sbCommonUtils.dbg("returning "+parts.join('.'));
 			return parts.join('.');
 		}
-	}
+	},
+
+
+	// Index.dat
+	_index : null, //explicit index, if present
+	
+	//Loads index.dat for the directory into ordered {id,title} pairs
+	_loadIndexDat : function (fso) {
+		sbCommonUtils.dbg("loadIndexDat: "+fso.path);
+		var index = fso.clone();
+		index.append("index.dat");
+		if (!index.exists())
+			return [];
+		
+		var entries = [];
+		var lines = sbCommonUtils.readFile(index).replace(/\r\n|\r/g, '\n').split("\n");
+		lines.forEach(function(line) {
+			if (line == "") return; //safety
+			var parts = line.split('=');
+			entries.append({
+			  id: parts.shift(),
+			  title: parts.join("=")
+			});
+		});
+		return entries;
+	},
+	loadIndex : function (fso) {
+		this._index = this._loadIndexDat(fso);
+	},
+
 
 	// Children 
-	this.children = [];
-	this._index = null; //explicit index, if present
+	children : [],
 
 	//Returns the index of the entry with this filename in children
-	this.indexOfFilename = function(filename) {
+	indexOfFilename : function(filename) {
 		for (var i = 0; i < this.children.length; i++)
 			if (this.children[i].filename == filename)
 				return i;
 		return -1;
-	}
+	},
 	
-	this.indexOfChild = function(child) {
+	indexOfChild : function(child) {
 		for (var i = 0; i < this.children.length; i++)
 			if (this.children[i] == child)
 				return i;
 		return -1;
-	}
+	},
 	
-	this.childByFilename = function(filename) {
+	childByFilename : function(filename) {
 		var i = this.indexOfFilename();
 		if (i >= 0)
 			return this.children[i]
 		else
 			return null;
-	}
+	},
 	
-	this.insertChild = function(child, index) {
+	insertChild : function(child, index) {
 		var cont = this.rdfCont();
 		if ( 0 < index && index <= this.children.length ) {
 			this.children.splice(index, 0, child);
@@ -78,46 +131,65 @@ function Resource(parent, type, filename) {
 			this.children.push(child);
 			cont.AppendElement(child.rdfRes);
 		}
-	}
+		child.parent = this;
+	},
 	
-	this.removeChild = function(child) {
+	removeChild : function(child) {
 		var index = this.indexOfChild(child);
 		if (index < 0) throw "removeChild: Child not found";
 		return this.removeChildByIndex(index);
-	}
-	this.removeChildByIndex = function(index) {
+	},
+	removeChildByIndex : function(index) {
 		var cont = this.rdfCont();
 		var child = this.children.splice(index, 1);
 		cont.RemoveElement(child.rdfRes, true); //safer to remove by resource than by index
+		child.parent = null;
 		return child;
-	}
+	},
 
-	this.moveChild = function(child, newIndex) {
+	moveChild : function(child, newIndex) {
 		var index = this.indexOfChild(child);
 		this.moveChildByIndex(index, newIndex);
-	}
-	this.moveChildByIndex = function(oldIndex, newIndex) {
+	},
+	moveChildByIndex : function(oldIndex, newIndex) {
 		var child = this.removeChildByIndex(oldIndex);
 		if (oldIndex < newIndex) newIndex = newIndex - 1; //shifted due to removal
 		this.insertChild(newIndex, child);
-	}
-	
+	},
+
+
 	// RDF
-	//Register the newly created resource in RDF
-	if (this.type == "root")
-		this.rdfId = "000000000000000000"
-	 else
-		this.rdfId = sbRDF.newId();
-    
-    this.getRdfName = function() {
+	rdfId : null, //must be 14 digits for any node except for root
+	rdfRes : null, //RDF resource associated with this FS object. Does not change through the lifetime of resource.
+
+    getRdfName : function() {
     	if (this.type == "root")
     		return "urn:scrapbook:root"
     	else
     		return "urn:scrapbook:item" + this.rdfId;
-    }
-    this.rdfRes = sbCommonUtils.RDF.GetResource(this.getRdfName());
+    },
 
-	this.updateRdfProps = function() {
+	//Performs initial registration of the resource in the RDF store
+	registerRdf : function() {
+		if ((this.type != "root") && (!this.rdfId))
+			this.rdfId = sbRDF.newId(); //auto-create ID
+		if (!this.rdfRes)
+			this.rdfRes = sbCommonUtils.RDF.GetResource(this.getRdfName());
+		sbCommonUtils.dbg("registerRdf: id="+this.rdfId);
+		this.updateRdfProps(); //push properties
+
+		//Separators additionally need this to be visible in the tree
+		if (this.type == "separator") {
+	        sbRDF._dataObj.Assert(
+	            newRes,
+	            sbCommonUtils.RDF.GetResource("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
+	            sbCommonUtils.RDF.GetResource("http://home.netscape.com/NC-rdf#BookmarkSeparator"),
+	            true
+	        );
+		}
+	},
+
+	updateRdfProps : function() {
 		if (this.type == "root") return; //root never has attributes
 		/*
 		Standard RDF properties:
@@ -144,12 +216,11 @@ function Resource(parent, type, filename) {
 		sbRDF.setProperty(this.rdfRes, 'lock', ""); //TODO
 		//These need to be updated every time they're changed for this object.
 		//This may be done automatically if we write wrappers for all these properties, or manually by the caller (usually sbDataSource's setProperty, so its okay too)
-	}
+	},
 	
-	this.updateRdfProps(); //do it now
-
-	this._rdfCont = null;
-	this.rdfCont = function() {
+	//RDF container associated with this container object
+	_rdfCont : null,
+	rdfCont : function() {
 		if (!this._rdfCont) {
 			sbCommonUtils.dbg("creating rdfCont");
 			var rdfName = this.getRdfName();
@@ -159,25 +230,18 @@ function Resource(parent, type, filename) {
 			sbCommonUtils.dbg("rdfCont: "+this._rdfCont);
 		}
 		return this._rdfCont;
-	}
-
-	//Separators additionally need this to be visible in the tree
-	if (this.type == "separator") {
-        sbRDF._dataObj.Assert(
-            newRes,
-            sbCommonUtils.RDF.GetResource("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"),
-            sbCommonUtils.RDF.GetResource("http://home.netscape.com/NC-rdf#BookmarkSeparator"),
-            true
-        );
-	}
+	},
 }
+
 
 var sbDataSource = {
 
     _firstInit : true,
     _flushTimer : null,
     _needReOutputTree : false,
-    _root : null,
+
+	nodes : [], 	// flat list of all nodes. Nodes auto-register here
+    root : null,    // root node
 
     get data() {
     	sbCommonUtils.dbg('get data()');
@@ -213,25 +277,7 @@ var sbDataSource = {
     },
 
 
-	//Loads index.dat for the directory into ordered {id,title} pairs
-	_loadIndexDat : function (fso) {
-		var index = fso.clone();
-		index.append("index.dat");
-		if (!index.exists())
-			return [];
-		
-		var entries = [];
-		var lines = sbCommonUtils.readFile(index).replace(/\r\n|\r/g, '\n').split("\n");
-		lines.forEach(function(line) {
-			if (line == "") return; //safety
-			var parts = line.split('=');
-			entries.append({
-			  id: parts.shift(),
-			  title: parts.join("=")
-			});
-		});
-		return entries;
-	},
+
 
 	//Checks the filesystem and loads all the children elements
 	//At this time it can only be used for initial loading, but our final objective is to support reloading:
@@ -243,11 +289,11 @@ var sbDataSource = {
 
 		//Load index.dat
 		sbCommonUtils.dbg('loadChildren('+fso.path+'): loading index.dat entries');
-		aRes._index = this._loadIndexDat(fso);
+		aRes.loadIndex(fso);
 		aRes._index.forEach(function(entry) {
 			if (entry.id == "") return; //safety
 			if (entry.id.startsWith('*')) {
-				aRes.insertChild(new Resource(aRes, "separator", ""));
+				aRes.insertChild(new Resource(null, "separator"));
 				return;
 			}
 			if (aRes.indexOfFilename(entry.id) >= 0) return; //don't list one resource twice //TODO: perhaps call refresh on child anyway, if recursive?
@@ -278,14 +324,14 @@ var sbDataSource = {
     	sbCommonUtils.dbg(fso);
     	var filename = fso.leafName;
 		if (fso.isDirectory()) {
-			var aRes = new Resource(aRes, "folder", filename);
+			var aRes = new Resource(null, "folder", filename);
 			if (recursive)
 				this._loadChildren(aRes, fso, recursive);
 			return aRes;
 		} else
 		switch (filename.split('.').pop()) {
-			case "txt": return new Resource(aRes, "note", filename); break;
-			default: return new Resource(aRes, "", filename); break;
+			case "txt": return new Resource(null, "note", filename); break;
+			default: return new Resource(null, "", filename); break;
 		}
     },
     
@@ -294,7 +340,7 @@ var sbDataSource = {
     //  Folder 1/Folder 2/File.txt
     //  Folder 1:Folder 2:File.txt
     //Returns the resource object or nil.
-    findResource : function(path) {
+    findResourceByPath : function(path) {
     	path = path.replace(/[\\\/]/g, '/').split(':');
     	var entry = this._root;
     	while (path.length != 0) {
@@ -306,12 +352,20 @@ var sbDataSource = {
     	return entry;
     },
     
+    //Takes a 14-digit rdfId and searches for a resource which matches it
+    findResourceById : function(id) {
+    	for (var i = 0; i < nodes.length; i++)
+    		if (nodes[i].rdfId == id)
+    			return nodes[i];
+    	return null;
+    },
+    
     findResourceByUrn : function(urn) {
     	if (urn == "urn:scrapbook:root")
     		return this.root;
-    	var pre = "urn:scrapbook:item:";
+    	var pre = "urn:scrapbook:item";
     	if (urn.startsWith(pre))
-    		return findResource(urn.slice(pre.length));
+    		return findResourceById(urn.slice(pre.length));
     	return null;
     },
     
@@ -385,11 +439,14 @@ var sbDataSource = {
             aSBitem[prop] = this.sanitize(aSBitem[prop]);
         }, this);
         try {
+        	sbCommonUtils.dbg("addItem: looking for parent: "+aParName);
             var parent = this.findResourceByUrn(aParName, false);
             if ( !parent ) {
+            	sbCommonUtils.dbg("addItem: cannot find parent");
                 parent = this.root;
                 aIdx = 0;
             }
+            sbCommonUtils.dbg("addItem: parent "+parent);
 			
             //choose suitable and unique filename
             switch (aSBitem.type) {
@@ -398,11 +455,14 @@ var sbDataSource = {
             	default: var ext = "";
             }
             var filename = this.reserveFilename(parent, aSBitem.title, ext);
+            sbCommonUtils.dbg("addItem: reserved filename: "+filename);
 			
             //create a new resource
-            var newItem = Resource(cont, aSBItem.type, filename);
-            if (filename != aSBitem.title)
+            var newItem = new Resource(aSBitem.id, aSBitem.type, filename);
+            if (filename != aSBitem.title) {
+            	sbCommonUtils.dbg("addItem: title overridden, setting title");
             	newItem._title = aSBitem.title;
+            }
             
             //dump all properties for debug
             //TODO: Remove when I'm certain that I'm handling all the important properties
@@ -414,6 +474,7 @@ var sbDataSource = {
                 if ( aIdx == 0 || aIdx == -1 ) aIdx = 1;
             }
            	parent.insertChild(newItem, aIdx);
+           	sbCommonUtils.dbg("addItem: child inserted");
             
             //Associate any filesystem objects and write to them
 	        switch (newItem.type) {
@@ -435,7 +496,7 @@ var sbDataSource = {
         try {
 			if (this.isFilesystemObject(curRes))
 				resFSO = this.getAssociatedFsObject(curRes); // we'll be unable to retrieve it later
-			sbCommonUtils.RDFC.Init(this._dataObj, curPar);
+			sbCommonUtils.RDFC.Init(sbRDF._dataObj, curPar);
 			sbCommonUtils.RDFC.RemoveElement(curRes, true);
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE1", [ex]));
@@ -445,7 +506,7 @@ var sbDataSource = {
             if ( tarRelIdx == 0 || tarRelIdx == -1 ) tarRelIdx = 1;
         }
         try {
-            sbCommonUtils.RDFC.Init(this._dataObj, tarPar);
+            sbCommonUtils.RDFC.Init(sbRDF._dataObj, tarPar);
             if ( tarRelIdx > 0 ) {
                 sbCommonUtils.RDFC.InsertElementAt(curRes, tarRelIdx, true);
             } else {
@@ -457,7 +518,7 @@ var sbDataSource = {
             	this.moveFilesystemObject(curRes, resFSO, tarPar);
         } catch(ex) {
             sbCommonUtils.alert(sbCommonUtils.lang("scrapbook", "ERR_FAIL_ADD_RESOURCE2", [ex]));
-            sbCommonUtils.RDFC.Init(this._dataObj, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
+            sbCommonUtils.RDFC.Init(sbRDF._dataObj, sbCommonUtils.RDF.GetResource("urn:scrapbook:root"));
             sbCommonUtils.RDFC.AppendElement(curRes, true);
         }
         this._flushWithDelay();
@@ -512,7 +573,7 @@ var sbDataSource = {
 
 			//Delete the item + properties from RDF
 			if (aParRes) {
-				sbCommonUtils.RDFC.Init(this._dataObj, aParRes);
+				sbCommonUtils.RDFC.Init(sbRDF._dataObj, aParRes);
 				sbCommonUtils.RDFC.RemoveElement(aRes, true);
 			}
 			rmIDs.push(this.removeResource(aRes));
@@ -526,14 +587,14 @@ var sbDataSource = {
 	//Removes a resource with all properties from RDF. Do not call directly, use deleteItemDescending for proper deletion (with recursion and resources)
     removeResource : function(aRes) {
     	//Remove all properties
-        var names = this._dataObj.ArcLabelsOut(aRes);
+        var names = sbRDF._dataObj.ArcLabelsOut(aRes);
         var rmID = this.getProperty(aRes, "id");
         sbCommonUtils.dbg("removeResource: removing "+rmID);
         while ( names.hasMoreElements() ) {
             try {
                 var name  = names.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
-                var value = this._dataObj.GetTarget(aRes, name, true);
-                this._dataObj.Unassert(aRes, name, value);
+                var value = sbRDF._dataObj.GetTarget(aRes, name, true);
+                sbRDF._dataObj.Unassert(aRes, name, value);
             } catch(ex) {
             	sbCommonUtils.log("removeResource: exception: "+ex);
             }
@@ -552,7 +613,7 @@ var sbDataSource = {
     getItem : function(aRes) {
         var ns = sbCommonUtils.namespace, nsl = ns.length;
         var item = sbCommonUtils.newItem();
-        var names = this._dataObj.ArcLabelsOut(aRes);
+        var names = sbRDF._dataObj.ArcLabelsOut(aRes);
         while ( names.hasMoreElements() ) {
             try {
                 var name  = names.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
@@ -560,7 +621,7 @@ var sbDataSource = {
                 var key = name.Value.substring(nsl);
                 if (this.internalPropertyNames.indexOf(key) >= 0)
                     continue; //internal properties should be skipped
-                var value = this._dataObj.GetTarget(aRes, name, true).QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
+                var value = sbRDF._dataObj.GetTarget(aRes, name, true).QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
                 item[key] = value;
             } catch(ex) {
             	sbCommonUtils.log("getItem: exception: "+ex);
@@ -572,7 +633,7 @@ var sbDataSource = {
     getProperty : function(aRes, aProp) {
         if ( aRes.Value == "urn:scrapbook:root" ) return "";
         try {
-            var retVal = this._dataObj.GetTarget(aRes, sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp), true);
+            var retVal = sbRDF._dataObj.GetTarget(aRes, sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp), true);
             return retVal.QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
         } catch(ex) {
             return "";
@@ -601,13 +662,13 @@ var sbDataSource = {
         	if ((aPropName == "title") && this.isFilesystemObject(aRes))
         		var oldFilename = this.getAssociatedFilename(aRes); //we won't be able to retrieve it later
         	
-            var oldVal = this._dataObj.GetTarget(aRes, aProp, true);
+            var oldVal = sbRDF._dataObj.GetTarget(aRes, aProp, true);
             if (oldVal == sbCommonUtils.RDF.NS_RDF_NO_VALUE) {
-                this._dataObj.Assert(aRes, aProp, sbCommonUtils.RDF.GetLiteral(newVal), true);
+                sbRDF._dataObj.Assert(aRes, aProp, sbCommonUtils.RDF.GetLiteral(newVal), true);
             } else {
                 oldVal = oldVal.QueryInterface(Components.interfaces.nsIRDFLiteral);
                 newVal = sbCommonUtils.RDF.GetLiteral(newVal);
-                this._dataObj.Change(aRes, aProp, oldVal, newVal);
+                sbRDF._dataObj.Change(aRes, aProp, oldVal, newVal);
             }
 
             //When changing the title, rename the item on disk
@@ -629,9 +690,9 @@ var sbDataSource = {
     	sbCommonUtils.log("clearProperty: "+aProp);
     	aProp = sbCommonUtils.RDF.GetResource(sbCommonUtils.namespace + aProp);
     	try {
-    		var oldVal = this._dataObj.GetTarget(aRes, aProp, true);
+    		var oldVal = sbRDF._dataObj.GetTarget(aRes, aProp, true);
             if (oldVal != sbCommonUtils.RDF.NS_RDF_NO_VALUE)
-				this._dataObj.Unassert(aRes, aProp, oldVal);
+				sbRDF._dataObj.Unassert(aRes, aProp, oldVal);
             this._flushWithDelay();
     	} catch(ex) {
             sbCommonUtils.error(ex);
@@ -644,7 +705,7 @@ var sbDataSource = {
             case "folder"   : return "chrome://scrapbook/content/view.xul?id=" + id; break;
             case "note"     : return "chrome://scrapbook/content/note.xul?id=" + id; break;
             case "bookmark" : return this.getProperty(aRes, "source"); break;
-            default         : return sbCommonUtils.getBaseHref(this._dataObj.URI) + "data/" + id + "/index.html";
+            default         : return sbCommonUtils.getBaseHref(sbRDF._dataObj.URI) + "data/" + id + "/index.html";
         }
     },
 
@@ -652,15 +713,15 @@ var sbDataSource = {
         if ( typeof(aRes) == "string" ) {
             aRes = sbCommonUtils.RDF.GetResource("urn:scrapbook:item" + aRes);
         }
-        return this._dataObj.ArcLabelsOut(aRes).hasMoreElements();
+        return sbRDF._dataObj.ArcLabelsOut(aRes).hasMoreElements();
     },
 
     isolated : function(aRes) {
-        return !this._dataObj.ArcLabelsIn(aRes).hasMoreElements();
+        return !sbRDF._dataObj.ArcLabelsIn(aRes).hasMoreElements();
     },
 
     isContainer : function(aRes) {
-        return sbCommonUtils.RDFCU.IsContainer(this._dataObj, aRes);
+        return sbCommonUtils.RDFCU.IsContainer(sbRDF._dataObj, aRes);
     },
 	
 	//True if the resource represents a filesystem object (as opposed to purely virtual resources such as separators)
@@ -684,14 +745,14 @@ var sbDataSource = {
     },
 
     getRelativeIndex : function(aParRes, aRes) {
-        return sbCommonUtils.RDFCU.indexOf(this._dataObj, aParRes, aRes);
+        return sbCommonUtils.RDFCU.indexOf(sbRDF._dataObj, aParRes, aRes);
     },
 
     // aRule: 0 for any, 1 for containers (folders), 2 for items
     flattenResources : function(aContRes, aRule, aRecursive, aRecObj) {
         var resList = aRecObj || [];
         if ( aRule != 2 ) resList.push(aContRes);
-        sbCommonUtils.RDFC.Init(this._dataObj, aContRes);
+        sbCommonUtils.RDFC.Init(sbRDF._dataObj, aContRes);
         var resEnum = sbCommonUtils.RDFC.GetElements();
         while ( resEnum.hasMoreElements() ) {
             var res = resEnum.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
@@ -709,12 +770,12 @@ var sbDataSource = {
     },
 
     findParentResource : function(aRes) {
-        var resEnum = this._dataObj.GetAllResources();
+        var resEnum = sbRDF._dataObj.GetAllResources();
         while ( resEnum.hasMoreElements() ) {
             var res = resEnum.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
             if ( !this.isContainer(res) ) continue;
             if ( res.Value == "urn:scrapbook:search" ) continue;
-            if ( sbCommonUtils.RDFCU.indexOf(this._dataObj, res, aRes) != -1 ) return res;
+            if ( sbCommonUtils.RDFCU.indexOf(sbRDF._dataObj, res, aRes) != -1 ) return res;
         }
         return null;
     },
