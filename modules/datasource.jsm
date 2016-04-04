@@ -184,16 +184,6 @@ var sbDataSource = {
     	if (!this._root) this._init();
     	return sbRDF.data;
     },
-    
-    get root() {
-    	if (!this._root) this._init();
-    	return this._root;
-    },
-    
-    //Returns the file URL to the root of where the data is stored
-    get baseURI() {
-    	return Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService).newFileURI(sbCommonUtils.getScrapBookDir());
-    },
 
     _init : function(aQuietWarning) {
     	sbCommonUtils.dbg('init()');
