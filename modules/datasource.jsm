@@ -1,6 +1,16 @@
 Components.utils.import("resource://scrapbook-modules/common.jsm");
 Components.utils.import("resource://scrapbook-modules/fakerdf.jsm");
 
+/*
+Scrapbook FS data source.
+Outside modules mostly require RDF datasource. So we keep one for them. They interact with us by calling
+predefined functions which take URNs or RDF-resources.
+
+Internally we keep the data in a set of Resource() objects. These Resources update the RDF as they're changed.
+There's an easy way to map URN to Resource(), so first thing we do with outside functions is to retrieve the Resource.
+*/
+
+
 
 /*
   Creates a basic resource. Additional properties may be added by the caller.
@@ -51,7 +61,7 @@ Resource.prototype = {
 	getTitle : function() {
 		sbCommonUtils.dbg("getTitle()");
 		//If we have overriden title, use that
-		if (this._title) {
+		if (this._title != null) {
 			sbCommonUtils.dbg("returning "+this._title);
 			return this._title;
 		}
@@ -68,7 +78,7 @@ Resource.prototype = {
 		}
 	},
 	
-	//Sets title override. If this is empty, filename is used as title.
+	//Sets title override. If this is null, filename is used as title.
 	//Use when the filename which you assign in create/rename/move cannot be represented by FS or conflicts with existing one.
 	setCustomTitle : function(aTitle) {
 		sbCommonUtils.dbg("setCustomTitle: '"+aTitle+"'");
@@ -365,9 +375,9 @@ var sbDataSource = {
     
     //Takes a 14-digit rdfId and searches for a resource which matches it
     findResourceById : function(id) {
-    	for (var i = 0; i < nodes.length; i++)
-    		if (nodes[i].rdfId == id)
-    			return nodes[i];
+    	for (var i = 0; i < this.nodes.length; i++)
+    		if (this.nodes[i].rdfId == id)
+    			return this.nodes[i];
     	return null;
     },
     
@@ -378,8 +388,20 @@ var sbDataSource = {
     	}
     	var pre = "urn:scrapbook:item";
     	if (urn.startsWith(pre))
-    		return findResourceById(urn.slice(pre.length));
+    		return this.findResourceById(urn.slice(pre.length));
     	return null;
+    },
+    
+    findResourceByRdfRes : function(res) {
+    	for (var i = 0; i < this.nodes.length; i++)
+    		if (this.nodes[i].rdfRes == res)
+    			return this.nodes[i];
+    	return null;
+    },
+    getResourceByRdfRes : function(res) {
+    	var node = this.findResourceByRdfRes(res);
+    	if (!node) throw "Cannot find resource by RDF res "+res;
+    	return node;
     },
     
 
@@ -457,9 +479,9 @@ var sbDataSource = {
 			
             //choose suitable and unique filename
             switch (aSBitem.type) {
-            	case "folder": var ext = "";
-            	case "note": var ext = "txt";
-            	default: var ext = "";
+            	case "folder": var ext = ""; break;
+            	case "note": var ext = "txt"; break;
+            	default: var ext = ""; break;
             }
             var title = (aSBitem.title != "") ? aSBitem.title : (aSBitem.type != "") ? aSBitem.type : "Resource";
             var filename = this.reserveFilename(parent, title, ext);
@@ -485,7 +507,7 @@ var sbDataSource = {
             //Associate any filesystem objects and write to them
 	        switch (newItem.type) {
 	            case "folder": this.needFolderDir(newItem); break;
-	            case "note": this.writeNoteContents(newItem, ""); break; //touch the file so the filename is not stolen
+	            case "note": this._writeNoteContents(newItem, ""); break; //touch the file so the filename is not stolen
 	        }
 
             this._flushWithDelay();
@@ -732,7 +754,7 @@ var sbDataSource = {
 	
 	//True if the resource represents a filesystem object (as opposed to purely virtual resources such as separators)
 	isFilesystemObject : function(aRes) {
-	    resType = this.getProperty(aRes, "type");
+	    var resType = this.getProperty(aRes, "type");
 	    return ((resType == "folder") || (resType == "note"));
 	},
 
@@ -832,6 +854,7 @@ var sbDataSource = {
     //This function does NOT claim the name, so if you don't hurry, someone else might take it.
 	//If existingName is given, it is assumed to be ours (we'll not consider it taken if we stumble upon it)
     reserveFilename : function(aParent, aTitle, aExt, aExistingName) {
+    	sbCommonUtils.dbg("reserveFilename("+aParent+','+aTitle+','+aExt+','+aExistingName+')');
     	var parentDir = aParent.getFilesystemObject();
     	sbCommonUtils.dbg("reserveFilename: parent directory: "+parentDir.path);
     	var filename = this.selectUniqueFilename(parentDir, this.sanitizeFilename(aTitle), aExt, aExistingName);
@@ -851,7 +874,7 @@ var sbDataSource = {
     	
     	var title = this.getProperty(aRes, "title");
     	if (title == "") {
-    		title = resType; //if title is empty, use "Note.txt"
+    		title = aRes.type; //if title is empty, use "Note.txt"
     		if (title == "") //just in case
     			title = "Resource";
     	}
@@ -905,7 +928,7 @@ var sbDataSource = {
     //If the directory does not exist, it is automatically created, but no other initialization will take place. This may restore
     //a folder that was accidentally deleted manually, but will not properly choose and register a name substitution anew.
     needFolderDir : function(aFolder) {
-    	if (!this.isFolder(aFolder)) throw "needFolderDir: not a folder but "+this.getProperty(folderRes, "type");
+    	if (!this.isFolder(aFolder)) throw "needFolderDir: not a folder but "+aFolder.type;
     	sbCommonUtils.dbg("needFolderDir: "+aFolder);
     	var path = aFolder.getFilesystemObject();
     	sbCommonUtils.dbg("needFolderDir: path="+path.path);
@@ -952,27 +975,35 @@ var sbDataSource = {
 	*/
 	
 	//Reads the contents of the note and returns it
-	readNoteContents : function(aNoteRes) {
+	readNoteContents : function(aNoteRdfRes) {
 		try {
-			var file = this.getAssociatedFsObject(aNoteRes);
-        	var content = sbCommonUtils.readFile(file);
-			return sbCommonUtils.convertToUnicode(content, "UTF-8");
+			return this._readNoteContents(this.getResourceByRdfRes(aNoteRdfRes));
 		} catch(ex) {
 			sbCommonUtils.alert("Failed to read note. Abort operation or your data may be lost."); //TODO: Localize
 			throw ex;
 		}
 	},
+	//Same but accepts a Resource()
+	_readNoteContents : function(aNote) {
+		sbCommonUtils.dbg("Reading note contents: "+aNote.filename);
+       	var content = sbCommonUtils.readFile(aNote.getFilesystemObject());
+		return sbCommonUtils.convertToUnicode(content, "UTF-8");
+	},
 	
 	//Outputs note contents to the associated file. Returns false if failed.
-	writeNoteContents : function(aNoteRes, content) {
+	writeNoteContents : function(aNoteRdfRes, content) {
 		try {
-			var file = this.getAssociatedFsObject(aNoteRes);
-			sbCommonUtils.writeFile(file, content.replace(/[\r\n]/g,'\n').replace(/\r|\n/g,'\r\n'), "UTF-8");
-			return true;
+			return this._writeNoteContents(this.getResourceByRdfRes(aNoteRdfRes), content);
 		} catch(ex) {
 			sbCommonUtils.alert("Failed to save note. Backup the data before continuing, or it may be lost."); //TODO: Localize
 			return false;
 		}
+	},
+	_writeNoteContents : function(aNote, content) {
+		sbCommonUtils.dbg("Writing note contents: "+aNote.filename);
+		var file = aNote.getFilesystemObject();
+		sbCommonUtils.writeFile(file, content.replace(/[\r\n]/g,'\n').replace(/\r|\n/g,'\r\n'), "UTF-8");
+		return true;
 	},
 	
 	
