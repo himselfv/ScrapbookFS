@@ -687,10 +687,6 @@ var sbDataSource = {
 
 
 
-    //When reading and writing items, we mostly just copy all the available properties.
-    //Some properties are internal though and should be hidden from clients (or they may write their obsolete values back later).
-    internalPropertyNames : ["filename"],
-
     //Reads all of resources's data, except for internal bookkeeping
     getItem : function(aRes) {
         var ns = sbCommonUtils.namespace, nsl = ns.length;
@@ -701,8 +697,6 @@ var sbDataSource = {
                 var name  = names.getNext().QueryInterface(Components.interfaces.nsIRDFResource);
                 if (name.Value.substring(0, nsl) != ns) continue;
                 var key = name.Value.substring(nsl);
-                if (this.internalPropertyNames.indexOf(key) >= 0)
-                    continue; //internal properties should be skipped
                 var value = sbRDF._dataObj.GetTarget(aRes, name, true).QueryInterface(Components.interfaces.nsIRDFLiteral).Value;
                 item[key] = value;
             } catch(ex) {
