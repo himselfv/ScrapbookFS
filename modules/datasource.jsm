@@ -3,21 +3,54 @@ Components.utils.import("resource://scrapbook-modules/fakerdf.jsm");
 
 /*
 Scrapbook FS data source.
-Outside modules mostly require RDF datasource. So we keep one for them. They interact with us by calling
-predefined functions which take URNs or RDF-resources.
+Original Scrapbook used RDF file as a data source. Outside modules still require RDF, so we keep one for them.
+They interact with us by calling predefined functions which take URNs or RDF-resources.
+URNs:
+  urn:scrapbook:root
+  urn:scrapbook:item12345678901234
 
 Internally we keep the data in a set of Resource() objects. These Resources update the RDF as they're changed.
-There's an easy way to map URN to Resource(), so first thing we do with outside functions is to retrieve the Resource.
+There's a map URN -> Resource(), so the first thing exported functions do is retrieve the Resource.
 
-We have three data structures used throughout the SB:
+Therefore we have three data structures used throughout the SB:
+  1. JS container with properties. This is a static structure; data is read into it by getItem(),
+    and written back with setItem().
+  2. RDF resource / URN.
+  3. Resource().
 
-1. JS container with properties. This is a static structure; data is read into it by getItem(),
-  and written back with setItem().
+Each Resource has its own underlying FS format:
+  root,folder -> folder
+  note -> txt
+  bookmark -> url
+  saved page -> mht
+  separator -> none
 
-2. RDF resource / URN.
+Some of these formats can store additional properties (url, mht), others can't. In that case additional
+properties are stored in a parent container's index file.
 
-3. Resource().
 
+
+*/
+
+/*
+On flushing:
+Originally, Scrapbook had one index store in scrapbook.rdf. When anything was modified,
+a flush was queued 10 seconds later. (Additional resources on the other hand were written immediately).
+In ScrapbookFS each folder has an index store. They're smaller, so we're now writing them immediately.
+If it ever feels like a good idea to queue flushes (e.g. for batch operations),
+we may implement a flush service:
+  sbFlushService.queue(this); //from the container Resource()
+*/
+
+/*
+TODO:
+- notify parent on any changes to comment, if we can't store it
+- notify parent on any changes to icon, source if we can't store those
+- read create, modify fields from fs (ignore for non-fs objects or use parent ones)
+- read and write lock (read-only attribute)
+- when accepting children, inform them of any additional properties from index.dat?
+- when loading index entries, handle "file not found" (that's okay)
+- when saving and loading index, sanitize titles (replace linebreaks, unprintable characters)
 */
 
 
@@ -46,15 +79,25 @@ function Resource(rdfId, type, filename) {
 	sbCommonUtils.dbg('Resource('+rdfId+','+type+','+filename+')');
 	this.rdfId = rdfId;
 	this.type = type;
-	this.filename = filename;
+	this._filename = filename;
+	this.children = [];
 	this.registerRdf();
 	sbDataSource.nodes.push(this); //auto-register us in a node list
 }
 
 Resource.prototype = {
 	parent : null,
-	type : "", //root, folder, note, ...
-	filename : "",
+	type : null, //root, folder, note, ...
+
+	_filename : null,
+	get filename() { return this._filename; },
+	//Note: this does NOT move the item, moving of the actual resources is handled by sbDataSource
+	set filename(fname) {
+		this._filename = fname;
+		if (this.parent)
+			this.parent._childFilenameTitleChanged(this);
+	},
+
 
 	_FSO : null, //explicit filesystem object, only set for root node
 	getFilesystemObject : function() {
@@ -96,7 +139,13 @@ Resource.prototype = {
 			sbCommonUtils.dbg("returning "+this._title);
 			return this._title;
 		}
-
+		return this._getFilenameTitle();
+	},
+	
+	//Returns filename of this Resource without extension, as it will be used for title
+	//if it is not overriden
+	//Also useful to check if it's overriden.
+	_getFilenameTitle : function() {
 		//Strip extension
 		var parts = this.filename.split('.');
 		if (parts.pop().length > 5) {
@@ -114,6 +163,8 @@ Resource.prototype = {
 	setCustomTitle : function(aTitle) {
 		sbCommonUtils.dbg("setCustomTitle: '"+aTitle+"'");
 		this._title = aTitle;
+		if (this.parent)
+			this.parent._childFilenameTitleChanged(this);
 		sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //update RDF
 	},
 
@@ -121,7 +172,7 @@ Resource.prototype = {
 	// Index.dat
 	_index : null, //explicit index, if present
 	
-	//Loads index.dat for the directory into ordered {id,title} pairs
+	//Loads index.dat for the directory FSO into ordered {id,title} pairs
 	_loadIndexDat : function (fso) {
 		sbCommonUtils.dbg("loadIndexDat: "+fso.path);
 		var index = fso.clone();
@@ -131,23 +182,78 @@ Resource.prototype = {
 		
 		var entries = [];
 		var lines = sbCommonUtils.readFile(index).replace(/\r\n|\r/g, '\n').split("\n");
-		lines.forEach(function(line) {
-			if (line == "") return; //safety
-			var parts = line.split('=');
-			entries.append({
+		for (var i=0; i<lines.length; i++) {
+			if (lines[i] == "") continue; //safety
+			var parts = lines[i].split('=');
+			entries.push({
 			  id: parts.shift(),
 			  title: parts.join("=")
 			});
-		});
+		}
 		return entries;
+		return [];
 	},
 	loadIndex : function (fso) {
 		this._index = this._loadIndexDat(fso);
 	},
+	_updateIndex : function() {
+		var entries = [];
+		sbCommonUtils.dbg("updateIndex: "+this.children.length+" children found");
+		for (var i=0; i<this.children.length; i++) {
+			sbCommonUtils.dbg("updateIndex: "+this.children[i].type+','+this.children[i].filename);
+			var entry = {};
+			switch (this.children[i].type) {
+			case "separator":
+				entry.id = '***';
+				entry.title = null;
+				break;
+			default:
+				entry.id = this.children[i].filename;
+				var title = this.children[i].getTitle();
+				if (title != this.children[i]._getFilenameTitle())
+					entry.title = title;
+				else
+					entry.title = null;
+			}
+			entries.push(entry);
+		}
+		this.index = entries;
+	},
+	_writeIndexDat : function (fso, index) {
+		sbCommonUtils.dbg("writeIndexDat: "+fso.path);
+		fso = fso.clone();
+		fso.append("index.dat");
+		var lines = [];
+		for (var i=0; i<index.length; i++) {
+			if (index[i].title)
+				lines.push(index[i].id+'='+index[i].title);
+			else
+				lines.push(index[i].id);
+		}
+		sbCommonUtils.writeFile(fso, lines.join("\r\n"));
+	},
+	
+
+	//Writes any changed resources to the disk.
+	//By default this is only triggered when something has changed, so we may be lazy with dirty detection.
+	flush : function() {
+		sbCommonUtils.dbg("Resource.flush()");
+		if (this.isFolder) {
+			this._updateIndex();
+			if (this.index)
+				this._writeIndexDat(this.getFilesystemObject(), this.index);
+		}
+	},
+
+	//Queues writing any changed resources to disk
+	queueFlush : function() {
+		sbFlushService.queue(this);
+	},
 
 
 	// Children 
-	children : [],
+	children : null,
+	_loadingChildren : false, //if set, ignore children callbacks about title changes, that's us
 
 	//Returns the index of the entry with this filename in children
 	indexOfFilename : function(filename) {
@@ -173,10 +279,11 @@ Resource.prototype = {
 	},
 	
 	insertChild : function(child, index) {
+		sbCommonUtils.dbg("insertChild: at="+index);
 		var cont = this.rdfCont();
-		if ( 0 < index && index <= this.children.length ) {
+		if ( 0 <= index && index < this.children.length ) {
 			this.children.splice(index, 0, child);
-			cont.InsertElementAt(child.rdfRes, index, true);
+			cont.InsertElementAt(child.rdfRes, index+1, true); //RDF is indexed starting with 1
 		} else {
 			this.children.push(child);
 			cont.AppendElement(child.rdfRes);
@@ -192,6 +299,8 @@ Resource.prototype = {
         I'm still not sure what's the difference in using RDFC.Init first.
 	*/
 		child.parent = this;
+		if (!this._loadingChildren)
+			this.queueFlush();
 	},
 	
 	removeChild : function(child) {
@@ -210,6 +319,8 @@ Resource.prototype = {
 		I'm not sure what's the difference.
 	*/
 		child.parent = null;
+		if (!this._loadingChildren)
+			this.queueFlush();
 		return child;
 	},
 
@@ -221,6 +332,18 @@ Resource.prototype = {
 		var child = this.removeChildByIndex(oldIndex);
 		if (oldIndex < newIndex) newIndex = newIndex - 1; //shifted due to removal
 		this.insertChild(newIndex, child);
+	},
+
+
+	// Parent children callback line
+	// Children must phone home when something big happens in their lives. Parent has to update
+	// the index and maybe store some properties they aren't able to store themselves.
+
+	// Called when the title or the filename changes. These two are interdependent, so one callback
+	_childFilenameTitleChanged(child) {
+		sbCommonUtils.dbg("Resource.childFilenameTitleChanged()");
+		if (!this._loadingChildren)
+			this.queueFlush();
 	},
 
 
@@ -278,8 +401,10 @@ Resource.prototype = {
 		sbRDF.setProperty(this.rdfRes, 'create', ""); //TODO
 		sbRDF.setProperty(this.rdfRes, 'modify', ""); //TODO
 		sbRDF.setProperty(this.rdfRes, 'type', this.type);
-		sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //TODO
-		sbRDF.setProperty(this.rdfRes, 'chars', "UTF-8"); //TODO
+		if (this.type != "separator") {
+			sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //TODO
+			sbRDF.setProperty(this.rdfRes, 'chars', "UTF-8"); //TODO
+		}
 		sbRDF.setProperty(this.rdfRes, 'icon', ""); //TODO
 		sbRDF.setProperty(this.rdfRes, 'source', ""); //TODO
 		sbRDF.setProperty(this.rdfRes, 'comment', ""); //TODO
@@ -303,6 +428,73 @@ Resource.prototype = {
 	},
 }
 
+
+/*
+Flush service.
+Queues data write requests and processes them in a timely manner.
+Usage:
+  sbFlushService.queue(Resource)
+*/
+var sbFlushService = {
+	_initialized : false,
+	_flushQueue : [],
+	
+	_init : function() {
+		if (!this._initialized) {
+			var obs = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+			obs.addObserver(this, "quit-application-requested", false);
+		}
+	},
+	_uninit : function() {
+		this.flush();
+	},
+
+	observe : function(aSubject, aTopic, aData) {
+		switch (aTopic) {
+			case "timer-callback": 
+				this.flush();
+				break;
+			case "quit-application-requested": 
+				this._uninit();
+				break;
+			default: 
+		}
+	},
+	
+	queue : function (item) {
+		sbCommonUtils.dbg("sbFlushService.queue()");
+		if (this._flushQueue.indexOf(item) < 0) //don't push twice
+			this._flushQueue.push(item);
+		if (!this._initialized) this._init();
+		if (!this._flushTimer) {
+			this._flushTimer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+			// this.observe is called when time's up
+			this._flushTimer.init(this, 4000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+		}
+	},
+	
+	flush : function () {
+		if (this._flushTimer) {
+			this._flushTimer.cancel();
+			this._flushTimer = null;
+		}
+		sbCommonUtils.dbg("sbFlushService.flush()");
+		try {
+			while (this._flushQueue.length > 0) {
+				this._flushQueue[0].flush();
+				this._flushQueue.splice(0, 1);
+			}
+		} catch(ex) {
+			sbCommonUtils.error(ex);
+		}
+	},
+}
+
+
+/*
+Data source.
+Handles external calls and filesystem actions (moving, creating, deleting) except for index updates.
+*/
 
 var sbDataSource = {
 
@@ -348,6 +540,8 @@ var sbDataSource = {
 
 
 
+	//Alternatively we may skip files with "hidden" flag set
+	IGNORE_FILENAMES : ['index.dat','desktop.ini'],
 
 	//Checks the filesystem and loads all the children elements
 	//At this time it can only be used for initial loading, but our final objective is to support reloading:
@@ -360,31 +554,41 @@ var sbDataSource = {
 		//Load index.dat
 		sbCommonUtils.dbg('loadChildren('+fso.path+'): loading index.dat entries');
 		aRes.loadIndex(fso);
-		aRes._index.forEach(function(entry) {
-			if (entry.id == "") return; //safety
+		aRes._loadingChildren = true;
+		for (var i=0; i<aRes._index.length; i++) {
+			var entry = aRes._index[i];
+			if (entry.id == "") continue; //safety
+			sbCommonUtils.dbg("loadChildren: index entry "+entry.id+","+entry.title);
 			if (entry.id.startsWith('*')) {
 				aRes.insertChild(new Resource(null, "separator"));
-				return;
+				continue;
 			}
-			if (aRes.indexOfFilename(entry.id) >= 0) return; //don't list one resource twice //TODO: perhaps call refresh on child anyway, if recursive?
+			if (aRes.indexOfFilename(entry.id) >= 0) continue; //don't list one resource twice //TODO: perhaps call refresh on child anyway, if recursive?
 
 			var childFso = fso.clone();
-			childFso.append(entries.id);
+			childFso.append(entry.id);
 			var childRes = this._loadResource(childFso, recursive);
 			if (entry.title != "")
 				childRes.setCustomTitle(entry.title);
 			aRes.insertChild(childRes);
-		});
+		}
 		
     	//Now load the rest of the directory entries
     	sbCommonUtils.dbg('loadChildren('+fso.path+'): loading the rest of the entries');
     	var entries = fso.directoryEntries;
     	while (entries.hasMoreElements()) {
     		var entry = entries.getNext().QueryInterface(Components.interfaces.nsIFile);
+    		if (entry.isHidden) continue; //skip hidden files such as desktop.ini
+
     		var filename = entry.leafName;
+    		if (this.IGNORE_FILENAMES.indexOf(filename.toLowerCase()) >= 0) continue; //skip our bookkeeping
+
     		if (aRes.indexOfFilename(filename) >= 0) continue; //already positioned
+    		sbCommonUtils.dbg("loadChildren: adding "+entry.filename+" to "+aRes.filename);
     		aRes.insertChild(this._loadResource(entry, recursive));
     	}
+    	aRes._loadingChildren = false;
+    	sbCommonUtils.dbg("loadChildren("+fso.leafName+"): finished, "+aRes.children.length+" children");
     },
     
     //Loads a single Resource, determining its type
@@ -567,6 +771,7 @@ var sbDataSource = {
 
     moveItem : function(curRes, curPar, tarPar, tarRelIdx) {
         try {
+    		tarRelIdx -= 1; //RDF is indexed starting with 1
 	    	curRes = this.getResourceByRdfRes(curRes);
 	    	if (!curRes || !curRes.parent || (curRes.parent.rdfRes != curPar))
 	    		throw "moveItem: invalid resource/parent combination"; //should not happen
