@@ -1,5 +1,6 @@
 Components.utils.import("resource://scrapbook-modules/common.jsm");
 Components.utils.import("resource://scrapbook-modules/fakerdf.jsm");
+Components.utils.import("resource://scrapbook-modules/dirindex.jsm");
 
 /*
 Scrapbook FS data source.
@@ -44,13 +45,14 @@ we may implement a flush service:
 
 /*
 TODO:
-- notify parent on any changes to comment, if we can't store it
-- notify parent on any changes to icon, source if we can't store those
+- notify parent on any changes to comment, icon, source, if we can't store it
 - read create, modify fields from fs (ignore for non-fs objects or use parent ones)
 - read and write lock (read-only attribute)
 - when accepting children, inform them of any additional properties from index.dat?
-- when loading index entries, handle "file not found" (that's okay)
 - when saving and loading index, sanitize titles (replace linebreaks, unprintable characters)
+
+- when loading index entries, handle "file not found" (that's okay)
+- We may have non-matched items in Index. Therefore Index indexation differs from Children indexation (insert/remove is probably broken).
 */
 
 
@@ -167,36 +169,39 @@ Resource.prototype = {
 			this.parent._childFilenameTitleChanged(this);
 		sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //update RDF
 	},
-
-
-	// Index.dat
-	_index : null, //explicit index, if present
 	
+	
+	/*
+	Every folder has an index file which stores:
+	- the order of children
+	- children altnames (which they could or couldn't store internally)
+	- properties the children couldn't store internally
+	
+	When loading the folder, we read the index (if present), and initialize any children
+	declared therein. From there on, each child stores its own properties and calls back
+	when those are changed.
+	
+	When child properties are changed, we rebuild the index and write it down.
+	
+	When children are detached, they take the properties with them. Once attached back,
+	they trigger the rebuild of the index.
+	
+	TODO: We'd prefer to store the index in desktop.ini, this will allow us to store some
+	  properties in a compatible manner (this folder's icon and title; children titles).
+	  This will require us though to preserve the other content that might be there
+	  (we can't just rebuild the file from the scratch).
+	*/
+
 	//Loads index.dat for the directory FSO into ordered {id,title} pairs
-	_loadIndexDat : function (fso) {
-		sbCommonUtils.dbg("loadIndexDat: "+fso.path);
-		var index = fso.clone();
-		index.append("index.dat");
-		if (!index.exists())
-			return [];
-		
-		var entries = [];
-		var lines = sbCommonUtils.readFile(index).replace(/\r\n|\r/g, '\n').split("\n");
-		for (var i=0; i<lines.length; i++) {
-			if (lines[i] == "") continue; //safety
-			var parts = lines[i].split('=');
-			entries.push({
-			  id: parts.shift(),
-			  title: parts.join("=")
-			});
-		}
-		return entries;
-		return [];
+	_loadIndex : function (fso) {
+		var index = new DirIndex();
+		var file = this.getFilesystemObject().clone();
+		file.append("index.dat");
+		if (file.exists())
+			index.loadFromFile(file);
+		return index;
 	},
-	loadIndex : function (fso) {
-		this._index = this._loadIndexDat(fso);
-	},
-	_updateIndex : function() {
+	_compileIndex : function() {
 		var entries = [];
 		sbCommonUtils.dbg("updateIndex: "+this.children.length+" children found");
 		for (var i=0; i<this.children.length; i++) {
@@ -217,31 +222,20 @@ Resource.prototype = {
 			}
 			entries.push(entry);
 		}
-		this.index = entries;
+		return entries;
 	},
-	_writeIndexDat : function (fso, index) {
-		sbCommonUtils.dbg("writeIndexDat: "+fso.path);
-		fso = fso.clone();
-		fso.append("index.dat");
-		var lines = [];
-		for (var i=0; i<index.length; i++) {
-			if (index[i].title)
-				lines.push(index[i].id+'='+index[i].title);
-			else
-				lines.push(index[i].id);
-		}
-		sbCommonUtils.writeFile(fso, lines.join("\r\n"));
-	},
-	
 
 	//Writes any changed resources to the disk.
 	//By default this is only triggered when something has changed, so we may be lazy with dirty detection.
 	flush : function() {
 		sbCommonUtils.dbg("Resource.flush()");
 		if (this.isFolder) {
-			this._updateIndex();
-			if (this.index)
-				this._writeIndexDat(this.getFilesystemObject(), this.index);
+			var index = this._compileIndex();
+			if (index) {
+				var file = this.getFilesystemObject().clone();
+				file.append("index.dat");
+				index.saveToFile(file);
+			}
 		}
 	},
 
@@ -249,6 +243,83 @@ Resource.prototype = {
 	queueFlush : function() {
 		sbFlushService.queue(this);
 	},
+	
+	
+	
+	// Generic properties
+	// As a rule, we store whatever we can in the file itself (depending on its type),
+	// and everything else offload to parent's index file.
+	// Index must be read before loading any children.
+	// When attaching children, parent will pass all related stored properties to each.
+	
+	_comment : null,
+	get comment() {	return this._comment; },
+	set comment(aValue) {
+		sbCommonUtils.dbg("setComment: '"+aValue+"'");
+		if (this._comment == aValue) return;
+		this._comment = aValue;
+		switch (this.type) {
+		//Some file types might be able to store comment internally
+		default:
+			if (this.parent) this.parent._storeChildProperty(this, "comment", aValue);
+		}
+		sbRDF.setProperty(this.rdfRes, 'comment', aValue);
+	},
+
+	_icon : null,
+	get icon() { return this._icon; },
+	set icon(aValue) {
+		sbCommonUtils.dbg("setIcon: '"+aValue+"'");
+		if (this._icon == aValue) return;
+		this._icon = aValue;
+		switch (this.type) {
+		//Some file types might be able to store icon selection internally
+		default:
+			if (this.parent) this.parent._storeChildProperty(this, "icon", aValue);
+		}
+		sbRDF.setProperty(this.rdfRes, 'icon', aValue);
+	},
+	
+	_source : null,
+	get source() { return this._source; },
+	set source(aValue) {
+		sbCommonUtils.dbg("setSource: '"+aValue+"'");
+		if (this._source == aValue) return;
+		this._source = aValue;
+		switch (this.type) {
+		//Some file types might be able to store icon selection internally
+		default:
+			if (this.parent) this.parent._storeChildProperty(this, "source", aValue);
+		}
+		sbRDF.setProperty(this.rdfRes, 'source', aValue);
+	},
+	
+	//This is called by parent when attaching a child. All generic stored properties are passed here.
+	//Some properties have their own routines (such as title).
+	_loadStoredProperty : function(aProp, aValue) {
+		switch(aProp) {
+		case "comment": this._comment = aValue; break;
+		case "icon": this._icon = aValue; break;
+		case "source": this._source = aValue; break;
+		default: break; //other are unsupported
+		}
+	},
+
+	//Called by children when one of their generic properties is changed and their format has nowhere to store it.
+	_storeChildProperty : function(aChild, aProp, aValue) {
+		//TODO
+		if (!this._loadingChildren)
+			this.queueFlush();
+	},
+
+	// Called when the title or the filename changes. These two are interdependent, so one callback
+	_childFilenameTitleChanged(child) {
+		sbCommonUtils.dbg("Resource.childFilenameTitleChanged()");
+		if (!this._loadingChildren)
+			this.queueFlush();
+	},
+
+
 
 
 	// Children 
@@ -288,16 +359,6 @@ Resource.prototype = {
 			this.children.push(child);
 			cont.AppendElement(child.rdfRes);
 		}
-	/*
-		This is how it was done in moveItem:
-            sbCommonUtils.RDFC.Init(sbRDF._dataObj, tarPar);
-            if ( tarRelIdx > 0 ) {
-                sbCommonUtils.RDFC.InsertElementAt(curRes, tarRelIdx, true);
-            } else {
-                sbCommonUtils.RDFC.AppendElement(curRes);
-            }
-        I'm still not sure what's the difference in using RDFC.Init first.
-	*/
 		child.parent = this;
 		if (!this._loadingChildren)
 			this.queueFlush();
@@ -312,12 +373,6 @@ Resource.prototype = {
 		var cont = this.rdfCont();
 		var child = this.children.splice(index, 1);
 		cont.RemoveElement(child[0].rdfRes, true); //safer to remove by resource than by index
-	 /*
-	 	This is how it was done in moveItem:
-			sbCommonUtils.RDFC.Init(sbRDF._dataObj, curPar.rdfRes);
-			sbCommonUtils.RDFC.RemoveElement(curRes.rdfRes, true);
-		I'm not sure what's the difference.
-	*/
 		child.parent = null;
 		if (!this._loadingChildren)
 			this.queueFlush();
@@ -334,17 +389,6 @@ Resource.prototype = {
 		this.insertChild(newIndex, child);
 	},
 
-
-	// Parent children callback line
-	// Children must phone home when something big happens in their lives. Parent has to update
-	// the index and maybe store some properties they aren't able to store themselves.
-
-	// Called when the title or the filename changes. These two are interdependent, so one callback
-	_childFilenameTitleChanged(child) {
-		sbCommonUtils.dbg("Resource.childFilenameTitleChanged()");
-		if (!this._loadingChildren)
-			this.queueFlush();
-	},
 
 
 	// RDF
@@ -553,10 +597,10 @@ var sbDataSource = {
 
 		//Load index.dat
 		sbCommonUtils.dbg('loadChildren('+fso.path+'): loading index.dat entries');
-		aRes.loadIndex(fso);
 		aRes._loadingChildren = true;
-		for (var i=0; i<aRes._index.length; i++) {
-			var entry = aRes._index[i];
+		var index = aRes._loadIndexDat(fso);
+		for (var i=0; i<index.length; i++) {
+			var entry = index[i];
 			if (entry.id == "") continue; //safety
 			sbCommonUtils.dbg("loadChildren: index entry "+entry.id+","+entry.title);
 			if (entry.id.startsWith('*')) {
@@ -570,6 +614,8 @@ var sbDataSource = {
 			var childRes = this._loadResource(childFso, recursive);
 			if (entry.title != "")
 				childRes.setCustomTitle(entry.title);
+			for (var i=0; i<entry.props.length; i++)
+				childRes._loadStoredProperty(entry.props[i].name, entry.props[i].value)
 			aRes.insertChild(childRes);
 		}
 		
