@@ -4,7 +4,7 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
     <Description about="urn:mozilla:install-manifest">
-        <em:id>scrapbookx@addons.mozilla.org</em:id>
+        <em:id>scrapbookfs@addons.mozilla.org</em:id>
         <em:type>2</em:type>
         <em:version>1.12.29</em:version>
         <em:unpack>false</em:unpack>
@@ -23,7 +23,7 @@
             </Description>
         </em:targetApplication>
 
-        <em:name>ScrapBook X</em:name>
+        <em:name>ScrapBook FS</em:name>
         <em:description>Helps you save web pages and organize the collection.</em:description>
         <em:creator>Danny Lin</em:creator>
         <em:developer>Gomita</em:developer>
