@@ -313,6 +313,11 @@ Resource.prototype = {
 	
 	// Lock is always stored as "read-only" flag
 	get lock() {
+		// Note that on Windows, read-only flag has a different meaning for folders: "this folder
+		// has custom desktop.ini".
+		// nsIFile should abstract this away, but does it really?
+		// Luckily, locks for folders are not supported in Scrapbook, so let's be safe:
+		if (this.isFolder):	return false;
 		if (this.isFilesystemObject)
 			return !this.getFilesystemObject().isWritable();
 		else
@@ -320,6 +325,7 @@ Resource.prototype = {
 	},
 	set lock(aValue) {
 		sbCommonUtils.dbg("set lock: "+aValue);
+		if (this.isFolder):	return;
 		if (this.isFilesystemObject) {
 			var perm = aValue ? 0400 : 0700;
 			sbCommonUtils.dbg("set lock: setting permissions="+perm);
