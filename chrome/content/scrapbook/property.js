@@ -83,7 +83,7 @@ var sbPropService = {
         document.getElementById("sbPropIconMenu").hidden  = this.isTypeNote;
         document.getElementById("sbPropSizeRow").hidden   = this.isTypeFolder || this.isTypeBookmark || this.isTypeSeparator;
         document.getElementById("sbPropMark").hidden      = this.isTypeFolder || this.isTypeNote || this.isTypeNotex || this.isTypeFile || this.isTypeSite || this.isTypeBookmark;
-        document.getElementById("sbPropLock").hidden      = this.isTypeFolder || this.isTypeNote || this.isTypeBookmark;
+        document.getElementById("sbPropLock").hidden      = this.isTypeFolder;
         document.getElementById("sbPropIconMenu").firstChild.firstChild.nextSibling.setAttribute("disabled", this.isTypeFolder || this.isTypeBookmark);
         if (this.isTypeNote)
             document.getElementById("sbPropTitle").removeAttribute("editable");
