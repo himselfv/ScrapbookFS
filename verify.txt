@@ -1,0 +1,19 @@
+
+Indexes:
+- Index is correctly generated when the order is changed
+- Index is correctly loaded and the order is restored
+
+create/modifyTime:
+- modifyTime is correctly read for files
+- modifyTime is correctly read for directories
+- createTime equals modifyTime at this point
+- setting modifyTime is silently ignored
+
+Locks:
+- Lock is correct when the file is read-only
+- Lock is correct when the file is writeable
+- Lock is invisible and false for folders
+  For folders, read-only flag means a different thing under Windows. Luckily, Scrapbook
+  never supported the flag for folders anyway.
+- Read-only is correctly set when lock is set
+- Read-only is correctly cleared when lock is set
