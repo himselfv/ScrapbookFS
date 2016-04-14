@@ -46,13 +46,12 @@ we may implement a flush service:
 /*
 TODO:
 - notify parent on any changes to comment, icon, source, if we can't store it
-- read create, modify fields from fs (ignore for non-fs objects or use parent ones)
-- read and write lock (read-only attribute)
 - when accepting children, inform them of any additional properties from index.dat?
-- when saving and loading index, sanitize titles (replace linebreaks, unprintable characters)
 
 - when loading index entries, handle "file not found" (that's okay)
-- We may have non-matched items in Index. Therefore Index indexation differs from Children indexation (insert/remove is probably broken).
+
+- read create, modify fields from fs (ignore for non-fs objects or use parent ones)
+
 */
 
 
@@ -72,16 +71,26 @@ TODO:
   
   Valid constructors:
     Resource(null, "root"); //use urn:scrapbook:root
-    Resource(null, "folder", filename); //auto-generate
+    Resource(null, "folder", fso); //auto-generate
     Resource("urn:scrapbook:item12345678901234", ...); //use explicit
 
-  Resource does not have to have a file name. For example, a separator has no file name.
+  There are filesytem resources and virtual resources (e.g. separators).
+  Every filesystem resource must have associated filesystem object. This object always points
+  to the resource data, wherever it is.
+  Virtual resources might not have an FSO. For example, a separator has no FSO.
+  
+  When moving the resources, the data manager moves the entry, regenerates the FSO
+  and moves the data.
 */
-function Resource(rdfId, type, filename) {
-	sbCommonUtils.dbg('Resource('+rdfId+','+type+','+filename+')');
+function Resource(rdfId, type, fso) {
+	sbCommonUtils.dbg('Resource('+rdfId+','+type+','+fso+')');
 	this.rdfId = rdfId;
 	this.type = type;
-	this._filename = filename;
+	this._FSO = fso;
+	if (this._FSO && (type != "root"))
+		this._filename = this._FSO.leafName;
+	else
+		this._filename = "";
 	this.children = [];
 	this.registerRdf();
 	sbDataSource.nodes.push(this); //auto-register us in a node list
@@ -101,15 +110,15 @@ Resource.prototype = {
 	},
 
 
-	_FSO : null, //explicit filesystem object, only set for root node
+	_FSO : null, //explicit filesystem object
 	getFilesystemObject : function() {
-		if (this._FSO)
-			return this._FSO //set for root
-		else {
-			var FSO = this.parent.getFilesystemObject().clone();
-			FSO.append(this.filename);
-			return FSO;
-		}
+		return this._FSO
+	},
+	//Recalculate FSO from parent + filename
+	updateFSO : function() {
+		var FSO = this.parent.getFilesystemObject().clone();
+		FSO.append(this.filename);
+		this.FSO = FSO;
 	},
 	
 	get isRoot() {
@@ -148,9 +157,10 @@ Resource.prototype = {
 	//if it is not overriden
 	//Also useful to check if it's overriden.
 	_getFilenameTitle : function() {
+		sbCommonUtils.dbg("getFilenameTitle: _filename="+this._filename);
 		//Strip extension
 		var parts = this.filename.split('.');
-		if (parts.pop().length > 5) {
+		if ((parts.length < 2) || (parts.pop().length > 5)) {
 			sbCommonUtils.dbg("returning "+this.filename);
 			return this.filename //probably wasn't an extension
 		}
@@ -195,10 +205,15 @@ Resource.prototype = {
 	//Loads index.dat for the directory FSO into ordered {id,title} pairs
 	_loadIndex : function (fso) {
 		var index = new DirIndex();
-		var file = this.getFilesystemObject().clone();
+		if (fso)
+			var file = fso.clone()
+		else
+			var file = this.getFilesystemObject().clone();
 		file.append("index.dat");
-		if (file.exists())
+		if (file.exists()) {
 			index.loadFromFile(file);
+			sbCommonUtils.dbg("_loadIndex: "+index.entries.length+" entries loaded");
+		}
 		return index;
 	},
 	_compileIndex : function() {
@@ -222,7 +237,9 @@ Resource.prototype = {
 			}
 			entries.push(entry);
 		}
-		return entries;
+		var index = new DirIndex();
+		index.entries = entries;
+		return index;
 	},
 
 	//Writes any changed resources to the disk.
@@ -294,6 +311,43 @@ Resource.prototype = {
 		sbRDF.setProperty(this.rdfRes, 'source', aValue);
 	},
 	
+	// Lock is always stored as "read-only" flag
+	get lock() {
+		if (this.isFilesystemObject)
+			return !this.getFilesystemObject().isWritable();
+		else
+			return false;
+	},
+	set lock(aValue) {
+		sbCommonUtils.dbg("set lock: "+aValue);
+		if (this.isFilesystemObject) {
+			var perm = aValue ? 0400 : 0700;
+			sbCommonUtils.dbg("set lock: setting permissions="+perm);
+			this.getFilesystemObject().permissions = perm;
+			sbCommonUtils.dbg("set lock: permissions="+this.getFilesystemObject().permissions);
+			sbRDF.setProperty(this.rdfRes, 'lock', aValue ? "true" : "false");
+		}
+	},
+	
+	// Creation and modification times are always read-only. FS tracks these.
+	get createTime() {
+		sbCommonUtils.dbg("createTime");
+		return this.modifyTime; //TODO: Is there no way to query creation time?
+	},
+	get modifyTime() {
+		sbCommonUtils.dbg("modifyTime");
+		if (this.isFilesystemObject) {
+			var modifyTime = this.getFilesystemObject().lastModifiedTime;
+			return sbCommonUtils.getTimeStamp(new Date(modifyTime));
+		}
+		else {
+			sbCommonUtils.dbg("modifyTime: this.parent");
+			return (!this.parent) ? "" : this.parent.modifyTime; //for separators etc.
+			sbCommonUtils.dbg("modifyTime: this.parent2");
+		}
+	},
+	
+	
 	//This is called by parent when attaching a child. All generic stored properties are passed here.
 	//Some properties have their own routines (such as title).
 	_loadStoredProperty : function(aProp, aValue) {
@@ -307,7 +361,7 @@ Resource.prototype = {
 
 	//Called by children when one of their generic properties is changed and their format has nowhere to store it.
 	_storeChildProperty : function(aChild, aProp, aValue) {
-		//TODO
+		//Flush will ask children what to store
 		if (!this._loadingChildren)
 			this.queueFlush();
 	},
@@ -442,17 +496,17 @@ Resource.prototype = {
 	       NS1:lock=""                          read-write, stored as file attribute "read-only" (if this property is what I think it is)
 		*/
 		sbRDF.setProperty(this.rdfRes, 'id', this.rdfId);
-		sbRDF.setProperty(this.rdfRes, 'create', ""); //TODO
-		sbRDF.setProperty(this.rdfRes, 'modify', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'create', this.createTime);
+		sbRDF.setProperty(this.rdfRes, 'modify', this.modifyTime);
 		sbRDF.setProperty(this.rdfRes, 'type', this.type);
 		if (this.type != "separator") {
-			sbRDF.setProperty(this.rdfRes, 'title', this.getTitle()); //TODO
+			sbRDF.setProperty(this.rdfRes, 'title', this.getTitle());
 			sbRDF.setProperty(this.rdfRes, 'chars', "UTF-8"); //TODO
 		}
 		sbRDF.setProperty(this.rdfRes, 'icon', ""); //TODO
 		sbRDF.setProperty(this.rdfRes, 'source', ""); //TODO
 		sbRDF.setProperty(this.rdfRes, 'comment', ""); //TODO
-		sbRDF.setProperty(this.rdfRes, 'lock', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'lock', this.lock ? "true" : "false");
 		//These need to be updated every time they're changed for this object.
 		//This may be done automatically if we write wrappers for all these properties, or manually by the caller (usually sbDataSource's setProperty, so its okay too)
 	},
@@ -566,9 +620,7 @@ var sbDataSource = {
         	sbCommonUtils.dbg('init: initializing RDF');
             sbRDF.init();
             sbCommonUtils.dbg('init: creating root');
-            this.root = new Resource(null, "root", "");
-            this.root._FSO = sbCommonUtils.getScrapBookDir();
-            sbCommonUtils.dbg('init: building file tree');
+            this.root = new Resource(null, "root", sbCommonUtils.getScrapBookDir());
             this._loadChildren(this.root, this.root._FSO, true);
             sbCommonUtils.dbg('init: tree built');
             this._needReOutputTree = false;
@@ -598,9 +650,10 @@ var sbDataSource = {
 		//Load index.dat
 		sbCommonUtils.dbg('loadChildren('+fso.path+'): loading index.dat entries');
 		aRes._loadingChildren = true;
-		var index = aRes._loadIndexDat(fso);
-		for (var i=0; i<index.length; i++) {
-			var entry = index[i];
+		var index = aRes._loadIndex(fso);
+		sbCommonUtils.dbg("loadChildren: "+index.entries.length+" index entries");
+		for (var i=0; i<index.entries.length; i++) {
+			var entry = index.entries[i];
 			if (entry.id == "") continue; //safety
 			sbCommonUtils.dbg("loadChildren: index entry "+entry.id+","+entry.title);
 			if (entry.id.startsWith('*')) {
@@ -623,14 +676,25 @@ var sbDataSource = {
     	sbCommonUtils.dbg('loadChildren('+fso.path+'): loading the rest of the entries');
     	var entries = fso.directoryEntries;
     	while (entries.hasMoreElements()) {
+    		sbCommonUtils.dbg("loadChildren: entry");
     		var entry = entries.getNext().QueryInterface(Components.interfaces.nsIFile);
-    		if (entry.isHidden) continue; //skip hidden files such as desktop.ini
+    		if (entry.isHidden()) {
+    			sbCommonUtils.dbg("loadChildren: hidden, skipping");
+    			continue; //skip hidden files such as desktop.ini
+    		}
 
     		var filename = entry.leafName;
-    		if (this.IGNORE_FILENAMES.indexOf(filename.toLowerCase()) >= 0) continue; //skip our bookkeeping
+    		sbCommonUtils.dbg("loadChildren: leafName="+filename);
+    		if (this.IGNORE_FILENAMES.indexOf(filename.toLowerCase()) >= 0) {
+    			sbCommonUtils.dbg("loadChildren: ignored filename, skipping");
+    			continue; //skip our bookkeeping
+    		}
 
-    		if (aRes.indexOfFilename(filename) >= 0) continue; //already positioned
-    		sbCommonUtils.dbg("loadChildren: adding "+entry.filename+" to "+aRes.filename);
+    		if (aRes.indexOfFilename(filename) >= 0) {
+    			sbCommonUtils.dbg("loadChildren: already loaded, skipping");
+    			continue; //already positioned
+    		}
+    		sbCommonUtils.dbg("loadChildren: adding "+filename+" to "+aRes.filename);
     		aRes.insertChild(this._loadResource(entry, recursive));
     	}
     	aRes._loadingChildren = false;
@@ -641,15 +705,19 @@ var sbDataSource = {
     _loadResource : function(fso, recursive) {
     	sbCommonUtils.dbg(fso);
     	var filename = fso.leafName;
+    	sbCommonUtils.dbg("_loadResource: filename="+filename);
 		if (fso.isDirectory()) {
-			var aRes = new Resource(null, "folder", filename);
+			var aRes = new Resource(null, "folder", fso);
 			if (recursive)
 				this._loadChildren(aRes, fso, recursive);
 			return aRes;
 		} else
 		switch (filename.split('.').pop()) {
-			case "txt": return new Resource(null, "note", filename); break;
-			default: return new Resource(null, "", filename); break;
+			case "txt": {
+				sbCommonUtils.dbg("_loadResource: fso.leafName = "+fso.leafName);
+				return new Resource(null, "note", fso); break;
+			}
+			default: return new Resource(null, "", fso); break;
 		}
     },
     
@@ -785,7 +853,9 @@ var sbDataSource = {
             sbCommonUtils.dbg("addItem: reserved filename: "+filename);
 			
             //create a new resource
-            var newItem = new Resource(aSBitem.id, aSBitem.type, filename);
+            var fso = parent.getFilesystemObject().clone();
+            fso.append(filename);
+            var newItem = new Resource(aSBitem.id, aSBitem.type, fso);
             if (filename != aSBitem.title)
             	newItem.setCustomTitle(aSBitem.title)
             
@@ -987,6 +1057,10 @@ var sbDataSource = {
 					this.moveFilesystemObject(aRes, oldFile); //basically we're asking it to reconsider the filename
 				}
 				break;
+			case "icon": aRes.icon = newVal; break;
+			case "source": aRes.source = newVal; break;
+			case "comment": aRes.comment = newVal; break;
+			case "lock": aRes.lock = (newVal.toLowerCase() == "true"); break;
 			default:
 				//Changing other properties is not supported at this time.
 			}
