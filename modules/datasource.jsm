@@ -234,6 +234,7 @@ Resource.prototype = {
 					entry.title = title;
 				else
 					entry.title = null;
+				entry.props = this.children[i]._getExternalProperties();
 			}
 			entries.push(entry);
 		}
@@ -354,9 +355,19 @@ Resource.prototype = {
 	},
 	
 	
+	//Returns a list of properties this child cannot store internally and which
+	//must be stored by its parent.
+	_getExternalProperties : function() {
+		var props = [];
+		//TODO: some types of files can store these internally
+		if (this.comment != '') props.push({name: "comment", value: this.comment});
+		if (this.icon != '') props.push({name: "icon", value: this.icon});
+		if (this.source != '') props.push({name: "source", value: this.source});
+	},
+	
 	//This is called by parent when attaching a child. All generic stored properties are passed here.
 	//Some properties have their own routines (such as title).
-	_loadStoredProperty : function(aProp, aValue) {
+	_loadExternalProperty : function(aProp, aValue) {
 		switch(aProp) {
 		case "comment": this._comment = aValue; break;
 		case "icon": this._icon = aValue; break;
@@ -674,7 +685,7 @@ var sbDataSource = {
 			if (entry.title != "")
 				childRes.setCustomTitle(entry.title);
 			for (var i=0; i<entry.props.length; i++)
-				childRes._loadStoredProperty(entry.props[i].name, entry.props[i].value)
+				childRes._loadExternalProperty(entry.props[i].name, entry.props[i].value)
 			aRes.insertChild(childRes);
 		}
 		
