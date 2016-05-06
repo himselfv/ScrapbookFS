@@ -45,11 +45,7 @@ we may implement a flush service:
 
 /*
 TODO:
-- notify parent on any changes to comment, icon, source, if we can't store it
-- when accepting children, inform them of any additional properties from index.dat?
-
 - when loading index entries, handle "file not found" (that's okay)
-
 - read create, modify fields from fs (ignore for non-fs objects or use parent ones)
 
 */
@@ -700,16 +696,23 @@ var sbDataSource = {
 			var entry = index.entries[i];
 			if (entry.id == "") continue; //safety
 			sbCommonUtils.dbg("loadChildren: index entry "+entry.id+","+entry.title);
-			sbCommonUtils.dbg("loadChildren: entry: "+entry);
 			if (entry.id.startsWith('*')) {
 				aRes.insertChild(new Resource(null, "separator"));
 				continue;
 			}
-			if (aRes.indexOfFilename(entry.id) >= 0) continue; //don't list one resource twice //TODO: perhaps call refresh on child anyway, if recursive?
+			if (aRes.indexOfFilename(entry.id) >= 0) continue; //don't list one resource twice
 
 			var childFso = fso.clone();
 			childFso.append(entry.id);
-			var childRes = this._loadResource(childFso, recursive);
+			try {
+			  var childRes = this._loadResource(childFso, recursive);
+			} catch (ex) {
+				if (ex.name == "NS_ERROR_FILE_NOT_FOUND") {
+					sbCommonUtils.dbg("File not found: "+entry.id+", skipping.");
+					continue; //that's okay
+				}
+				throw ex;
+			}
 			if (entry.title != "")
 				childRes.setCustomTitle(entry.title);
 			for (var i=0; i<entry.props.length; i++) {
