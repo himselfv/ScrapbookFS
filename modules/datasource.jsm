@@ -45,8 +45,9 @@ we may implement a flush service:
 
 /*
 TODO:
-- when loading index entries, handle "file not found" (that's okay)
-- read create, modify fields from fs (ignore for non-fs objects or use parent ones)
+- Store properties internally for some types of files.
+- Support/test creation of notes of various types.
+- Support MHT.
 
 */
 
@@ -541,11 +542,11 @@ Resource.prototype = {
 		sbRDF.setProperty(this.rdfRes, 'type', this.type);
 		if (this.type != "separator") {
 			sbRDF.setProperty(this.rdfRes, 'title', this.getTitle());
-			sbRDF.setProperty(this.rdfRes, 'chars', "UTF-8"); //TODO
+			sbRDF.setProperty(this.rdfRes, 'chars', "UTF-8"); //TODO?
 		}
-		sbRDF.setProperty(this.rdfRes, 'icon', ""); //TODO
-		sbRDF.setProperty(this.rdfRes, 'source', ""); //TODO
-		sbRDF.setProperty(this.rdfRes, 'comment', ""); //TODO
+		sbRDF.setProperty(this.rdfRes, 'icon', this.icon);
+		sbRDF.setProperty(this.rdfRes, 'source', this.source);
+		sbRDF.setProperty(this.rdfRes, 'comment', this.comment);
 		sbRDF.setProperty(this.rdfRes, 'lock', this.lock ? "true" : "false");
 		//These need to be updated every time they're changed for this object.
 		//This may be done automatically if we write wrappers for all these properties, or manually by the caller (usually sbDataSource's setProperty, so its okay too)
