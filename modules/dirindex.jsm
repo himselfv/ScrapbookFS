@@ -33,24 +33,26 @@ DirIndex.prototype = {
 	loadFromFile : function(aFile) {
 		sbCommonUtils.dbg("index.load: "+aFile.path);
 		this.entries = [];
-		var lines = sbCommonUtils.readFile(aFile).replace(/\r\n|\r/g, '\n').split("\n");
+		var lines = sbCommonUtils.convertToUnicode(sbCommonUtils.readFile(aFile), "UTF-8")
+			.replace(/\r\n|\r/g, '\n').split("\n");
 		var section = "";
 		for (var i=0; i<lines.length; i++) {
 			var line = lines[i];
 			if (line == "") continue; //safety
-			if ((line[0] == "[") && (line[line.length] == "]")) {
-				section = line.slice(1, line.length-2);
+			if ((line[0] == "[") && (line[line.length-1] == "]")) {
+				section = line.slice(1, line.length-1);
+				sbCommonUtils.dbg("Index section: "+section);
 				continue;
 			}
 			
 			switch (section) {
-			case "":
 			case "Index":
 				sbCommonUtils.dbg("Index entry: "+lines[i]);
 				var parts = lines[i].split('=');
 				this.entries.push({
 				  id: parts.shift(),
-				  title: this._decodePropValue(parts.join("="))
+				  title: this._decodePropValue(parts.join("=")),
+				  props: []
 				});
 				break;
 			case "Properties":
@@ -68,28 +70,39 @@ DirIndex.prototype = {
 	saveToFile : function(aFile) {
 		sbCommonUtils.dbg("index.write: "+aFile.path);
 		var lines = [];
+		
 		// Index
+		lines.push('[Index]')
 		for (var i=0; i<this.entries.length; i++) {
 			if (this.entries[i].title)
 				lines.push(this.entries[i].id+'='+this._encodePropValue(this.entries[i].title));
 			else
 				lines.push(this.entries[i].id);
 		}
+		
 		// Properties
+		lines.push('');
+		lines.push('[Properties]')
 		for (var i=0; i<this.entries.length; i++) {
 			var entry = this.entries[i];
-			if (!entry.props) continue;
-			for (var j=0; j<entry.props.length; j++)
+			if (!entry.props) {
+				sbCommonUtils.dbg("No properties for "+entry.id);
+				continue;
+			}
+			sbCommonUtils.dbg("Properties for "+entry.id+":");
+			for (var j=0; j<entry.props.length; j++) {
+				sbCommonUtils.dbg(entry.id+":"+entry.props[j].name)
 				lines.push(entry.id+':'+this._sanitizePropName(entry.props[j].name)+'='+this._encodePropValue(entry.props[j].value));
+			}
 		}
-		sbCommonUtils.writeFile(aFile, lines.join("\r\n"));
+		sbCommonUtils.writeFile(aFile, lines.join("\r\n"), "UTF-8");
 	},
 
 	getEntry : function(aEntryName) {
 		for (var i=0; i<this.entries.length; i++)
 			if (this.entries[i].id == aEntryName)
 				return this.entries[i];
-		var idx = this.entries.push({id: aEntryName});
+		var idx = this.entries.push({id: aEntryName, props: []});
 		return this.entries[idx];
 	},
 

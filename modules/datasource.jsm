@@ -234,7 +234,9 @@ Resource.prototype = {
 					entry.title = title;
 				else
 					entry.title = null;
+				sbCommonUtils.dbg("updateIndex: querying external properties");
 				entry.props = this.children[i]._getExternalProperties();
+				sbCommonUtils.dbg("updateIndex: "+entry.props.length+" properties returned");
 			}
 			entries.push(entry);
 		}
@@ -270,21 +272,35 @@ Resource.prototype = {
 	// Index must be read before loading any children.
 	// When attaching children, parent will pass all related stored properties to each.
 	
-	_comment : null,
+	__comment : null,
+	// Internal access: stores the value and updates the RDF
+	get _comment() { return this.__comment; },
+	set _comment(aValue) {
+		if (this.__comment == aValue) return;
+		this.__comment = aValue;
+		sbRDF.setProperty(this.rdfRes, 'comment', aValue);
+	},
+	// External access: writes the value down to disk
 	get comment() {	return this._comment; },
 	set comment(aValue) {
 		sbCommonUtils.dbg("setComment: '"+aValue+"'");
 		if (this._comment == aValue) return;
-		this._comment = aValue;
 		switch (this.type) {
 		//Some file types might be able to store comment internally
 		default:
 			if (this.parent) this.parent._storeChildProperty(this, "comment", aValue);
 		}
-		sbRDF.setProperty(this.rdfRes, 'comment', aValue);
 	},
 
-	_icon : null,
+	__icon : null,
+	//Internal access
+	get _icon() { return this.__icon; },
+	set _icon(aValue) {
+		if (this.__icon == aValue) return;
+		this.__icon = aValue;
+		sbRDF.setProperty(this.rdfRes, 'icon', aValue);
+	},
+	//External access
 	get icon() { return this._icon; },
 	set icon(aValue) {
 		sbCommonUtils.dbg("setIcon: '"+aValue+"'");
@@ -295,10 +311,17 @@ Resource.prototype = {
 		default:
 			if (this.parent) this.parent._storeChildProperty(this, "icon", aValue);
 		}
-		sbRDF.setProperty(this.rdfRes, 'icon', aValue);
 	},
 	
-	_source : null,
+	__source : null,
+	//Internal access
+	get _source() { return this.__source; },
+	set _source(aValue) {
+		if (this.__source == aValue) return;
+		this.__source = aValue;
+		sbRDF.setProperty(this.rdfRes, 'source', aValue);
+	},
+	//External access
 	get source() { return this._source; },
 	set source(aValue) {
 		sbCommonUtils.dbg("setSource: '"+aValue+"'");
@@ -309,7 +332,6 @@ Resource.prototype = {
 		default:
 			if (this.parent) this.parent._storeChildProperty(this, "source", aValue);
 		}
-		sbRDF.setProperty(this.rdfRes, 'source', aValue);
 	},
 	
 	// Lock is always stored as "read-only" flag
@@ -359,17 +381,22 @@ Resource.prototype = {
 	//must be stored by its parent.
 	_getExternalProperties : function() {
 		var props = [];
+		sbCommonUtils.dbg("_getExternalProperties: comment="+this.comment);
+		sbCommonUtils.dbg("_getExternalProperties: icon="+this.icon);
+		sbCommonUtils.dbg("_getExternalProperties: source="+this.source);
 		//TODO: some types of files can store these internally
-		if (this.comment != '') props.push({name: "comment", value: this.comment});
-		if (this.icon != '') props.push({name: "icon", value: this.icon});
-		if (this.source != '') props.push({name: "source", value: this.source});
+		if (this.comment) props.push({name: "comment", value: this.comment});
+		if (this.icon) props.push({name: "icon", value: this.icon});
+		if (this.source) props.push({name: "source", value: this.source});
+		return props
 	},
 	
 	//This is called by parent when attaching a child. All generic stored properties are passed here.
 	//Some properties have their own routines (such as title).
 	_loadExternalProperty : function(aProp, aValue) {
+		sbCommonUtils.dbg("_loadExternalProperty: "+aProp+"="+aValue);
 		switch(aProp) {
-		case "comment": this._comment = aValue; break;
+		case "comment": this._comment = aValue; sbCommonUtils.dbg("comment: "+this.comment); break;
 		case "icon": this._icon = aValue; break;
 		case "source": this._source = aValue; break;
 		default: break; //other are unsupported
@@ -673,6 +700,7 @@ var sbDataSource = {
 			var entry = index.entries[i];
 			if (entry.id == "") continue; //safety
 			sbCommonUtils.dbg("loadChildren: index entry "+entry.id+","+entry.title);
+			sbCommonUtils.dbg("loadChildren: entry: "+entry);
 			if (entry.id.startsWith('*')) {
 				aRes.insertChild(new Resource(null, "separator"));
 				continue;
@@ -684,8 +712,10 @@ var sbDataSource = {
 			var childRes = this._loadResource(childFso, recursive);
 			if (entry.title != "")
 				childRes.setCustomTitle(entry.title);
-			for (var i=0; i<entry.props.length; i++)
+			for (var i=0; i<entry.props.length; i++) {
+				sbCommonUtils.dbg("loadChildren: property "+entry.props[i].name);
 				childRes._loadExternalProperty(entry.props[i].name, entry.props[i].value);
+			}
 			aRes.insertChild(childRes);
 		}
 		

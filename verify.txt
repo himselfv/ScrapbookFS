@@ -17,3 +17,9 @@ Locks:
   never supported the flag for folders anyway.
 - Read-only is correctly set when lock is set
 - Read-only is correctly cleared when lock is set
+
+Basic external properties:
+- Comment, icon, source can be edited for a note
+- Comment, icon, source props are stored in index.dat
+- Index.dat is successfully loaded after restart
+- Comment, icon, source are correct in note properties.
