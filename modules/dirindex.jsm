@@ -49,11 +49,8 @@ DirIndex.prototype = {
 			case "Index":
 				sbCommonUtils.dbg("Index entry: "+lines[i]);
 				var parts = lines[i].split('=');
-				this.entries.push({
-				  id: parts.shift(),
-				  title: this._decodePropValue(parts.join("=")),
-				  props: []
-				});
+				var entry = this.getEntry(parts.shift());
+				entry.title = this._decodePropValue(parts.join("="));
 				break;
 			case "Properties":
 				sbCommonUtils.dbg("Property entry: "+lines[i]);
@@ -102,7 +99,7 @@ DirIndex.prototype = {
 		for (var i=0; i<this.entries.length; i++)
 			if (this.entries[i].id == aEntryName)
 				return this.entries[i];
-		var idx = this.entries.push({id: aEntryName, props: []});
+		var idx = this.entries.push({id: aEntryName, props: []}) - 1;
 		return this.entries[idx];
 	},
 
