@@ -129,7 +129,6 @@ var sbRDF = {
 var EXPORTED_SYMBOLS = ["sbRDF"];
 
 
-
 /*
 Scrapbook RDF data source implementation.
 We don't do proper registration because we don't need to create it from outside, we only need it to be compatible.
@@ -155,6 +154,7 @@ ScrapbookDatasource.prototype = {
 		this.rdf = Components.classes["@mozilla.org/rdf/rdf-service;1"].getService(Components.interfaces.nsIRDFService);
 		this.uplink = Components.classes["@mozilla.org/rdf/datasource;1?name=in-memory-datasource"].createInstance(Components.interfaces.nsIRDFDataSource);
 		this.resmap = new Object();
+		this.observers = [];
 	},
 	
 	
@@ -188,7 +188,7 @@ ScrapbookDatasource.prototype = {
 	},
 	getSbResource : function(aRdfRes) {
 		return this.resmap[aRdfRes]; //may be null
-	}
+	},
 
 
 	//Implement the rest of IRDFDataSource by proxy
@@ -206,21 +206,21 @@ ScrapbookDatasource.prototype = {
 	// Add the property aProperty for resouce aSource, with value aTarget (ignore aTruthValue)
 	Assert : function(aSource, aProperty, aTarget, aTruthValue) {
 		this.uplink.Assert(aSource, aProperty, aTarget, aTruthValue);
-		for observer in this.observers
+		for (observer in this.observers)
 			observer.onAssert(this, aSource, aProperty, aTarget); //observers don't receive aTruthValue
 		return;
 	},
 	// Remove the property
 	Unassert : function(aSource, aProperty, aTarget) {
 		this.uplink.Unassert(aSource, aProperty, aTarget);
-		for observer in this.observers
+		for (observer in this.observers)
 			observer.onUnassert(this, aSource, aProperty, aTarget);
 		return;
 	},
 	// Change the value of the property aProperty for aSource from aOldTarget to aNewTarget
 	Change : function(aSource, aProperty, aOldTarget, aNewTarget) {
 		this.uplink.Change(aSource, aProperty, aOldTarget, aNewTarget);
-		for observer in this.observers
+		for (observer in this.observers)
 			observer.onChange(this, aSource, aProperty, aOldTarget, aNewTarget);
 		return;
 	},
@@ -228,7 +228,7 @@ ScrapbookDatasource.prototype = {
 	// Not very useful in our scenario, but whatever
 	Move : function(aOldSource, aNewSource, aProperty, aTarget) {
 		this.uplink.Move(aOldSource, aNewSource, aProperty, aTarget);
-		for observer in this.observers
+		for (observer in this.observers)
 			observer.onMove(this, aOldSource, aNewSource, aProperty, aTarget);
 		return;
 	},
@@ -240,7 +240,7 @@ ScrapbookDatasource.prototype = {
 	Adds-removes observers which have to be called on some operations.
 	See http://lxr.mozilla.org/seamonkey/source/rdf/base/idl/nsIRDFObserver.idl
 	*/
-	var observers = [],
+	observers : null,
 	AddObserver : function(aObserver) {
 		this.observers.push(aObserver);
 	},
@@ -274,12 +274,12 @@ ScrapbookDatasource.prototype = {
 	*/
 
 	beginUpdateBatch : function() {
-		for observer in this.observers
+		for (observer in this.observers)
 			observer.beginUpdateBatch(this);
 		return;
 	},
 	endUpdateBatch : function() {
-		for observer in this.observers
+		for (observer in this.observers)
 			observer.endUpdateBatch(this);
 		return;
 	},

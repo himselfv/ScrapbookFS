@@ -1,6 +1,6 @@
 Components.utils.import("resource://scrapbook-modules/common.jsm");
-Components.utils.import("resource://scrapbook-modules/fakerdf.jsm");
 Components.utils.import("resource://scrapbook-modules/dirindex.jsm");
+Components.utils.import("resource://scrapbook-modules/scraprdf.jsm");
 
 
 /*
