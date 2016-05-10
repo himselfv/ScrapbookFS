@@ -1,6 +1,7 @@
 Components.utils.import("resource://scrapbook-modules/common.jsm");
 Components.utils.import("resource://scrapbook-modules/scraprdf.jsm");
 Components.utils.import("resource://scrapbook-modules/dirindex.jsm");
+Components.utils.import("resource://scrapbook-modules/resource.jsm");
 
 /*
 Scrapbook FS data source.
@@ -83,7 +84,7 @@ var sbDataSource = {
         	sbCommonUtils.dbg('init: initializing RDF');
             sbRDF.init();
             sbCommonUtils.dbg('init: creating root');
-            this.root = new Resource(null, "root", sbCommonUtils.getScrapBookDir());
+            this.root = new SBResource(null, "root", sbCommonUtils.getScrapBookDir());
             this._loadChildren(this.root, this.root._FSO, true);
             sbCommonUtils.dbg('init: tree built');
             this._needReOutputTree = false;
@@ -120,7 +121,7 @@ var sbDataSource = {
 			if (entry.id == "") continue; //safety
 			sbCommonUtils.dbg("loadChildren: index entry "+entry.id+","+entry.title);
 			if (entry.id.startsWith('*')) {
-				aRes.insertChild(new Resource(null, "separator"));
+				aRes.insertChild(new SBResource(null, "separator"));
 				continue;
 			}
 			if (aRes.indexOfFilename(entry.id) >= 0) continue; //don't list one resource twice
@@ -180,7 +181,7 @@ var sbDataSource = {
     	var filename = fso.leafName;
     	sbCommonUtils.dbg("_loadResource: filename="+filename);
 		if (fso.isDirectory()) {
-			var aRes = new Resource(null, "folder", fso);
+			var aRes = new SBResource(null, "folder", fso);
 			if (recursive)
 				this._loadChildren(aRes, fso, recursive);
 			return aRes;
@@ -188,9 +189,9 @@ var sbDataSource = {
 		switch (filename.split('.').pop()) {
 			case "txt": {
 				sbCommonUtils.dbg("_loadResource: fso.leafName = "+fso.leafName);
-				return new Resource(null, "note", fso); break;
+				return new SBResource(null, "note", fso); break;
 			}
-			default: return new Resource(null, "", fso); break;
+			default: return new SBResource(null, "", fso); break;
 		}
     },
     
@@ -328,7 +329,7 @@ var sbDataSource = {
             //create a new resource
             var fso = parent.getFilesystemObject().clone();
             fso.append(filename);
-            var newItem = new Resource(aSBitem.id, aSBitem.type, fso);
+            var newItem = new SBResource(aSBitem.id, aSBitem.type, fso);
             if (filename != aSBitem.title)
             	newItem.setCustomTitle(aSBitem.title)
             

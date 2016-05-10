@@ -17,9 +17,9 @@ Components.utils.import("resource://scrapbook-modules/dirindex.jsm");
   You must pass the ID now, or we'll select it automatically.
   
   Valid constructors:
-    Resource(null, "root"); //use urn:scrapbook:root
-    Resource(null, "folder", fso); //auto-generate
-    Resource("urn:scrapbook:item12345678901234", ...); //use explicit
+    SBResource(null, "root"); //use urn:scrapbook:root
+    SBResource(null, "folder", fso); //auto-generate
+    SBResource("urn:scrapbook:item12345678901234", ...); //use explicit
 
   There are filesytem resources and virtual resources (e.g. separators).
   Every filesystem resource must have associated filesystem object. This object always points
@@ -29,7 +29,7 @@ Components.utils.import("resource://scrapbook-modules/dirindex.jsm");
   When moving the resources, the data manager moves the entry, regenerates the FSO
   and moves the data.
 */
-function Resource(rdfId, type, fso) {
+function SBResource(rdfId, type, fso) {
 	sbCommonUtils.dbg('Resource('+rdfId+','+type+','+fso+')');
 	this.rdfId = rdfId;
 	this.type = type;
@@ -43,7 +43,7 @@ function Resource(rdfId, type, fso) {
 	sbDataSource.nodes.push(this); //auto-register us in a node list
 }
 
-Resource.prototype = {
+SBResource.prototype = {
 	parent : null,
 	type : null, //root, folder, note, ...
 
